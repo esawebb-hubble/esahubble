@@ -31,7 +31,8 @@ class ESASkySerializer(serializers.ModelSerializer):
         return get_tiles_for_instance(obj)
 
     def get_large(self, obj):
-        return get_instance_d2d_resource(obj, 'large', 'Large', 'Image')
+        large_dict = get_instance_d2d_resource(obj, 'large', 'Large', 'Image')
+        return large_dict.get('URL', None)
 
     def get_credit(self, obj):
         return remove_html_tags(obj.credit)
