@@ -19,11 +19,12 @@ class ESASkySerializer(serializers.ModelSerializer):
     tiles = serializers.SerializerMethodField()
     large = serializers.SerializerMethodField()
     coordinate_metadata = serializers.SerializerMethodField()
+    pixel_size = serializers.SerializerMethodField()
 
     class Meta:
         model = Image
         fields = (
-            'id', 'title', 'description', 'priority', 'release_date', 'last_modified',
+            'id', 'title', 'description', 'priority', 'pixel_size', 'release_date', 'last_modified',
             'coordinate_metadata', 'credit', 'tiles', 'large'
         )
 
@@ -69,3 +70,6 @@ class ESASkySerializer(serializers.ModelSerializer):
             "CoordinateSystemProjection": obj.spatial_coordsystem_projection,
             "Quality": obj.spatial_quality
         }
+
+    def get_pixel_size(self, obj):
+        return [obj.width, obj.height]
