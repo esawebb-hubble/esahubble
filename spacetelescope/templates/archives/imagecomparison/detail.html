@@ -27,7 +27,7 @@ javascript file at the bottom of the main template
 <div class="row">
     <div class="col-md-9 left-column">
         <p>{{ object.description|safe }}</p>
-        <h3>{% trans "Credit" %}</h3><p>{{ object.credit|safe }}</p>
+        <strong>{% trans "Credit" %}:</strong><div class="credit">{{ object.credit|safe }}</div>
         {% include 'archives/extra_footer.html' %}
     </div>
     <div class="col-md-3 right-column">
