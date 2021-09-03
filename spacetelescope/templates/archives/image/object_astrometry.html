@@ -48,6 +48,15 @@
             //var aladin_jpg_url = 'http://{{ DJANGOPLICITY.SITE_DOMAIN }}{{ object.resource_screen.url }}';
         </script>
 -->
+        {% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
+            {% with esaskylink="https://www.youtube.com" %}
+            {% if esaskylink %}
+                <div class="wwtlink">
+                    <div>{% trans "View in ESASky" %}:</div>
+                    <div align="center"><a href="{{esaskylink}}" title="View in ESASky"><img src="{% static 'images/esasky.png' %}" alt="View in ESASky" /></a></div>
+                </div>
+            {% endif %}}
+
         {% with wwtlink=object.get_wwt_url %}
         {% if wwtlink %}
             <div class="wwtlink">
