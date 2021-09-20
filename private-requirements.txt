@@ -1,4 +1,4 @@
-# Last update: giphy_url field integration
+# Last update: fix video rename feature
 git+https://github.com/djangoplicity/djangoplicity-actions.git@release/python3
 git+https://github.com/djangoplicity/djangoplicity-customsearch.git@release/python3
 git+https://github.com/djangoplicity/djangoplicity-newsletters.git@newsletters-esahubble
