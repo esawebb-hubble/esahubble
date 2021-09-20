@@ -20,9 +20,7 @@ EXCLUDED_IMAGES = [
     'potw2127a',
     'potw1910a',
     'potw1149a',
-    'potw1145a',
     'heic0810ae',
-    'heic1118a',
     'heic0910h'
 ]
 
