@@ -23,7 +23,7 @@
         {% endif %}
 
         <!--ESASky section-->
-        {% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
+        <!--{% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
             {% with esaskylink="http://sky.esa.int/?hst_image="|add:object.id|add:"&hips=DSS2+color&sci=false&hide_welcome=true" %}
                 {% if esaskylink %}
                     <div class="wwtlink">
@@ -34,7 +34,7 @@
                     </div>
                 {% endif %}
             {% endwith %}
-        {% endif %}
+        {% endif %}-->
 
         <!--WWT section-->
         {% with wwtlink=object.get_wwt_url %}
