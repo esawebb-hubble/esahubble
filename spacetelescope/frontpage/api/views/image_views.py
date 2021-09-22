@@ -10,8 +10,6 @@ from spacetelescope.frontpage.api.serializers import ESASkySerializer
 EXCLUDED_IMAGES = [
     'heic0810ae',
     'heic0910h',
-    'opo0028a',
-    'opo9607a',
     'opo1432b',
     'potw1717a',
     'potw1709a',
