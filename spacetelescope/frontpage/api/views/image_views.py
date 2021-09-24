@@ -41,7 +41,7 @@ class ESASkyListView(generics.ListAPIView):
         they will not be rendered correctly on the ESASKY site.
         """
 
-        qs = ImageOptions.Queries.zoomable.queryset(
+        qs = ImageOptions.Queries.default.queryset(
             Image, ImageOptions, self.request
         )[0].filter(Q(type='Observation') & Q(spatial_quality='Full')).order_by('-priority')
 
