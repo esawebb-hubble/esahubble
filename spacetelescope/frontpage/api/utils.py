@@ -6,9 +6,9 @@ from djangoplicity.archives.resources import ResourceFile
 from djangoplicity.media.consts import MEDIA_CONTENT_SERVERS
 
 
-def get_tiles_for_instance(instance, fileclass=ResourceFile):
+def get_zoomable_source(instance, fileclass=ResourceFile):
     """
-    Getting tile resources path from the CDN
+    Getting tiles folder path from the CDN
     """
 
     resource_format = 'zoomable'
@@ -49,3 +49,15 @@ def get_tiles_for_instance(instance, fileclass=ResourceFile):
                         tiles.append("{}".format(tile_resource_base.absolute_url))
 
     return tiles
+
+def get_first_subject(instance):
+    """
+
+    """
+
+    subjects = instance.subject_name.all()
+    if subjects.exists():
+        first_subject = subjects.first()
+        return first_subject.name
+    else:
+        return ""
