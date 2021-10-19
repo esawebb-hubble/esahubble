@@ -4,37 +4,37 @@
 
 {% if object.spatial_quality %}
     <div class="object-info">
-    <h3>{% trans "Coordinates" %}</h3>
-    <table>
-    {% if object.get_ra_verbose %}<tr><td class="title">{% trans "Position (RA)" %}:</td><td>{{object.get_ra_verbose}}</td></tr>{% endif %}
-    {% if object.get_dec_verbose %}<tr><td class="title">{% trans "Position (Dec)" %}:</td><td>{{object.get_dec_verbose|safe}}</td></tr>{% endif %}
-    {% if object.spatial_quality == 'Full' %}
-        <tr><td class="title">{% trans "Field of view" %}:</td><td>{{object.get_fov_verbose}}</td></tr>
-        {% if object.spatial_rotation %}
-            <tr><td class="title">{% trans "Orientation" %}:</td><td>{{object.get_spatial_rotation_verbose|safe}}</td></tr>
-        {% endif %}
+        <h3>{% trans "Coordinates" %}</h3>
+        <table>
+            {% if object.get_ra_verbose %}<tr><td class="title">{% trans "Position (RA)" %}:</td><td>{{object.get_ra_verbose}}</td></tr>{% endif %}
+            {% if object.get_dec_verbose %}<tr><td class="title">{% trans "Position (Dec)" %}:</td><td>{{object.get_dec_verbose|safe}}</td></tr>{% endif %}
+            {% if object.spatial_quality == 'Full' %}
+                <tr><td class="title">{% trans "Field of view" %}:</td><td>{{object.get_fov_verbose}}</td></tr>
+                {% if object.spatial_rotation %}
+                    <tr><td class="title">{% trans "Orientation" %}:</td><td>{{object.get_spatial_rotation_verbose|safe}}</td></tr>
+                {% endif %}
         </table>
         {% if object.spatial_rotation %}
             <script type="text/javascript">
-            compass_src = "{% static "djangoplicity/images/widgets/compassm.png" %}";
+            compass_src = "{% static 'djangoplicity/images/widgets/compassm.png' %}";
             spatial_rotation = {{ object.spatial_rotation }};
             </script>
             <canvas id="compass_canvas" width="240" height="140"></canvas>
         {% endif %}
 
         <!--ESASky section-->
-        <!--{% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
+        {% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
             {% with esaskylink="http://sky.esa.int/?hst_image="|add:object.id|add:"&hips=DSS2+color&sci=false&hide_welcome=true" %}
                 {% if esaskylink %}
                     <div class="wwtlink">
                         <div>{% trans "View in ESASky" %}:</div>
                         <div style="padding: 5px 0 5px 0;">
-                            <a href="{{esaskylink}}" title="View in ESASky"><img src="{% static 'images/esasky.png' %}" width="200" alt="View in ESASky" /></a>
+                            <a href="{{esaskylink}}" title="View in ESASky"><img src="{% static 'images/esasky.png' %}" width="200" alt="ESASky" /></a>
                         </div>
                     </div>
                 {% endif %}
             {% endwith %}
-        {% endif %}-->
+        {% endif %}
 
         <!--WWT section-->
         {% with wwtlink=object.get_wwt_url %}
@@ -48,14 +48,12 @@
             {% endif %}
         {% endwith %}
 
-    {% else %}
-        </table>
-    {% endif %}
+        <!--Aladin section-->
+        {% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
+           {% include 'archives/image/aladin_lite.html' %}
+            <hr>
+        {% endif %}
     </div>
 {% endif %}
-
-{% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
-   {% include 'archives/image/aladin_lite.html' %}
-    <hr>
 {% endif %}
 {% endspaceless %}
