@@ -41,37 +41,46 @@ class FrontpageView(TemplateView):
         return context
 
 
+# def d2d(request):
+#     '''
+#     Generic "Data provide" D2D feed
+#     '''
+#     return JsonResponse(OrderedDict([
+#         ('Creator', 'ESA/Hubble'),
+#         ('URL', 'https://www.spacetelescope.org'),
+#         ('Contact', OrderedDict([
+#             ('Name', 'Lars Lindberg Christensen'),
+#             ('Email', 'lars@eso.org'),
+#             ('Telephone', '+498932006761'),
+#             ('Address', 'Karl-Schwarzschild-Strasse 2'),
+#             ('City', 'Garching bei München'),
+#             ('StateProvince', 'Bavaria'),
+#             ('PostalCode', '85748'),
+#             ('Country', 'Germany'),
+#         ])),
+#         ('Logo', 'https://www.spacetelescope.org/static/archives/logos/medium/esa_screen_blue.jpg'),
+#         ('Feeds', [
+#             {
+#                 'Name': 'ESA/Hubble Images',
+#                 'Description': 'ESA/Hubble Images',
+#                 'URL': 'https://www.spacetelescope.org/images/d2d/',
+#                 'Type': 'Images',
+#             },
+#             {
+#                 'Name': 'ESA/Hubble Videos',
+#                 'Description': 'ESA/Hubble Videos',
+#                 'URL': 'https://www.spacetelescope.org/videos/d2d/',
+#                 'Type': 'Videos',
+#             },
+#         ]
+#         ),
+#     ]))
+
+
 def d2d(request):
     '''
     Generic "Data provide" D2D feed
     '''
     return JsonResponse(OrderedDict([
-        ('Creator', 'ESA/Hubble'),
-        ('URL', 'https://www.spacetelescope.org'),
-        ('Contact', OrderedDict([
-            ('Name', 'Lars Lindberg Christensen'),
-            ('Email', 'lars@eso.org'),
-            ('Telephone', '+498932006761'),
-            ('Address', 'Karl-Schwarzschild-Strasse 2'),
-            ('City', 'Garching bei München'),
-            ('StateProvince', 'Bavaria'),
-            ('PostalCode', '85748'),
-            ('Country', 'Germany'),
-        ])),
-        ('Logo', 'https://www.spacetelescope.org/static/archives/logos/medium/esa_screen_blue.jpg'),
-        ('Feeds', [
-            {
-                'Name': 'ESA/Hubble Images',
-                'Description': 'ESA/Hubble Images',
-                'URL': 'https://www.spacetelescope.org/images/d2d/',
-                'Type': 'Images',
-            },
-            {
-                'Name': 'ESA/Hubble Videos',
-                'Description': 'ESA/Hubble Videos',
-                'URL': 'https://www.spacetelescope.org/videos/d2d/',
-                'Type': 'Videos',
-            },
-        ]
-        ),
+        ('Update', 'Daniel testing'),
     ]))
