@@ -54,3 +54,6 @@ dj_database_url
 
 # Improved Python shell
 ipython==7.19.0
+
+# Newrelic
+newrelic

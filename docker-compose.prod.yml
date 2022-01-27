@@ -40,6 +40,8 @@ services:
   web:
     <<: *common
     command: ["./scripts/command-prod.sh"]
+    environment:
+      - NEW_RELIC_CONFIG_FILE=./config/newrelic/newrelic.ini
 
   broker:
     environment:
