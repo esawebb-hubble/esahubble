@@ -91,7 +91,6 @@ DEBUG_TOOLBAR_PANELS = []
 
 ADMINS = (
     ('Web team ESAHubble', 'web@esahubble.org'),
-    ('Daniel Restrepo', 'danielrestrepo9725@gmail.com')
 )
 MANAGERS = ADMINS
 
