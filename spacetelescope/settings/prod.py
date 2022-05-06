@@ -34,7 +34,7 @@ if get_secret('DATABASE_URL'):
 
 # EMAIL: SMTP CONFIG
 EMAIL_SUBJECT_PREFIX = '[ESA/HUBBLE]'
-EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST = 'smtp.eu.mailgun.org'
 EMAIL_HOST_USER = get_secret('EMAIL_USER')
 EMAIL_HOST_PASSWORD = get_secret('EMAIL_PASSWORD')
 EMAIL_PORT = '587'
