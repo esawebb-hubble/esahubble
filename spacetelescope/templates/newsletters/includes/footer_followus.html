@@ -1,14 +1,15 @@
 {% if followus %}
 <p style="font-size: 11px; text-align:center;">Follow us on:</p>
-<p style="font-size: 11px; text-align:center;"><img src="{{base_url}}/static/socialicons.png" style="border:0px;" usemap="#sociallinks"></img></p>
-<map id="sociallinks" name="sociallinks">
-    <area shape="rect" alt="Facebook" coords="0,0,38,34" href="http://www.facebook.com/HubbleESA" />
-    <area shape="rect" alt="Twitter" coords="44,0,78,34" href="http://twitter.com/hubble_space" />
-    <area shape="rect" alt="YouTube" coords="84,0,118,34" href="http://www.youtube.com/user/HubbleESA" />
-    <area shape="rect" alt="Itunes" coords="124,0,158,34" href="http://itunes.apple.com/de/podcast/hubblecast-hd/id258935617" />
-    <area shape="rect" alt="Vimeo" coords="164,0,198,34" href="http://www.vimeo.com/hubbleesa" />
-    <area shape="rect" alt="Flickr" coords="204,0,238,34" href="http://www.flickr.com/photos/hubble_esa" />
-    <area shape="rect" alt="Instagram" coords="244,0,278,34" href="https://www.instagram.com/hubbleesa/" />
-    <area shape="rect" alt="Linkedin" coords="284,0,318,34" href="https://www.linkedin.com/company/esahubble/" />
-</map>
+<div style="overflow:hidden;">
+        <div style="width: 50%; float:left; text-align:center; color: white">
+            <p>ESA/Hubble</p>
+            <a href="https://www.facebook.com/HubbleESA"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/facebook.png"></a>
+            <a href="https://twitter.com/hubble_space"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/twitter.png"></a>
+            <a href="https://www.instagram.com/hubbleesa/"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/instagram.png"></a>
+            <a href="https://www.youtube.com/user/HubbleESA"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/youtube.png"></a>
+            <a href="https://www.linkedin.com/company/esahubble/"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/linkedin.png"></a>
+            <a href="https://www.flickr.com/photos/hubble_esa"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/flickr.png"></a>
+            <a href="https://giphy.com/esahubble"><img style="width: 32px; height: 32px;" src="{{base_url}}/assets/icons/social-media/giphy.png"></a>
+        </div>
+</div>
 {% endif %}
