@@ -17,7 +17,22 @@
                                                                 {% endif %}{% if obj.comparison %}
                                                                 <a href="{{base_url}}{{obj.comparison.get_absolute_url}}"><img style="border:0px;margin:2px;" src="{{base_url}}{{obj.comparison.resource_wallpaperthumbs.url}}" alt="{{obj.comparison.title}}"></img></a>&nbsp;{% endif %}
                                                                 {% endfor %}
-                                                                <div style="font-size:15px;color:white; padding-top: 5px;"><a href="{{potw_feed_url}}"><img border="0" src="{{base_url}}{{MEDIA_URL}}djangoplicity/images/rssicon.png"></a>&nbsp;<a style="font-size:15px;color:white;text-decoration:none;" href="{{base_url}}{% url 'potw_defaultquery' %}">{{ org }} {% trans "Pictures of the Week" %}</a>
+                                                                <div style="font-size:15px;color:white; padding-top: 5px;">
+                                                                    <a href="{{potw_feed_url}}" style="color:white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16"><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></a>&nbsp;
+                                                                    <a style="font-size:15px;color:white;text-decoration:none;" href="https://esawebb.org/images/potm/">{{ "ESA/Webb" }} {% trans "Pictures of the Month" %}</a>
+                                                                <hr size="1" style="color: #bbbbbb; background-color: #bbbbbb; border: 0; height: 1px;" />
+                                                                </div>
+                                                                <div style="text-align: center">
+                                                                    <a href="https://esawebb.org/images/potm2306a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2306a.jpg" style="width: 122px; height: 92px;"></a>&nbsp;
+                                                                    <a href="https://esawebb.org/images/potm2305a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2305a.jpg" style="width: 122px; height: 92px;"></a>&nbsp;
+                                                                    <a href="https://esawebb.org/images/potm2304a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2304a.jpg" style="width: 122px; height: 92px;"></a>&nbsp;
+                                                                    <a href="https://esawebb.org/images/potm2303a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2303a.jpg" style="width: 122px; height: 92px;"></a>&nbsp;
+                                                                    <a href="https://esawebb.org/images/potm2302a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2302a.jpg" style="width: 122px; height: 92px;"></a>&nbsp;
+                                                                </div>
+                                    
+                                                                <div style="font-size:15px;color:white; padding-top: 5px;">
+                                                                    <a href="{{potw_feed_url}}" style="color:white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16"><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></a>&nbsp;
+                                                                    <a style="font-size:15px;color:white;text-decoration:none;" href="https://esawebb.org/images/potm/">{{ "ESA/Webb" }} {% trans "Pictures of the Month" %}</a>
                                                                 <hr size="1" style="color: #bbbbbb; background-color: #bbbbbb; border: 0; height: 1px;" />
                                                                 </div>
                                                                 {% endif %}
