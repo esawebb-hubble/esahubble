@@ -41,7 +41,7 @@
 {% elif main_image %}{% if main_image.resource_newsfeature %}
     <a class="popup" href="{% if zoomable %}{{ main_image.get_absolute_url }}zoomable/{% else %}{{ main_image.resource_screen.url }}{% endif %}" title="{{ main_image.title }}">
         <div class="image-container">
-            <img class="img-responsive" src="{{ main_image.resource_newsfeature.url }}" class="pr_news_feature_img img-responsive" style="padding:0;" />
+            <img class="img-responsive" src="{{ main_image.resource_newsfeature.url }}" alt="{{ main_image.title }}" class="pr_news_feature_img img-responsive" style="padding:0;" />
         </div>
     </a>
 {% endif %}{% endif %}

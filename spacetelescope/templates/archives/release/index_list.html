@@ -13,7 +13,7 @@
             <div class="news-wrapper">
                 {% if pr.main_image and pr.main_image.resource_thumb350x %}
                 <div class="news-image">
-                    <img class="img-responsive" src="{{ pr.main_image.resource_thumb350x.url }}">
+                    <img class="img-responsive" src="{{ pr.main_image.resource_thumb350x.url }}" alt="pr.main_image.title">
                 </div>
                 {% endif %}
                 <div class="news-description">
