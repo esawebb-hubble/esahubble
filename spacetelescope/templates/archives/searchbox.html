@@ -24,7 +24,7 @@
         <div class="input-group">
             <input id="id_archivesearch" type="text" value="{% if search_str and not search_str_verbose %}{{search_str}}{% endif %}" placeholder="{% trans "Search" %}{% if archive_title %} {% trans archive_title %}{% endif %}..." name="search" class="form-control input-sm" />
             <span class="input-group-btn">
-                <button class="btn btn-default btn-sm" type="submit"><span class="fa fa-search"></span></button>
+                <button class="btn btn-default btn-sm" type="submit" aria-label="search"><span class="fa fa-search"></span></button>
             </span>
         </div>
     </div>

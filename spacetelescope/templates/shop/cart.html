@@ -27,7 +27,7 @@
 
             <div class="checkout">
                 <form class="form-inline" action="{% url 'satchmo_checkout-step1' %}" method="get">{% csrf_token %}
-                    <button type="submit" class="btn btn-default">{% trans 'Checkout' %}</button>
+                    <button type="submit" class="btn btn-default" aria-label="{% trans 'Checkout' %}">{% trans 'Checkout' %}</button>
                 </form>
             </div>
 
@@ -55,12 +55,12 @@
                             <form role="form" id="form-{{ cartitem.id }}" action="{{ satchmo_cart_set_qty }}" method="post">{% csrf_token %}
                                 <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
                                 <input type="text" class="form-control" name="quantity" id="id_quantity" value="{{ cartitem.quantity|normalize_decimal }}" />
-                                <button type="submit" class="btn btn-default" id="id_update_submit">{% trans 'Update' %}</button>
+                                <button type="submit" class="btn btn-default" id="id_update_submit" aria-label="{% trans 'Update' %}">{% trans 'Update' %}</button>
                             </form>
                             {% url 'satchmo_cart_remove' as satchmo_cart_remove %}
                             <form role="form" action="{{ satchmo_cart_remove }}" method="post">{% csrf_token %}
                                 <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
-                                <button type="submit" class="btn btn-default">{% trans 'Remove' %}</button>
+                                <button type="submit" class="btn btn-default" aria-label="{% trans 'Remove' %}">{% trans 'Remove' %}</button>
                             </form>
                         </td>
                         <td><p><a href="{{cartitem.product.get_absolute_url}}">{% if object %}{{ object.title }}{% else %}{{cartitem.product.name}}{%endif%}</a>{% if object.free %}<span class="price"><a href="{% url 'free_order_form' %}"><img src="{{MEDIA_URL}}/educators-small.png" alt="Educators" width="60" /></a><a class="freetext" href="{% url 'free_order_form' %}">Available for free for educators and media</a></span>{% endif%}</p><p>{%if object %}{{object.description|striptags|truncatewords:50}}{%else%}{{cartitem.product.description|striptags|truncatewords:50}}{% endif %}</p></td>
@@ -88,7 +88,7 @@
 
             <div class="checkout">
                 <form class="form-inline" action="{% url 'satchmo_checkout-step1' %}" method="get">{% csrf_token %}
-                    <button type="submit" class="btn btn-default">{% trans 'Checkout' %}</button>
+                    <button type="submit" class="btn btn-default" aria-label="{% trans 'Checkout' %}">{% trans 'Checkout' %}</button>
                 </form>
             </div>
         {% endif %}
