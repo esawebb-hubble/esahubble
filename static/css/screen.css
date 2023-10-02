@@ -272,7 +272,7 @@ div.rotator div.items .feature_item {
 	display:block;
 	position:absolute;
 	background:black;
-	background-opacity:0.4;
+	opacity:0.4;
 	width:45px;
 	height:20px;
 	z-index:200;
@@ -1249,7 +1249,7 @@ a.teasertext:hover {
 }
 
 .inline_image {
-	backgroun-color: red;
+	background-color: red;
 	float: left;
 	margin-right: 10px;
 }
@@ -1330,7 +1330,7 @@ a.teasertext:hover {
 }
 
 .freelinktext {
-	text-color: #e1e1e1;
+	color: #e1e1e1;
 	font-size: 10px;
 	text-align: left;
 }
