@@ -22,7 +22,7 @@
             {% endif%}
         {% elif main_visual.resource_newsfeature %}
             <a class="popup" href="{{ main_visual.resource_screen.url }}" title="{{ main_visual.title }}">
-                <img class="img-responsive" src="{{ main_visual.resource_newsfeature.url }}" class="pr_news_feature_img" style="padding:0;" />
+                <img class="img-responsive" src="{{ main_visual.resource_newsfeature.url }}" alt="{{ main_visual.title }}" class="pr_news_feature_img" style="padding:0;" />
                 {% if images %}
                     {% for im in images %}
                         {% if main_visual != im %}<a class="popup" href="{{ im.resource_screen.url }}" title="{{ im.title }}" class="hidden"></a>{% endif %}
@@ -35,7 +35,7 @@
         <div class="archive-image popup">
             <a class="popup" href="{{ main_visual.resource_screen.url }}" title="{{ main_visual.title }}">
                 <div class="image-container">
-                    <img src="{{ main_visual.resource_news.url }}" class="img-responsive">
+                    <img src="{{ main_visual.resource_news.url }}" alt="{{ main_visual.title }}" class="img-responsive">
                 </div>
             </a>
         </div>

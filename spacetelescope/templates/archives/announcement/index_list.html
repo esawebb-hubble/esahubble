@@ -13,7 +13,7 @@
             <div class="news-wrapper">
                 {% if ann.main_visual and ann.main_visual.resource_thumb350x %}
                 <div class="news-image">
-                    <img class="img-responsive" src="{{ ann.main_visual.resource_thumb350x.url }}">
+                    <img class="img-responsive" src="{{ ann.main_visual.resource_thumb350x.url }}" alt="ann.main_visual.title">
                 </div>
                 {% endif %}
                 <div class="news-description">

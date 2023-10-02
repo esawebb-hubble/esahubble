@@ -60,7 +60,7 @@
         {% init_menu 'Main Menu' as main_menu %}
         <div class="main-menu">
             <div class="mobile-menu clearfix">
-                <button class="menu-trigger"><span class="fa fa-navicon"></span> {% trans "Open Menu" %}</button>
+                <button class="menu-trigger" aria-label="Open Menu" aria-label="{% trans 'Open Menu' %}"><span class="fa fa-navicon"></span> {% trans "Open Menu" %}</button>
             </div>
             {% render_menu main_menu main %}
         </div>
