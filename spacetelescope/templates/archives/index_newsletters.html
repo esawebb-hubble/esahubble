@@ -16,7 +16,7 @@
 {% for item in object_list %}
     <div class="item">
         <a href="{{ item.get_absolute_url }}" class="thumbnail">
-            <img src="{% if item.resource_thumb350x %}{{ item.resource_thumb350x.url }}{% else %}{{ item.resource_medium.url }}{% endif %}" class="img-responsive" alt="{{ item.title }}">
+            <img src="{% if item.resource_thumb350x %}{{ item.resource_thumb350x.url }}{% else %}{{ item.resource_medium.url }}{% endif %}" class="img-responsive" alt="{{ item.subject }}">
             <div class="caption">
                 <p>{{ item.subject }}</p>
             </div>

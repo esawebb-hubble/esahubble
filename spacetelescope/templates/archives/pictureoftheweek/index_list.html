@@ -13,11 +13,11 @@
             <div class="news-wrapper">
                 <div class="news-image">
                     {% if potw.image %}
-                        <img class="img-responsive" src="{{ potw.image.resource_thumb350x.url }}">
+                        <img class="img-responsive" src="{{ potw.image.resource_thumb350x.url }}" alt="{{potw.image.title}}">
                     {% elif potw.video %}
-                        <img class="img-responsive" src="{{ potw.video.resource_thumb350x.url }}">
+                        <img class="img-responsive" src="{{ potw.video.resource_thumb350x.url }}" alt="{{potw.video.title}}">
                     {% elif potw.comparison %}
-                        <img class="img-responsive" src="{{ potw.comparison.resource_thumb350x.url }}">
+                        <img class="img-responsive" src="{{ potw.comparison.resource_thumb350x.url }}" alt="{{potw.comparison.title}}">
                     {% endif %}
                 </div>
                 <div class="news-description">
