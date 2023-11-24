@@ -71,7 +71,7 @@ body, html {
 {% include 'archives/embargo_notice.html' %}
 </div>
 {% include "archives/translations_kids.html" %}
-<div align="center"><div style="float: left;"><div><img src="{{MEDIA_URL}}djangoplicity/kids/header-left.png"></div><div style="font-size: 14px; color: black; text-align: left; padding-left: 20px;">{% trans "Bringing news from across the Universe to children all around the world" %}</div></div><div style="float: right;"><img src="{{MEDIA_URL}}djangoplicity/kids/header-right.png"></div><div style="clear: both;"></div></div>
+<div style="text-align: center;"><div style="float: left;"><div><img src="{{MEDIA_URL}}djangoplicity/kids/header-left.png"></div><div style="font-size: 14px; color: black; text-align: left; padding-left: 20px;">{% trans "Bringing news from across the Universe to children all around the world" %}</div></div><div style="float: right;"><img src="{{MEDIA_URL}}djangoplicity/kids/header-right.png"></div><div style="clear: both;"></div></div>
 <div id="kids_textblock">
 <h1>{{object.kids_title}}</h1>
 <p class="date">{{object.release_date|datetime:"DATE"}}</p>
@@ -92,8 +92,8 @@ body, html {
 
 <p>{{object.kids_description|safe}}</p>
 </div>
-<div align="center" id='footer'><p><strong>{% trans "Do you want to learn more about this topic?" %}</strong></p><p class="small">{% blocktrans with unawelink="<a href='http://www.eu-unawe.org'>eu-unawe.org</a>" emaillink="<a href='mailto:news@unawe.org'>news@unawe.org</a>" %}Visit {{unawelink}} or send us your questions in an email: {{emaillink}}{% endblocktrans %}</p></div>
-<div align="center" id='kidsvers'>
+<div style="text-align: center;" id='footer'><p><strong>{% trans "Do you want to learn more about this topic?" %}</strong></p><p class="small">{% blocktrans with unawelink="<a href='http://www.eu-unawe.org'>eu-unawe.org</a>" emaillink="<a href='mailto:news@unawe.org'>news@unawe.org</a>" %}Visit {{unawelink}} or send us your questions in an email: {{emaillink}}{% endblocktrans %}</p></div>
+<div style="text-align: center;" id='kidsvers'>
 <p><a href="{{ object.get_absolute_url}}">{% blocktrans with source_id=object.source.id|default:object.id %}This is a kids version of ESO Press Release {{ source_id }}{% endblocktrans %}.</a></p>
 </div>
 

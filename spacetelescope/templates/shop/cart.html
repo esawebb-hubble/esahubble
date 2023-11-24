@@ -34,15 +34,15 @@
             <table class="table">
                 <tr>
                     <th></th>
-                    <th align="center">{% trans "Quantity" %}</th>
-                    <th align="left">{% trans "Item" %}</th>
+                    <th style="text-align: center;">{% trans "Quantity" %}</th>
+                    <th style="text-align: left;">{% trans "Item" %}</th>
                     {% if sale %}
                         <th>{% trans "Regular Price" %}</th>
                         <th>{% trans "Sale Price" %}
                     {% else %}
                         <th>{% trans "Price" %}</th>
                     {% endif %}
-                    <th align="center">{% if default_view_tax %}{% trans "Total<br/>(incl.&nbsp;tax)" %}{% else %}{% trans "Total" %}{% endif %}</th>
+                    <th style="text-align: center;">{% if default_view_tax %}{% trans "Total<br/>(incl.&nbsp;tax)" %}{% else %}{% trans "Total" %}{% endif %}</th>
                 </tr>
                 {% for cartitem in cart %}
                     {% archiveitem cartitem.product as object %}
@@ -65,19 +65,19 @@
                         </td>
                         <td><p><a href="{{cartitem.product.get_absolute_url}}">{% if object %}{{ object.title }}{% else %}{{cartitem.product.name}}{%endif%}</a>{% if object.free %}<span class="price"><a href="{% url 'free_order_form' %}"><img src="{{MEDIA_URL}}/educators-small.png" alt="Educators" width="60" /></a><a class="freetext" href="{% url 'free_order_form' %}">Available for free for educators and media</a></span>{% endif%}</p><p>{%if object %}{{object.description|striptags|truncatewords:50}}{%else%}{{cartitem.product.description|striptags|truncatewords:50}}{% endif %}</p></td>
                         {% if sale %}
-                            <td align="center">{{ cartitem.product.unit_price|currency|sp2nbsp }}</td>
-                            <td align="center">{{ cartitem.product|discount_price:sale|currency|sp2nbsp }}</td>
+                            <td style="text-align: center;">{{ cartitem.product.unit_price|currency|sp2nbsp }}</td>
+                            <td style="text-align: center;">{{ cartitem.product|discount_price:sale|currency|sp2nbsp }}</td>
                         {% else %}
-                            <td align="center">{{ cartitem.unit_price|currency|sp2nbsp }}</td>
+                            <td style="text-align: center;">{{ cartitem.unit_price|currency|sp2nbsp }}</td>
                         {% endif %}
-                        <td align="center">{{ cartitem|discount_line_total:sale|currency|sp2nbsp }}</td>
+                        <td style="text-align: center;">{{ cartitem|discount_line_total:sale|currency|sp2nbsp }}</td>
                     </tr>
                     {% cartitem_custom_details cartitem %}
                     {% cartitem_subscription_details cartitem %}
                     {% endarchiveitem %}
                 {% endfor %}
                 <tr>
-                    <td colspan="{% if sale %}5{% else %}4{% endif %}" align="right"><span class="notice">Price without Shipping &amp; Handling:</span>{% block discount_notice %}<div class="discount-notice">Note: Discounts are not deducted from the price until you checkout.</div>{% endblock %}</td>
+                    <td colspan="{% if sale %}5{% else %}4{% endif %}" style="text-align: right;"><span class="notice">Price without Shipping &amp; Handling:</span>{% block discount_notice %}<div class="discount-notice">Note: Discounts are not deducted from the price until you checkout.</div>{% endblock %}</td>
                     <td class="price">{{ cart|discount_cart_total:sale|currency|sp2nbsp }}</td>
                 </tr>
             </table>

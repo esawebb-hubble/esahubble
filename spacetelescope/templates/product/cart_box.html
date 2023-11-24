@@ -16,7 +16,7 @@
     <tr>
         <td>{{ cartitem.quantity|normalize_decimal }}&nbsp;x&nbsp;</td>
         <td><a href="{{cartitem.product.get_absolute_url}}">{{ cartitem.description }}</a></td>
-        <td align="right">{{ cartitem|discount_line_total:sale|currency|sp2nbsp }}</td>
+        <td style="text-align: right;">{{ cartitem|discount_line_total:sale|currency|sp2nbsp }}</td>
     </tr>
     {% endfor %}
     </table>
