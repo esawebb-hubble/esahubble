@@ -83,7 +83,7 @@ test:py38-django111:
 pages:
   stage: deploy
   dependencies:
-    - test:py27-django111
+    - test:py38-django111
   allow_failure: true
   script:
     # Delete everything in the current public/{BRANCH_SLUG} folder
@@ -148,4 +148,4 @@ sonarqube-check:
     - sonar-scanner
   allow_failure: true
   only:
-    - main
+    - develop
