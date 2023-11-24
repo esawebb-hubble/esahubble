@@ -3,13 +3,13 @@
 <!-- // Begin Template Footer \\ -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="{% include "newsletters/includes/width.html" %}" id="templateFooter" style="background-color: #FFFFFF;border-top: 0;">
                                         <tr>
-                                            <td valign="top" class="footerContent">
+                                            <td style="vertical-align: top;" class="footerContent">
                                                 <!-- // Begin Module: Standard Footer \\ -->
-                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                                     <tr><td colspan="3" style="background-color:#292929" height="5"></td></tr>
                                                     <tr>
-                                                        <td width="20" style="background-color:#292929">&nbsp;</td>
-                                                        <td valign="top" width="{{width}}" style="background-color:#292929">
+                                                        <td style="background-color:#292929; width: 20px;">&nbsp;</td>
+                                                        <td width="{{width}}" style="background-color:#292929; vertical-align: top;">
                                                             <div style="color: #707070;font-family: Helvetica, Arial;font-size: 10px;line-height: 125%;text-align: center;background-color:#292929; padding-top:5px;padding-bottom:0px;padding-left:0px;padding-right:0px;">
                                                                 {% if footer_potws %}
                                                                 {% for obj in footer_potws %}{% if obj.image %}
@@ -44,7 +44,7 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td width="20" style="background-color:#292929">&nbsp;</td>
+                                                        <td style="background-color:#292929; width: 20px;">&nbsp;</td>
                                                     </tr>
                                                     <tr><td colspan="3" style="background-color:#292929" height="10">&nbsp;</td></tr>
                                                 </table>

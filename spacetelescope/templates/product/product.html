@@ -40,12 +40,12 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
             {% if object.resource_screen %}
                 <a class="popup" href="{{ object.resource_screen.url }}" title="{{ object }}" />
                     <div class="image-container">
-                        <img class="img-responsive" src="{{ object.resource_medium.url }}" width="320" border="0" alt="{{ object }}" />
+                        <img class="img-responsive" src="{{ object.resource_medium.url }}" style="width: 320px;" border="0" alt="{{ object }}" />
                     </div>
                 </a>
             {% else %}
                 <div class="image-container">
-                    <img class="img-responsive" src="{{ object.resource_medium.url }}" width="320" border="0" alt="{{ object }}" />
+                    <img class="img-responsive" src="{{ object.resource_medium.url }}" style="width: 320px;" border="0" alt="{{ object }}" />
                 </div>
             {% endif %}
         </div>
@@ -62,7 +62,7 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
         <p>{{ object.description|safe }}</p>
         {% if object and object.get_absolute_url %}<strong>Credit:</strong><div class="credit">{{ object.credit|safe }}</div>{% endif %}
         {% if object and object.get_absolute_url %}
-        <div class="checkoutdiv"><div align="left" style="line-height: 15px;">
+        <div class="checkoutdiv"><div style="line-height: 15px; text-align: left;">
                 <strong>Note:</strong> The digital resources (images, videos, PDFs, etc.) for this product can be downloaded in the <a href="{% if object.image %}{{ object.image.get_absolute_url }}{% else %}{{ object.get_absolute_url }}{% endif %}">archive</a>
         </div></div>
         {% endif %}
@@ -106,11 +106,11 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
         <tr>
             <td><strong>ID</td><td>{{ object.id }}</td>
         </tr>
-        {% if object.isbn %}<tr valign="top"><td><strong>ISBN</strong></td><td>{{ object.isbn}}</td></tr>{% endif %}
-        {% if object.size %}<tr valign="top"><td><strong>Dimensions</strong></td><td>{{ object.size }}</td></tr>{% endif %}
-        {% if object.pages %}<tr valign="top"><td><strong>Pages</strong></td><td>{{ object.pages}}</td></tr>{% endif %}
-        {% if object.cover %}<tr valign="top"><td><strong>Cover</strong></td><td>{{ object.cover}}</td></tr>{% endif %}
-        {% if object.language %}<tr valign="top"><td><strong>Language</strong></td><td>{{ object.get_language_display }}</td></tr>{% endif %}
+        {% if object.isbn %}<tr style="vertical-align: top;"><td><strong>ISBN</strong></td><td>{{ object.isbn}}</td></tr>{% endif %}
+        {% if object.size %}<tr style="vertical-align: top;"><td><strong>Dimensions</strong></td><td>{{ object.size }}</td></tr>{% endif %}
+        {% if object.pages %}<tr style="vertical-align: top;"><td><strong>Pages</strong></td><td>{{ object.pages}}</td></tr>{% endif %}
+        {% if object.cover %}<tr style="vertical-align: top;"><td><strong>Cover</strong></td><td>{{ object.cover}}</td></tr>{% endif %}
+        {% if object.language %}<tr style="vertical-align: top;"><td><strong>Language</strong></td><td>{{ object.get_language_display }}</td></tr>{% endif %}
 
         </table>
         {% if project_environment == 'eso.org' and product.category.all.0.name != 'Donations' %}<p style="text-align:left;padding:6px"><span><strong>More details about this product:</strong></span><br />See the <a href="/public/archives/brochures/pdf/brochure_0040.pdf">ESO Shop Catalogue</a>.</p>{% endif %}
