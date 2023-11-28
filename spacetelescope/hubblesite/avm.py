@@ -286,7 +286,6 @@ class jsonmapper(object):
         try:
             CV = CV[text]
         except KeyError:
-            type = None
             logger.error("ValueError in string2spatialqualityCV trying to convert %s" % text)    
         return CV
     
@@ -301,7 +300,6 @@ class jsonmapper(object):
         try:
             CV = CV[text]
         except KeyError:
-            type = None
             logger.error("ValueError in string2coordprojectionsCV trying to convert %s" % text)    
         return CV   
     

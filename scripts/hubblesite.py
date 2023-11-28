@@ -77,7 +77,6 @@ def get_release_date(link):
             Y = str(date[2])  # %Y     Year with century as a decimal number.
             I = str(date[3])  # %I     Hour (12-hour clock) as a decimal number [01,12].
             M = str(date[4])  # %M     Minute as a decimal number [00,59].
-            S = '00'          # %S     Second as a decimal number [00,61].
             p = str(date[5])  # %p     Locale's equivalent of either AM or PM.
             Z = str(date[6])  # (%Z)   Time zone name (unfortunately only UTC is working).
             datestring = Y + '-' + B + '-' + d + ' ' + I + ':' + M  + ' ' + p
@@ -194,4 +193,3 @@ if __name__ == '__main__':
         for link in links: 
             c = c + 1
             print(c, '   ', link)
-      

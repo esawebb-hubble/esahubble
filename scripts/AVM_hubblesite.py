@@ -41,7 +41,6 @@ def store_JSON(path_json, dict):
     
     ids = list(dict.keys())
     ids.sort()
-    i = 1
     f.write('{\n')
     f.write('"items": [\n')
     nel = len(ids)
@@ -179,5 +178,4 @@ if __name__ == '__main__':
         logger.info(str(count)+' / '+n_images + ' ' + image.id + ' ' + hubble_id + ' ' + middle  + ' ' + image.long_caption_link + ' ' + thumberror)
     store_JSON(jsonfile,dict)
            
-        
         
