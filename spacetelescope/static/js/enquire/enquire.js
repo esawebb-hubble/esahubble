@@ -5,7 +5,7 @@
  */
 
 ;(function (name, context, factory) {
-	var matchMedia = window.matchMedia;
+	let matchMedia = window.matchMedia;
 
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = factory(matchMedia);
@@ -30,7 +30,7 @@
      * @param fn
      */
     function each(collection, fn) {
-        var i      = 0,
+        let i      = 0,
             length = collection.length,
             cont;
 
@@ -144,7 +144,7 @@
         this.handlers = [];
         this.mql = matchMedia(query);
 
-        var self = this;
+        let self = this;
         this.listener = function(mql) {
             self.mql = mql;
             self.assess();
@@ -163,7 +163,7 @@
          * @param {boolean} [handler.deferSetup=false] should the setup callback be deferred until the first time the handler is matched?
          */
         addHandler : function(handler) {
-            var qh = new QueryHandler(handler);
+            let qh = new QueryHandler(handler);
             this.handlers.push(qh);
 
             this.matches() && qh.on();
@@ -175,7 +175,7 @@
          * @param {object || function} handler the handler to remove
          */
         removeHandler : function(handler) {
-            var handlers = this.handlers;
+            let handlers = this.handlers;
             each(handlers, function(h, i) {
                 if(h.equals(handler)) {
                     h.destroy();
@@ -208,7 +208,7 @@
          * Assesses the query, turning on all handlers if it matches, turning them off if it doesn't match
          */
         assess : function() {
-            var action = this.matches() ? 'on' : 'off';
+            let action = this.matches() ? 'on' : 'off';
 
             each(this.handlers, function(handler) {
                 handler[action]();
@@ -244,7 +244,7 @@
          * @param {boolean} [shouldDegrade=false] whether this particular media query should always run on incapable browsers
          */
         register : function(q, options, shouldDegrade) {
-            var queries         = this.queries,
+            let queries         = this.queries,
                 isUnconditional = shouldDegrade && this.browserIsIncapable;
 
             if(!queries[q]) {
@@ -275,7 +275,7 @@
          * @param {object || function} [handler] specific handler to unregister
          */
         unregister : function(q, handler) {
-            var query = this.queries[q];
+            let query = this.queries[q];
 
             if(query) {
                 if(handler) {
