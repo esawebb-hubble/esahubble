@@ -261,8 +261,7 @@ class jsonmapper(object):
             frameCV = None
             logger.error("ValueError in string2coordinateframeCV trying to convert %s" % frame)    
         return frameCV
-    
-        return frame
+
     
     def string2filetypeCV(self, filetype):
         CV = {'image/tiff': 'TIFF',
