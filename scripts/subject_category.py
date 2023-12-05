@@ -44,7 +44,6 @@ def analyse_taxonomy(generate_code = False ):
         
     for Img in Image.objects.all():#.filter(pk = 'eso9212d'):
         x_tag  = False
-        n_tags = len(Img.subject_category.all()) 
         for sc in  Img.subject_category.all():
             if sc.top_level == 'X': x_tag = True
         if x_tag:
@@ -120,7 +119,6 @@ def add_avmtag(image, name, code):
     existing_tag = scan_tags(image, name)
     if not existing_tag:
         codes = code.split('.')
-        toplevel = codes[0]
         level = [None,None,None,None,None,None]
         level[0] = codes[0]
         for i in range(1,len(codes),1):

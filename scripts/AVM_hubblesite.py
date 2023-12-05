@@ -41,7 +41,6 @@ def store_JSON(path_json, dict):
     
     ids = list(dict.keys())
     ids.sort()
-    i = 1
     f.write('{\n')
     f.write('"items": [\n')
     nel = len(ids)
