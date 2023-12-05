@@ -227,8 +227,7 @@ if __name__ == '__main__':
                 related, iterator = get_related_PR(image.id)
                 # find the link to hubblesite.org NASA Press Release
                 result =  analyse_links(related)
-                if result: 
-                    # print 'find the link to hubblesite.org NASA Press Release' , result
+                if result:
                     press_release_link = result[0]
             else:
                 press_release_link = image.press_release_link 
@@ -252,15 +251,12 @@ if __name__ == '__main__':
                         if len(nasa_images) == 1:
                             long_c = nasa_images[0][1]
                             link_type = '''single image in NASA's release images'''
-                            # print 'LONG_C!', nasa_images[0]
                         else:
-                        # if there are more links, compare the titles    
                             for ni in nasa_images:
                                 if similar_titles([image.title,ni[0]]): 
                                     long_c = ni[1]
                                     link_type = '''titles match with a NASA's release image'''
-                                    # print 'TITLES match!',
-                                #print ni
+
                             # if there was no match, use link to Press release release images as long_caption
                             if not long_c:
                                 long_c = link_images
@@ -286,7 +282,6 @@ if __name__ == '__main__':
             if (long_c): 
                 hcount = hcount + 1
                 image.long_caption_link = long_c
-                #print long_c, ' is reachable, saving.....'
                 try:
                     image.save()
                     savecount = savecount + 1
@@ -297,4 +292,3 @@ if __name__ == '__main__':
     print(str(pcount), 'press_release_link found')
     print('saved ', str(savecount), ' long_caption_links and ', str(psavecount), ' press_release_links.')
  
-               
