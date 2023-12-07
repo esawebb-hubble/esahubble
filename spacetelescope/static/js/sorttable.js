@@ -57,7 +57,7 @@ let sorttable = {
     // to do is put them in a tfoot. So, if there are sortbottom rows,
     // for backwards compatibility, move them to tfoot (creating it if needed).
     let sortbottomrows = [];
-    for (var i=0; i<table.rows.length; i++) {
+    for (let i=0; i<table.rows.length; i++) {
       if (table.rows[i].className.search(/\bsortbottom\b/) != -1) {
         sortbottomrows[sortbottomrows.length] = table.rows[i];
       }
@@ -68,7 +68,7 @@ let sorttable = {
         let tfo = document.createElement('tfoot');
         table.appendChild(tfo);
       }
-      for (var i=0; i<sortbottomrows.length; i++) {
+      for (let i=0; i<sortbottomrows.length; i++) {
         tfo.appendChild(sortbottomrows[i]);
       }
       delete sortbottomrows;
@@ -76,7 +76,7 @@ let sorttable = {
 
     // work through each column and calculate its type
     let headrow = table.tHead.rows[0].cells;
-    for (var i=0; i<headrow.length; i++) {
+    for (let i=0; i<headrow.length; i++) {
       // manually override the type with a sorttable_type attribute
       if (!headrow[i].className.match(/\bsorttable_nosort\b/)) { // skip this col
         let mtch = headrow[i].className.match(/\bsorttable_([a-z0-9]+)\b/);
@@ -144,7 +144,7 @@ let sorttable = {
 	        let row_array = [];
 	        let col = this.sorttable_columnindex;
 	        let rows = this.sorttable_tbody.rows;
-	        for (var j=0; j<rows.length; j++) {
+	        for (let j=0; j<rows.length; j++) {
 	          row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
 	        }
 	        /* If you want a stable sort, uncomment the following line */
@@ -153,7 +153,7 @@ let sorttable = {
 	        row_array.sort(this.sorttable_sortfunction);
 
 	        let tb = this.sorttable_tbody;
-	        for (var j=0; j<row_array.length; j++) {
+	        for (let j=0; j<row_array.length; j++) {
 	          tb.appendChild(row_array[j][1]);
 	        }
 
@@ -166,7 +166,7 @@ let sorttable = {
   guessType: function(table, column) {
     // guess the type of a column based on its first non-blank row
     let sortfn = sorttable.sort_alpha;
-    for (var i=0; i<table.tBodies[0].rows.length; i++) {
+    for (let i=0; i<table.tBodies[0].rows.length; i++) {
       let text = sorttable.getInnerText(table.tBodies[0].rows[i].cells[column]);
       if (text != '') {
         if (text.match(/^-?[£$¤]?[\d,.]+%?$/)) {
@@ -232,7 +232,7 @@ let sorttable = {
         case 1:
         case 11:
           var innerText = '';
-          for (var i = 0; i < node.childNodes.length; i++) {
+          for (let i = 0; i < node.childNodes.length; i++) {
             innerText += sorttable.getInnerText(node.childNodes[i]);
           }
           return innerText.replace(/^\s+|\s+$/g, '');
@@ -246,10 +246,10 @@ let sorttable = {
   reverse: function(tbody) {
     // reverse the rows in a tbody
     let newrows = [];
-    for (var i=0; i<tbody.rows.length; i++) {
+    for (let i=0; i<tbody.rows.length; i++) {
       newrows[newrows.length] = tbody.rows[i];
     }
-    for (var i=newrows.length-1; i>=0; i--) {
+    for (let i=newrows.length-1; i>=0; i--) {
        tbody.appendChild(newrows[i]);
     }
     delete newrows;
@@ -313,7 +313,7 @@ let sorttable = {
         swap = false;
         for(var i = b; i < t; ++i) {
             if ( comp_func(list[i], list[i+1]) > 0 ) {
-                var q = list[i]; list[i] = list[i+1]; list[i+1] = q;
+                let q = list[i]; list[i] = list[i+1]; list[i+1] = q;
                 swap = true;
             }
         } // for
@@ -321,9 +321,9 @@ let sorttable = {
 
         if (!swap) break;
 
-        for(var i = t; i > b; --i) {
+        for(let i = t; i > b; --i) {
             if ( comp_func(list[i], list[i-1]) < 0 ) {
-                var q = list[i]; list[i] = list[i-1]; list[i-1] = q;
+                let q = list[i]; list[i] = list[i-1]; list[i-1] = q;
                 swap = true;
             }
         } // for
@@ -417,7 +417,7 @@ function handleEvent(event) {
 	// get a reference to the hash table of event handlers
 	var handlers = this.events[event.type];
 	// execute each event handler
-	for (var i in handlers) {
+	for (let i in handlers) {
 		this.$$handleEvent = handlers[i];
 		if (this.$$handleEvent(event) === false) {
 			returnValue = false;
@@ -449,7 +449,7 @@ fixEvent.stopPropagation = function() {
 // array-like enumeration
 if (!Array.forEach) { // mozilla already supports this
 	Array.forEach = function(array, block, context) {
-		for (var i = 0; i < array.length; i++) {
+		for (let i = 0; i < array.length; i++) {
 			block.call(context, array[i], i, array);
 		}
 	};
