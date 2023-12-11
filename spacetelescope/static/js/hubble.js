@@ -17,13 +17,13 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-	var hoverDelay = 300;
-	var hoverInID;
-	var hoverOutID;
+	let hoverDelay = 300;
+	let hoverInID;
+	let hoverOutID;
 
 	function activateMenu() {
-		var $mainmenu = $('.mainmenu-aim');
-		var $menu = $('.submenu-aim');
+		let $mainmenu = $('.mainmenu-aim');
+		let $menu = $('.submenu-aim');
 
 		$mainmenu.menuAim({
 			activate: activateMainSubmenu,
@@ -63,8 +63,8 @@ $(document).ready(function() {
 			// Set the max-height of the .level1 based on the height of
 			// the children ul (only for the default page menu)
 			if ($(row).hasClass('current')) {
-				var level1Current = $(row).find('.level1');
-				var height = level1Current.children('ul').css('height');
+				let level1Current = $(row).find('.level1');
+				let height = level1Current.children('ul').css('height');
 				level1Current.css('max-height', height);
 			}
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
 	}
 
 	function deactivateMenu() {
-		var $menu = $('.submenu-aim').data('jquery.menuAim');
+		let $menu = $('.submenu-aim').data('jquery.menuAim');
 
 		if ($menu)
 		{
@@ -110,7 +110,7 @@ $(document).ready(function() {
 	}
 
 	function activateSubmenu(row) {
-		var $row = $(row),
+		let $row = $(row),
 			$submenu = $row.children('.sublevel'),
 			$parent_menu = $row.parents('ul.submenu-aim');
 
@@ -132,7 +132,7 @@ $(document).ready(function() {
 	}
 
 	function deactivateSubmenu(row) {
-		var $row = $(row),
+		let $row = $(row),
 			$parent_menu = $row.closest('ul.submenu-aim');
 
 		$parent_menu.find('.current .sublevel').removeClass('hover');
@@ -147,7 +147,7 @@ $(document).ready(function() {
 	}
 
 	function exitMenu(submenu) {
-		var row = $(submenu.activeRow);
+		let row = $(submenu.activeRow);
 		deactivateSubmenu(row);
 		return true;
 	}
@@ -167,13 +167,13 @@ $(document).ready(function() {
 });
 
 function setMenuHeight(selector, leafSelector) {
-	var height = 0;
-	var leafChildren = 0;
-	var maxChildren = 0;
-	var menu = $('.main-menu ul.' + selector).first();
+	let height = 0;
+	let leafChildren = 0;
+	let maxChildren = 0;
+	let menu = $('.main-menu ul.' + selector).first();
 
 	while (menu.length > 0) {
-		var nChildren = menu.children('li').length;
+		let nChildren = menu.children('li').length;
 		if (nChildren > maxChildren)
 			maxChildren = nChildren;
 
@@ -306,7 +306,7 @@ $(document).ready(function(){
 
 
 function top100Fullscreen() {
-	var elem = document.getElementById('top100-carousel-wrapper');
+	let elem = document.getElementById('top100-carousel-wrapper');
 	if (elem.requestFullscreen) {
 		elem.requestFullscreen();
 	} else if (elem.msRequestFullscreen) {
@@ -396,15 +396,15 @@ $(window).load(function() {
 
 function setWebcamTimestamp(selector, timestampPath) {
 	$(selector + ':first').load(timestampPath, function(result) {
-		var timestamp = $(selector + ':first').text().replace('\n', '');
+		let timestamp = $(selector + ':first').text().replace('\n', '');
 
 		// Get the time difference in second between now and the pano timestamp:
 		// We remove " CEST" from the string as javascript doesn't know how to
 		// handle it and assume we're in local TZ anyway
-		var timediff = (new Date - new Date(timestamp.replace(/ CES?T/, ''))) / 1000;
+		let timediff = (new Date - new Date(timestamp.replace(/ CES?T/, ''))) / 1000;
 
 		// If more than 62 minutes we add a "not live" message
-		var div = $(selector).parent('.webcam-timestamp').next('.webcam-live, .webcam-nolive');
+		let div = $(selector).parent('.webcam-timestamp').next('.webcam-live, .webcam-nolive');
 		if (timediff > 3720) {
 			div.text('Last image before nightfall');
 			div.addClass('webcam-nolive');
@@ -442,7 +442,7 @@ function getJustifiedConfiguration(rowHeight, maxRowHeight, margin) {
 		maxRowHeight: maxRowHeight,
 		imageContainer: 'item',
 		thumbnailPath: function(photo, width, height) {
-			var purl = photo.src;
+			let purl = photo.src;
 			if (height > 1000 || width > 900) {
 				purl = purl.replace('/thumb300y/', '/screen/');
 			} else if (height > 400) {
@@ -454,7 +454,7 @@ function getJustifiedConfiguration(rowHeight, maxRowHeight, margin) {
 			return {width: photo.width, height: photo.height};
 		},
 		template: function(data) {
-			var potw = '';
+			let potw = '';
 			if (data.potw) {
 				potw = '<div class="potw" data-toggle="tooltip" data-placement="left" title="Picture of the Week, ' + data.potw + '">' +
 					'<span class="fa fa-star"></span>' +
@@ -473,7 +473,7 @@ function getJustifiedConfiguration(rowHeight, maxRowHeight, margin) {
 }
 
 function setupJustified(selector, width, height, margin) {
-	var window_width;
+	let window_width;
 	function run() {
 		$(selector).empty().justifiedImages(
 			getJustifiedConfiguration(width, height, margin)
@@ -519,7 +519,7 @@ $('body').on('click', function (e) {
 $(window).load(function() {
 	if ($('.archive-list').length) {
 		$('.archive-list').each(function() {
-			var msnry = new Masonry(this, {
+			let msnry = new Masonry(this, {
 				itemSelector: '.item',
 				columnWidth: '.item',
 				transitionDuration: 0
