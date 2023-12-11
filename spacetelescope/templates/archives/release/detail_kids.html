@@ -71,20 +71,20 @@ body, html {
 {% include 'archives/embargo_notice.html' %}
 </div>
 {% include "archives/translations_kids.html" %}
-<div style="text-align: center;"><div style="float: left;"><div><img src="{{MEDIA_URL}}djangoplicity/kids/header-left.png"></div><div style="font-size: 14px; color: black; text-align: left; padding-left: 20px;">{% trans "Bringing news from across the Universe to children all around the world" %}</div></div><div style="float: right;"><img src="{{MEDIA_URL}}djangoplicity/kids/header-right.png"></div><div style="clear: both;"></div></div>
+<div style="text-align: center;"><div style="float: left;"><div><img src="{{MEDIA_URL}}djangoplicity/kids/header-left.png" alt="Bringing news from across the Universe to children all around the world"/></div><div style="font-size: 14px; color: black; text-align: left; padding-left: 20px;">{% trans "Bringing news from across the Universe to children all around the world" %}</div></div><div style="float: right;"><img src="{{MEDIA_URL}}djangoplicity/kids/header-right.png" alt="Bringing news from across the Universe to children all around the world"/></div><div style="clear: both;"></div></div>
 <div id="kids_textblock">
 <h1>{{object.kids_title}}</h1>
 <p class="date">{{object.release_date|datetime:"DATE"}}</p>
 
 {% if object.kids_image %}{% if object.kids_image.resource_newsfeature %}<div class="pr_news_feature" style="padding:0;">
 <a href="{{ object.kids_image.resource_screen.url }}" title="{{ object.kids_image.title }}">
-<img src="{{ object.kids_image.resource_newsfeature.url }}" class="pr_news_feature_img" style="padding:0;" />
+<img src="{{ object.kids_image.resource_newsfeature.url }}" class="pr_news_feature_img" style="padding:0;" alt="{{ object.kids_image.title }}"/>
 </a>
 </div>
 {%endif%}
 {%else %}{% if main_image %}{% if main_image.resource_newsfeature %}<div class="pr_news_feature" style="padding:0;">
 <a href="{{ main_image.resource_screen.url }}" title="{{ main_image.title }}">
-<img src="{{ main_image.resource_newsfeature.url }}" class="pr_news_feature_img" style="padding:0;" />
+<img src="{{ main_image.resource_newsfeature.url }}" class="pr_news_feature_img" style="padding:0;" alt="{{ main_image.title }}"/>
 </a>
 </div>
 {% endif %}{% endif %}{%endif%}
