@@ -196,10 +196,10 @@ function setMenuHeight(selector, leafSelector) {
 }
 
 $(document).ready(function() {
-	level1 = $('li.current > .level1-wrapper > div > ul');
-	liCount = level1.children('li').length;
+	let level1 = $('li.current > .level1-wrapper > div > ul');
+	let liCount = level1.children('li').length;
 	$('li.submenu.current > div > ul').each(function (idx, elm) {
-		current = $(elm).children('li').length;
+		let current = $(elm).children('li').length;
 		if (current > liCount)
 			liCount = current;
 	});
@@ -530,6 +530,6 @@ $(window).load(function() {
 
 
 // Set default settings for jwplayer:
-jwplayer_ga = {idstring: 'UA-2368492-6'};
-jwplayer_html5player = '/static/app/djangoplicity/jwplayer/jwplayer.html5.js';
-jwplayer_flashplayer = '/static/app/djangoplicity/jwplayer/jwplayer.flash.swf';
+let jwplayer_ga = {idstring: 'UA-2368492-6'};
+const jwplayer_html5player = '/static/app/djangoplicity/jwplayer/jwplayer.html5.js';
+const jwplayer_flashplayer = '/static/app/djangoplicity/jwplayer/jwplayer.flash.swf';
