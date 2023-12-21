@@ -16,11 +16,11 @@
 
 <div class="">
 {% if object.itunes_link %}
-<a class="noicon" href="{{object.itunes_link}}" target="_blank"><img src="{{ MEDIA_URL }}archives/applications/appstore.png"></a>
+<a class="noicon" href="{{object.itunes_link}}" target="_blank"><img src="{{ MEDIA_URL }}archives/applications/appstore.png" alt="Available on the App Store"/></a>
 <br/>
 {% endif %}
 {% if object.marketplace_link %}
-<a class="noicon" href="{{object.marketplace_link}}" target="_blank"><img src="{{ MEDIA_URL }}archives/applications/google-play.png"></a>
+<a class="noicon" href="{{object.marketplace_link}}" target="_blank"><img src="{{ MEDIA_URL }}archives/applications/google-play.png" alt="Android APP on Google play"/></a>
 <br/>
 {% endif %}
 </div>
