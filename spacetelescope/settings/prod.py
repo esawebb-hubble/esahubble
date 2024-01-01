@@ -123,7 +123,7 @@ MEDIA_CONTENT_SERVERS = {
         aws_secret_access_key=get_secret('AWS_SECRET_ACCESS_KEY'),
         aws_storage_bucket_name=get_secret('AWS_STORAGE_BUCKET_NAME'),
         aws_s3_region_name=get_secret('AWS_S3_REGION_NAME'),
-        aws_endpoint_url=get_secret('AWS_ENDPOINT_URL'),
+        aws_s3_endpoint_url=get_secret('AWS_S3_ENDPOINT_URL'),
         aws_s3_custom_domain=get_secret('AWS_S3_CUSTOM_DOMAIN')
     ),
 }
