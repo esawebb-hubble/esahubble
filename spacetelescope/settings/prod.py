@@ -109,9 +109,9 @@ MEDIA_CONTENT_SERVERS = {
                 'news',
             ),
         },
-        url='https://cdn.spacetelescope.org/',
-        url_bigfiles='https://cdn2.spacetelescope.org/',
-        remote_dir='/www/',
+        url='https://cdn.esahubble.org/',
+        url_bigfiles='https://cdn2.esahubble.org/',
+        remote_dir='',
         host='push-19.cdn77.com',
         username=get_secret('CDN_STORAGE_USERNAME'),
         password=get_secret('CDN_STORAGE_PASSWORD'),
@@ -119,6 +119,12 @@ MEDIA_CONTENT_SERVERS = {
         api_password=get_secret('CDN_API_PASSWORD'),
         cdn_id='33541',
         cdn_id_bigfiles='31465',
+        aws_access_key_id=get_secret('AWS_ACCESS_KEY_ID'),
+        aws_secret_access_key=get_secret('AWS_SECRET_ACCESS_KEY'),
+        aws_storage_bucket_name=get_secret('AWS_STORAGE_BUCKET_NAME'),
+        aws_s3_region_name=get_secret('AWS_S3_REGION_NAME'),
+        aws_endpoint_url=get_secret('AWS_ENDPOINT_URL'),
+        aws_s3_custom_domain=get_secret('AWS_S3_CUSTOM_DOMAIN')
     ),
 }
 
