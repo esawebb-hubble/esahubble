@@ -58,12 +58,9 @@ def change_datetime(obj):
         release_date = hubblesite.get_release_date(link)
         if release_date:
             try:
-                #print '-------------------------------------------------------'
-                #print obj.id, obj.release_date.strftime('%Y-%B-%d %I:%M %p %Z')
                 release_date = release_date.astimezone( pytz.timezone( 'Europe/Berlin' ) )
                 release_date = datetime.replace(release_date, tzinfo=None)
                 obj.release_date = release_date
-                #print obj.id, obj.release_date.strftime('%Y-%B-%d %I:%M %p %Z')
                 obj.save()
                 success = True
             except:
@@ -97,13 +94,11 @@ def process_objects(objs):
                 YY = pat.findall(obj.id)
                 if len(YY) > 0:
                     YY = YY[0]
-                    #print obj.id, YY, dt.strftime('%y'), dt
                     if YY != dt.strftime('%y'):
                         if change_datetime(obj): count = count + 1
                         print(obj.id, 'old: ', dt, '\t new: ', obj.release_date ,'\t\t reason: ', YY,' != ', dt.strftime('%y'))
         else:
             pass
-            #print obj.id, ' no release_date'
     return count
 
 
@@ -130,4 +125,3 @@ if __name__ == '__main__':
     print(process_objects(Image.objects.all()), ' images have a new release_date')
 
 
-        

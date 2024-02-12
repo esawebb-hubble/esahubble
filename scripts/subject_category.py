@@ -23,7 +23,6 @@ import pprint
 
 from djangoplicity.media.models import Image
 from djangoplicity.media.models import Video
-#from djangoplicity.media.models import ImageExposure
 from djangoplicity.metadata.models import TaxonomyHierarchy
 from djangoplicity.metadata.models import SubjectName
 
@@ -39,18 +38,15 @@ def analyse_taxonomy(generate_code = False ):
 
 
     for xth in TaxonomyHierarchy.objects.filter(top_level = 'X'):
-        X_Tags[xth.avm_code()] = [xth.name,0]    
-    #pprint.pprint(X_Tags) 
+        X_Tags[xth.avm_code()] = [xth.name,0]
         
     for Img in Image.objects.all():#.filter(pk = 'eso9212d'):
         x_tag  = False
-        n_tags = len(Img.subject_category.all()) 
         for sc in  Img.subject_category.all():
             if sc.top_level == 'X': x_tag = True
         if x_tag:
             [name, number] = X_Tags[sc.avm_code()]
             X_Tags[sc.avm_code()] = [name, number + 1]
-            # print X_Tags[sc.avm_code()] 
       
     keys = list(X_Tags.keys())
     keys.sort()
@@ -88,7 +84,6 @@ def print_tags(image):
 def scan_subjectnames(image, name):
     found = False
     for sn in  image.subject_name.all():
-        # print sn, sn.name.find(name)
         if sn.name.find(name) > -1: found = True   
     return found
 
@@ -120,7 +115,6 @@ def add_avmtag(image, name, code):
     existing_tag = scan_tags(image, name)
     if not existing_tag:
         codes = code.split('.')
-        toplevel = codes[0]
         level = [None,None,None,None,None,None]
         level[0] = codes[0]
         for i in range(1,len(codes),1):
@@ -289,8 +283,7 @@ if __name__ == '__main__':
     for Img in changed_images:
         if Img:
             try: 
-                Img.save() # force_insert=True
-                # print "saved changes for tag %s in %s" % (sc.name, image.id)
+                Img.save()
             except Exception:
                 print("save failed with %s in %s" % (sc.name, Img.id))
 
@@ -307,8 +300,7 @@ if __name__ == '__main__':
     for Img in changed_images:
         if Img:
             try: 
-                Img.save() # force_insert=True
-                # print "saved changes for tag %s in %s" % (sc.name, image.id)
+                Img.save()
             except Exception:
                 print("save failed with %s in %s" % (sc.name, Img.id))
             

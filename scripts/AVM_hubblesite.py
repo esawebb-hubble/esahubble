@@ -41,7 +41,6 @@ def store_JSON(path_json, dict):
     
     ids = list(dict.keys())
     ids.sort()
-    i = 1
     f.write('{\n')
     f.write('"items": [\n')
     nel = len(ids)
@@ -138,14 +137,11 @@ if __name__ == '__main__':
     print('store results in ', jsonfile)
     for image in images:
         if image.long_caption_link.find('http://hubblesite.org') == -1: continue
-        #if image.id[:3] == 'opo': continue  # all opo images until 01-03-2011 are opo.js and have been manually compared 
         count = count + 1
-        #if count > 30: break
         try:
             remote   = urllib.request.urlopen(image.long_caption_link)
         except:
             remote  = 'timeout?'
-        #hubblesite = remote.readlines()
         for line in remote:
             if line.find('release-number') > -1:
                 break
@@ -179,5 +175,4 @@ if __name__ == '__main__':
         logger.info(str(count)+' / '+n_images + ' ' + image.id + ' ' + hubble_id + ' ' + middle  + ' ' + image.long_caption_link + ' ' + thumberror)
     store_JSON(jsonfile,dict)
            
-        
         

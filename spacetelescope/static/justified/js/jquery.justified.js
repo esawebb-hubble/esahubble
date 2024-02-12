@@ -119,7 +119,7 @@
                 };
             }*/
             for (var i = 0; i < rows.length; i++) {
-                var row = rows[i],
+                let row = rows[i],
                     lastRow = false;
                 rowNum = i + 1;
                 if (this.options.maxRows && rowNum > this.options.maxRows) {
@@ -136,7 +136,7 @@
                 }
 
                 // Ratio of actual width of row to total width of images to be used.
-                var r = availableRowWidth / row.width, //Math.min(w / row.width, this.options.maxScale),
+                let r = availableRowWidth / row.width, //Math.min(w / row.width, this.options.maxScale),
                     c = row.photos.length;
 
                 // new height is not original height * ratio

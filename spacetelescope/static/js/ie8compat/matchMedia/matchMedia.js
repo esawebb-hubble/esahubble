@@ -4,11 +4,11 @@ window.matchMedia || (window.matchMedia = function() {
     "use strict";
 
     // For browsers that support matchMedium api such as IE 9 and webkit
-    var styleMedia = (window.styleMedia || window.media);
+    let styleMedia = (window.styleMedia || window.media);
 
     // For those that don't support matchMedium
     if (!styleMedia) {
-        var style       = document.createElement('style'),
+        let style       = document.createElement('style'),
             script      = document.getElementsByTagName('script')[0],
             info        = null;
 
@@ -22,7 +22,7 @@ window.matchMedia || (window.matchMedia = function() {
 
         styleMedia = {
             matchMedium: function(media) {
-                var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
+                const text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
 
                 // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
                 if (style.styleSheet) {

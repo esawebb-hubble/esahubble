@@ -252,11 +252,7 @@ div.rotator {
     overflow:hidden; 
     border: 1px solid white;
 
-} 
- 
-div.rotator div.items { 
-
-} 
+}
  
 div.rotator div.items .feature_item { 
 	display:none;
@@ -284,9 +280,7 @@ div.rotator div.items .feature_item {
 	cursor:pointer;
 	display:block;		
 }
-.fbut_left {
 
-}
 .fbut_right {
 	right:1px;
 	text-align:right;
@@ -433,9 +427,6 @@ html>body #mainmenu #mmselected {
 	
 }
 
-#leftmenu hr {
-	
-}
 
 #leftmenu .extlink{
     background-image: url(../images/extlink-gray.png);
@@ -909,10 +900,7 @@ margin-bottom:20px;
 	clear:both	
 }
 
-/* frontpage headlines */
-.fp_news {
 
-}
 
 .fpviewall {
 	font-size:11px;
@@ -1002,9 +990,6 @@ margin-bottom:20px;
 	margin-top: 10px;
 }
 
-table.shoppingcart {
-	
-}
 
 table.shoppingcart td {
 	vertical-align: top;

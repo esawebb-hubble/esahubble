@@ -1,7 +1,7 @@
 {% load i18n %}{% load djangoplicity_utils %}{% load djangoplicity_datetime %}
 {% include "archives/release/extra_header.html" %}
 {% if not object_list %}
-    <div align="center">{% trans "No press releases were found." %}</div>
+    <div style="text-align: center;">{% trans "No press releases were found." %}</div>
 {% else %}
 {% include "archives/search_results.html" %}
 
