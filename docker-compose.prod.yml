@@ -18,6 +18,12 @@ x-common: &common
     CDN_API_PASSWORD:
     EMAIL_USER:
     EMAIL_PASSWORD:
+    AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY:
+    AWS_STORAGE_BUCKET_NAME:
+    AWS_S3_REGION_NAME:
+    AWS_S3_ENDPOINT_URL:
+    AWS_S3_CUSTOM_DOMAIN:
   volumes:
     - /mnt/volume_fra1_01/web/media:/home/hubbleadm/media
     - /mnt/volume_fra1_01/web/import:/home/hubbleadm/import
