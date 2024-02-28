@@ -88,6 +88,8 @@ pages:
   script:
     # Delete everything in the current public/{BRANCH_SLUG} folder
     # and replace it with code coverage HTML report
+    - pwd
+    - ls -la
     - rm -rf public/${CI_COMMIT_REF_SLUG}/*
     - mkdir -pv public/${CI_COMMIT_REF_SLUG}/
     - cp -r htmlcov/* public/${CI_COMMIT_REF_SLUG}/
