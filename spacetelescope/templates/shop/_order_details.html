@@ -40,9 +40,9 @@
 </div>
 
 <h3>{% trans "Items Ordered" %}</h3>
-<table class="table">
+<table class="table" aria-label="Items Ordered">
 <tr>
-    <th>Item</th><th>Unit Price</th><th></th><th>Quantity</th><th>{% if order.item_discount %}Item Discount{% endif %}</th><th></th><th>Price</th>
+    <th id="Item">Item</th><th id="Unit Price">Unit Price</th><th scope="col"></th><th id="Quantity">Quantity</th><th id="Item Discount">{% if order.item_discount %}Item Discount{% endif %}</th><th></th><th id="Price">Price</th>
 </tr>
 {% for item in order.orderitem_set.all %}
 <tr>
