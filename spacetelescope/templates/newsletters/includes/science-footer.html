@@ -1,5 +1,5 @@
 {% load i18n %}
-{% comment %} <div style="font-family: Helvetica, Arial;text-align:center;font-size:15px;color:white; padding-bottom:10px;"><a style="font-size:15px;color:black;" href="https://www.spacetelescope.org/forscientists/announcements/sci16008/"><strong>How to advertise your Hubble results</strong></a></div> {% endcomment %}
+{% comment %} <div style="font-family: Arial, Helvetica, sans-serif; text-align:center;font-size:15px;color:white; padding-bottom:10px;"><a style="font-size:15px;color:black;" href="https://www.spacetelescope.org/forscientists/announcements/sci16008/"><strong>How to advertise your Hubble results</strong></a></div> {% endcomment %}
 <!-- // Begin Template Footer \\ -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="{% include "newsletters/includes/width.html" %}" id="templateFooter" style="background-color: #FFFFFF;border-top: 0;">
                                         <tr>
@@ -10,7 +10,7 @@
                                                     <tr>
                                                         <td style="background-color:#292929; width: 20px;">&nbsp;</td>
                                                         <td width="{{width}}" style="background-color:#292929; vertical-align: top;">
-                                                            <div style="color: #707070;font-family: Helvetica, Arial;font-size: 10px;line-height: 125%;text-align: center;background-color:#292929; padding-top:5px;padding-bottom:0px;padding-left:0px;padding-right:0px;">
+                                                            <div style="color: #707070;font-family: Arial, Helvetica, sans-serif; font-size: 10px;line-height: 125%;text-align: center;background-color:#292929; padding-top:5px;padding-bottom:0px;padding-left:0px;padding-right:0px;">
                                                                 {% if footer_potws %}
                                                                 {% for obj in footer_potws %}{% if obj.image %}
                                                                 <a href="{{base_url}}{{obj.image.get_absolute_url}}"><img style="border:0px;margin:2px;" src="{{base_url}}{{obj.image.resource_wallpaperthumbs.url}}" alt="{{obj.image.title}}"></img></a>&nbsp;
