@@ -545,7 +545,7 @@ ARCHIVES = (
 )
 
 ARCHIVE_EMBARGO_LOGIN = ('hst', 'shtenvix')
-ARCHIVE_EMAIL_SENDER = "ESA/Hubble Information Centre <hubble@eso.org>"
+ARCHIVE_EMAIL_SENDER = "ESA/Hubble Information Centre <info@esahubble.org>"
 
 ARCHIVE_URL_QUERY_PREFIX = 'archive'
 ARCHIVE_URL_DETAIL_PREFIX = ''
@@ -598,7 +598,7 @@ ARCHIVE_WORKFLOWS = {
     'media.video.rename': ('spacetelescope.workflows.media', 'video_rename'),
 }
 
-VIDEO_RENAME_NOTIFY = ['hzodet@eso.org', 'mkornmes@eso.org']
+VIDEO_RENAME_NOTIFY = ['web@esahubble.org', 'hubbleesa@gmail.com']
 
 ARCHIVE_CROSSLINKS = djangoplicity.crosslinks.crosslinks_for_domain('spacetelescope.org')
 

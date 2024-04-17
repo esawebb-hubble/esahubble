@@ -128,7 +128,7 @@ devserver:
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - ssh root@167.172.101.24 'cd esahubble && git pull origin release/python3 && docker-compose -f docker-compose.yml -f docker-compose.devserver.yml up --build -d'
+    - ssh root@167.172.101.24 'cd esahubble && git pull origin release/python3 && docker compose -f docker-compose.yml -f docker-compose.devserver.yml up --build -d'
   rules:
     - if: $CI_COMMIT_BRANCH == 'release/python3'
 

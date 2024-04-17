@@ -17,9 +17,6 @@ def video_rename( pk=None, new_pk=None ):
     renamed. Used to keep the master file archive up-to-date with the online archive.
     """
 
-    msg_subject = 'Video renamed: %s -> %s' % (pk, new_pk)
-    msg_body = """http://www.spacetelescope.org/videos/%s/""" % new_pk
-    msg_from = settings.DEFAULT_FROM_EMAIL
     msg_to = settings.VIDEO_RENAME_NOTIFY
     print("Sending emails to: {}".format(msg_to))
     # TODO: ESA/Hubble uses Mailgun to send emails. Please check how to add the msg_to emails to the recipients

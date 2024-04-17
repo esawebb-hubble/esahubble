@@ -5,7 +5,7 @@
 body {
 	background-color:;
 	background: #000922 url('../images/background.jpg') no-repeat top center;
-	font-family: Arial, Helvetica, san-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;
 	
 }
@@ -254,9 +254,7 @@ div.rotator {
 
 } 
  
-div.rotator div.items { 
 
-} 
  
 div.rotator div.items .feature_item { 
 	display:none;
@@ -284,9 +282,7 @@ div.rotator div.items .feature_item {
 	cursor:pointer;
 	display:block;		
 }
-.fbut_left {
 
-}
 .fbut_right {
 	right:1px;
 	text-align:right;
@@ -433,9 +429,7 @@ html>body #mainmenu #mmselected {
 	
 }
 
-#leftmenu hr {
-	
-}
+
 
 #leftmenu .extlink{
     background-image: url(../images/extlink-gray.png);
@@ -909,10 +903,7 @@ margin-bottom:20px;
 	clear:both	
 }
 
-/* frontpage headlines */
-.fp_news {
 
-}
 
 .fpviewall {
 	font-size:11px;
@@ -1002,9 +993,7 @@ margin-bottom:20px;
 	margin-top: 10px;
 }
 
-table.shoppingcart {
-	
-}
+
 
 table.shoppingcart td {
 	vertical-align: top;

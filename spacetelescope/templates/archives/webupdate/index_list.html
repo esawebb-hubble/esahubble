@@ -1,6 +1,6 @@
 {% load i18n %}{% load djangoplicity_utils %}{% load djangoplicity_datetime %}
 {% if not object_list %}
-    <div align="center">{% trans "No web updates were found." %}</div>
+    <div style="text-align: center;">{% trans "No web updates were found." %}</div>
 {% else %}
 {% include "archives/search_results.html" %}
 {% for item in object_list %}

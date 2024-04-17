@@ -66,18 +66,15 @@ def get_release_date(link):
         text = site.read()
         # remove all line breaks and double whitespace
         text = remove_void(text)
-              
-        #pat = re.compile(r'<h2 class="date">.*?<strong>([\S]+)[\s]+([\S]+),[\s]*?([\S]+)[\s]*?</strong>[\s]+([\S]+):([\S]+)[\s]+([\S]+)[\s]+([\S]+)[\s]+</h2>') 
+
         date = None
         try:
             date = pat.findall(text)[0]
-            #print date
             B = str(date[0])  # %B     Locale's full month name.  'December'#
             d = str(date[1])  # %d     Day of the month as a decimal number [01,31].
             Y = str(date[2])  # %Y     Year with century as a decimal number.
             I = str(date[3])  # %I     Hour (12-hour clock) as a decimal number [01,12].
             M = str(date[4])  # %M     Minute as a decimal number [00,59].
-            S = '00'          # %S     Second as a decimal number [00,61].
             p = str(date[5])  # %p     Locale's equivalent of either AM or PM.
             Z = str(date[6])  # (%Z)   Time zone name (unfortunately only UTC is working).
             datestring = Y + '-' + B + '-' + d + ' ' + I + ':' + M  + ' ' + p
@@ -94,7 +91,6 @@ def get_release_date(link):
             is_dts = False
             
             if Z == 'EDT' or Z == 'EST':
-                #print 'US/Eastern'
                 tz = eastern
                 if Z == 'EDT': is_dts = True
             else:
@@ -182,7 +178,6 @@ if __name__ == '__main__':
     
     print("list_links:")
     release = r'''http://hubblesite.org/newscenter/archive/releases/2005/37'''
-   # release = r'''http://hubblesite.org/newscenter/archive/releases/2008/16/image/ce/'''
     images = release_images(release)
     
 
@@ -194,4 +189,3 @@ if __name__ == '__main__':
         for link in links: 
             c = c + 1
             print(c, '   ', link)
-      

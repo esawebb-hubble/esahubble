@@ -50,7 +50,6 @@ if __name__ == '__main__':
     if update_db: print("updating the database entries...")
     if not update_db: print("use option -c True, for committing the changes to the database.")
     for obj in releases:
-            #description = strip_tags(obj.description).encode('utf-8')
         try:
             links = obj.links.encode('utf-8')
         except:
@@ -64,4 +63,3 @@ if __name__ == '__main__':
                 obj.save()
             except:
                 print('Problem updating database for ' + id)
-  
