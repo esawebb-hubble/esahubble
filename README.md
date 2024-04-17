@@ -19,11 +19,11 @@ git clone https://gitlab.com/esahubble/esahubble.git
 
 ### Running the project
 
-All the configuration to start the project is present in the docker-compose files and Dockerfile,
+All the configuration to start the project is present in the docker compose files and Dockerfile,
 then at this point a single command is required to download all the dependencies and run the project:
 
 ```` 
-docker-compose up
+docker compose up
 ````
 
 > The previous command reads the config from docker-compose.yml and docker-compose.override.yml, because of the naming convention of docker-compose
@@ -39,7 +39,7 @@ CTRL + C
 If the dependencies change, you should recreate the docker images and start the containers again with this command:
 
 ```` 
-docker-compose up --build
+docker compose up --build
 ````
 
 ### Additional commands
@@ -170,7 +170,7 @@ Finally configure the public key in the CDN Storage by following the next steps
 
 When having all the prerequisites, clone the repository in the server, then deploy the containers with the command:
 ```
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 ```
 
 Or if `make` is installed:
@@ -186,7 +186,7 @@ In case of new updates pull the commits from the repository and run the same com
 
 If the updates only changes the docker configuration just run:
 ```
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 or
 ```
@@ -195,7 +195,7 @@ make prod-up
 
 To start the containers displaying the startup logs:
 ```
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
 or
 ```

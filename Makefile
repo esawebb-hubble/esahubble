@@ -1,18 +1,18 @@
 prod-up:
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 prod-up-build:
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
 # Press Ctrl + Z to make it a background process, but "exit" finishes the process instead of logout
 prod-up-attached:
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up
 
 prod-up-build-attached:
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build
 
 prod-stop:
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml stop
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml stop
 
 reload-nginx:
 	docker exec -it hubble-nginx service nginx reload
