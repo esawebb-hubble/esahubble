@@ -1,6 +1,4 @@
-version: "3.4"
-
-# PRODUCTION CONFIG: use it like this 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml up'
+# PRODUCTION CONFIG: use it like this 'docker compose -f docker-compose.yml -f docker-compose.prod.yml up'
 # See: https://docs.docker.com/compose/extends/
 
 x-common: &common

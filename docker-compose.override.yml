@@ -1,6 +1,4 @@
-version: "3.4"
-
-# DEV CONFIG: 'docker-compose up' reads it automatically along with the docker-compose.yml file
+# DEV CONFIG: 'docker compose up' reads it automatically along with the docker-compose.yml file
 # See: https://docs.docker.com/compose/extends/
 
 # Tip: Put djangoplicity source code with a symbolic link into the local folder, then add a volume like this one:
