@@ -3,7 +3,6 @@
 /*********************/
 
 body {
-	background-color:;
 	background: #000922 url('../images/background.jpg') no-repeat top center;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;
@@ -27,7 +26,7 @@ ul, ol {
 }
 
 ul ul, ol ol {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 ul li {
@@ -72,8 +71,8 @@ ol li {
 
 
 .nomarg {
-	margin-left:0px;
-	margin-right:0px;
+	margin-left:0;
+	margin-right:0;
 }
 
 
@@ -88,7 +87,7 @@ ol li {
 	float:left;
 	width:10px;
 	height:10px;
-	margin:0px;
+	margin:0;
 }
 
 .gutter .whitegutter {
@@ -108,7 +107,7 @@ ol li {
 
 #topcontent .shadow {
 	margin-left:1px;
-	margin-top:0px;
+	margin-top:0;
 	border: none;
 	background-color:white;
 }
@@ -157,7 +156,7 @@ ol li {
 	margin-top:10px;
 	font-size:14px;
 	line-height: 15px;
-	margin-bottom:0px;
+	margin-bottom:0;
 	color:#ffffff;
 }
 
@@ -177,7 +176,7 @@ ol li {
 	clear:both;
 	float:left;
 	width:960px;
-	margin-top:0px;
+	margin-top:0;
 }
 
 #usage {
@@ -211,7 +210,7 @@ html>body .featuredmedia {margin-top:-220px;} /* other browsers, see above */
 	position:absolute;
 	color:black;
 	font-size:16px;	
-	right:0px;
+	right:0;
 	top:250px;
 	
 	background:none;
@@ -222,8 +221,8 @@ html>body .featuredmedia {margin-top:-220px;} /* other browsers, see above */
 }
 
 .featuredmedia .description {
-	margin: 170px 0px 0px 0px;
-	padding: 0px 10px 10px 20px;
+	margin: 170px 0 0 0;
+	padding: 0 10px 10px 20px;
 	position: absolute;
 	color:white;
 	font-size:12px;
@@ -265,9 +264,8 @@ div.rotator div.items .feature_item {
 
 
 .fbut {
-	padding:10px;
-	padding-top:12px;
-	display:block;
+  padding: 12px 10px 10px;
+  display:block;
 	position:absolute;
 	background:black;
 	opacity:0.4;
@@ -372,7 +370,6 @@ html>body #mainmenu #mmselected {
 	display:block;
 	float: left;
 	position: relative;
-	vertical-align:bottom;
 	text-align:right;
 	vertical-align: middle;
 	font-family: Arial, "MS Trebuchet", sans-serif;
@@ -402,18 +399,15 @@ html>body #mainmenu #mmselected {
 #leftmenu {
 	display:block;
 	padding-top:3px;
-	margin-left:10px;
-	padding-right:10px;
-	margin:0px;
-	padding-right:10px;
-	margin-right:-10px;
-	border-right:1px solid #E1E1E1;
+  padding-right:10px;
+  margin: 0 -10px 0 0;
+  border-right:1px solid #E1E1E1;
 }
 #leftmenu a{
 	font-size: 12px;
 	color: #515151;
 	display:block;
-	margin: 0px 0px 7px 0px;
+	margin: 0 0 7px 0;
 }
 #leftmenu h1 a{
 	font-size:15px;
@@ -496,7 +490,7 @@ h2, h3{
 
 #mainblock {
 	overflow: hidden;
-	padding: 18px 0px;
+	padding: 18px 0;
 	background-color:white;
 	width:960px;
 	min-height:200px;
@@ -538,17 +532,13 @@ h2, h3{
 table.archive_normal {
 
 	border-collapse:separate;
-	border-spacing:10px 0px;
+	border-spacing:10px 0;
 }
 
 table.archive_normal td  {
 	text-align: center;
 	background: #EEE;
-
-}
-
-table.archive_normal td {
-	vertical-align:middle;
+  vertical-align:middle;
 }
 
 table.archive_normal .breaker  {
@@ -600,8 +590,8 @@ table.archive_normal td.titlerow, table.archive_normal td.pricerow {
 }
 
 .image_container p {
-	padding: 0px;
-	margin:  0px;
+	padding: 0;
+	margin:  0;
 	text-align:center;
 	color: #BBB;
 }
@@ -658,7 +648,7 @@ table.archive_normal td.titlerow, table.archive_normal td.pricerow {
 }
 .adv_search_submit {
 text-align:center;
-margin-bottom:0px;
+margin-bottom:0;
 width:700px;
 }
 
@@ -667,7 +657,7 @@ width:700px;
 }
 
 .adv_search .searchitemsepr h2 {
-	margin-bottom:0px;
+	margin-bottom:0;
 }
 
 .adv_search .searchitemsepr td {
@@ -707,6 +697,7 @@ width:700px;
 	float:left;
 	width:460px;
 	margin-right:20px;
+  line-height: 15px;
 }
 
 #rightcolumn {
@@ -746,7 +737,7 @@ width:700px;
 }
 .archive_dl_size {
 	float:right;
-	margin-right:0px;
+	margin-right:0;
 }
 
 .archive_download {
@@ -903,12 +894,10 @@ margin-bottom:20px;
 	clear:both	
 }
 
-
-
 .fpviewall {
 	font-size:11px;
 	text-align:left;
-	left:0px;
+	left:0;
 	width: auto;
 	margin-left:70px;
 }
@@ -918,12 +907,7 @@ margin-bottom:20px;
 	font-size:18px;
 	text-transform: uppercase;
 	padding-bottom:6px;
-	background: url('../images/fp-news-bg.png') no-repeat 0px 32px;
-}
-
-.fp_news .entry {
-	display:block;
-	height:50px;	
+	background: url('../images/fp-news-bg.png') no-repeat 0 32px;
 }
 
 .fp_news .entry img  {
@@ -945,7 +929,7 @@ margin-bottom:20px;
 
 .fp_news .entry .extra {
 	width: 330px;
-	margin-left:0px;
+	margin-left:0;
 }
 
 .fp_news .entry a {
@@ -961,7 +945,8 @@ margin-bottom:20px;
 	display:block;
 	clear:both;
 	line-height:1.5;
-	margin-top: 10px;	
+	margin-top: 10px;
+  height:50px;
 }
 
 .price {
@@ -1089,9 +1074,8 @@ table.shoppingcart td {
 
 #footer {
 	padding-top:27px;
-	background: url('../images/footer-gradient.png') repeat-x;
-	background-color: #08243b;
-	color:white;
+  background: #08243b url('../images/footer-gradient.png') repeat-x;
+  color:white;
 	font-size:12px;
 
 }
@@ -1100,35 +1084,6 @@ table.shoppingcart td {
 	line-height:1.5;
 
 }
-
-/* social networks */
-/*#socialnetworks {
-	display:block;
-	width:180px;
-	height:82px;
-	margin-top:10px;
-	margin-left:1px;
-	background: url('../images/socialnetworks_nt.jpg') no-repeat;
-}
-
-html>body #socialnetworks {background: url('../images/socialnetworks.png') no-repeat;}
-
-
-#socialnetworks  a {
-	display:block;
-	width:80px;
-	float:left;
-	height:22px;
-}
-
-#socialnetworks #yt {
-	float:right;
-}
-#socialnetworks #it {
-	float:right;
-	height:40px;
-}
-*/
 
 #ftcolorg {
 	text-align: center;
@@ -1241,14 +1196,6 @@ a.teasertext:hover {
 	background-color: red;
 	float: left;
 	margin-right: 10px;
-}
-
-.inline_image a { 
-	color: 
-}
-
-#maincolumn {
-	line-height: 15px;
 }
 
 .left, .middle {
