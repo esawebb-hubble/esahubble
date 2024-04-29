@@ -23,7 +23,6 @@
 {% endfor %}
 {% endspaceless %}
 
-<!-- <link rel="shortcut icon" href="http://www.eso.org/public/archives/favicon.ico" /> -->
 {% load djangoplicity_utils %}
 <title>{{page.title}} {{page.section.append_title}} | ESO{% if LANGUAGE_CODE != 'en' %} {{ LANGUAGE_CODE|code_to_local_country }}{% endif %}</title>
 

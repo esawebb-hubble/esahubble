@@ -42,7 +42,13 @@
 <h3>{% trans "Items Ordered" %}</h3>
 <table class="table" aria-label="Items Ordered">
 <tr>
-    <th id="Item">Item</th><th id="Unit Price">Unit Price</th><th scope="col"></th><th id="Quantity">Quantity</th><th id="Item Discount">{% if order.item_discount %}Item Discount{% endif %}</th><th></th><th id="Price">Price</th>
+    <th id="Item">Item</th>
+    <th id="Unit Price">Unit Price</th>
+    <th scope="col"></th>
+    <th id="Quantity">Quantity</th>
+    <th id="Item Discount">{% if order.item_discount %}Item Discount{% endif %}</th>
+    <th scope="row"></th>
+    <th id="Price">Price</th>
 </tr>
 {% for item in order.orderitem_set.all %}
 <tr>
@@ -62,7 +68,7 @@
 
 <tr><td colspan="7">&nbsp;</td></tr>
 <tr>
-    <th colspan="5">Subtotal{% if order.discount %} (without discount){% endif %}</th>
+    <th colspan="5" scope="row">Subtotal{% if order.discount %} (without discount){% endif %}</th>
     <td>=</td>
     <td>{% if default_view_tax %}{{ order.sub_total_with_tax|currency }}{% else %}{{ order.sub_total|currency }}{% endif %}</td>
 </tr>
@@ -77,7 +83,7 @@
 {% if order.shipping_method %}
 <tr><td colspan="7">&nbsp;</td></tr>
 <tr>
-    <th colspan="7">Shipping &amp; Handling</th>
+    <th colspan="7" scope="row">Shipping &amp; Handling</th>
 </tr>
 
 {% if order.shipping_discount %}
@@ -96,7 +102,9 @@
 
 <tr><td colspan="7">&nbsp;</td></tr>
 <tr class="info total">
-    <th colspan="5">TOTAL</td><td>=</td><td>{{ order.total|currency|sp2nbsp }}</th>
+    <th colspan="5" scope="row">TOTAL</th>
+    <td>=</td>
+    <td>{{ order.total|currency|sp2nbsp }}</td>
 </tr>
 
 </table>

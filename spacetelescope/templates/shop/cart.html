@@ -48,17 +48,17 @@
                     {% archiveitem cartitem.product as object %}
                     <tr>
                         <td>
-                            {% if object.resource_thumb %}<img src="{{ object.resource_thumb.url}}" width="122px" />{% else %}{% thumbnail cartitem.product.main_image.picture 122x122 as image %}<img src="{{ image }}" width="122px" />{% endthumbnail %}{%endif%}
+                            {% if object.resource_thumb %}<img  alt="{% object.name %}" src="{{ object.resource_thumb.url}}" width="122px" />{% else %}{% thumbnail cartitem.product.main_image.picture 122x122 as image %}<img alt="{% object.name %}" src="{{ image }}" width="122px" />{% endthumbnail %}{%endif%}
                         </td>
                         <td class="quantity">
                             {% url 'satchmo_cart_set_qty' as satchmo_cart_set_qty %}
-                            <form role="form" id="form-{{ cartitem.id }}" action="{{ satchmo_cart_set_qty }}" method="post">{% csrf_token %}
+                            <form aria-label="Satchmo Cart" role="form" id="form-{{ cartitem.id }}" action="{{ satchmo_cart_set_qty }}" method="post">{% csrf_token %}
                                 <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
                                 <input type="text" class="form-control" name="quantity" id="id_quantity" value="{{ cartitem.quantity|normalize_decimal }}" />
                                 <button type="submit" class="btn btn-default" id="id_update_submit" aria-label="{% trans 'Update' %}">{% trans 'Update' %}</button>
                             </form>
                             {% url 'satchmo_cart_remove' as satchmo_cart_remove %}
-                            <form role="form" action="{{ satchmo_cart_remove }}" method="post">{% csrf_token %}
+                            <form aria-label="Satchmo cart remove" role="form" action="{{ satchmo_cart_remove }}" method="post">{% csrf_token %}
                                 <input type="hidden" name="cartitem" value="{{ cartitem.id }}" />
                                 <button type="submit" class="btn btn-default" aria-label="{% trans 'Remove' %}">{% trans 'Remove' %}</button>
                             </form>
