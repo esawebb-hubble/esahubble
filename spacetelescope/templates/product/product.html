@@ -104,13 +104,38 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
         <h3>Product details</h3>
         <table aria-describedby="Product details">
         <tr>
-            <td><strong>ID</strong></td><td>{{ object.id }}</td>
+            <th scope="row"><strong>ID</strong></th>
+            <td>{{ object.id }}</td>
         </tr>
-        {% if object.isbn %}<tr style="vertical-align: top;"><td><strong>ISBN</strong></td><td>{{ object.isbn}}</td></tr>{% endif %}
-        {% if object.size %}<tr style="vertical-align: top;"><td><strong>Dimensions</strong></td><td>{{ object.size }}</td></tr>{% endif %}
-        {% if object.pages %}<tr style="vertical-align: top;"><td><strong>Pages</strong></td><td>{{ object.pages}}</td></tr>{% endif %}
-        {% if object.cover %}<tr style="vertical-align: top;"><td><strong>Cover</strong></td><td>{{ object.cover}}</td></tr>{% endif %}
-        {% if object.language %}<tr style="vertical-align: top;"><td><strong>Language</strong></td><td>{{ object.get_language_display }}</td></tr>{% endif %}
+        {% if object.isbn %}
+            <tr style="vertical-align: top;">
+                <th scope="row"><strong>ISBN</strong></th>
+                <td>{{ object.isbn}}</td>
+            </tr>
+        {% endif %}
+        {% if object.size %}
+            <tr style="vertical-align: top;">
+                <th scope="row"><strong>Dimensions</strong></th>
+                <td>{{ object.size }}</td>
+            </tr>
+        {% endif %}
+        {% if object.pages %}
+            <tr style="vertical-align: top;">
+                <th scope="row"><strong>Pages</strong></th>
+                <td>{{ object.pages}}</td>
+            </tr>{% endif %}
+        {% if object.cover %}
+            <tr style="vertical-align: top;">
+                <th scope="row"><strong>Cover</strong></th>
+                <td>{{ object.cover}}</td>
+            </tr>
+        {% endif %}
+        {% if object.language %}
+            <tr style="vertical-align: top;">
+                <th scope="row"><strong>Language</strong></th>
+                <td>{{ object.get_language_display }}</td>
+            </tr>
+        {% endif %}
 
         </table>
         {% if project_environment == 'eso.org' and product.category.all.0.name != 'Donations' %}<p style="text-align:left;padding:6px"><span><strong>More details about this product:</strong></span><br />See the <a href="/public/archives/brochures/pdf/brochure_0040.pdf">ESO Shop Catalogue</a>.</p>{% endif %}
@@ -121,9 +146,15 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
         <div class="bulkpricing">
         <h3>Bulk pricing</h3>
         <table aria-describedby="Bulk pricing">
-            <tr><td><strong>Minimum Quantity</strong></td><td><strong>Unit Price</strong></td></tr>
+            <tr>
+                <th scope="row"><strong>Minimum Quantity</strong></th>
+                <td><strong>Unit Price</strong></td>
+            </tr>
         {% for qty,price in product.get_qty_price_list reversed %}
-        <tr><td>{{qty|normalize_decimal}}</td><td>{{price|currency}}</td></tr>
+            <tr>
+                <th scope="row">{{qty|normalize_decimal}}</th>
+                <td>{{price|currency}}</td>
+            </tr>
         {% endfor %}
         </table>
         </div>
