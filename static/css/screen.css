@@ -257,9 +257,6 @@ div.rotator div.items .feature_item {
     float:left; 
 }
 
-
-
-
 .fbut {
   padding: 12px 10px 10px;
   display:block;
@@ -531,13 +528,9 @@ table.archive_normal {
 	border-spacing:10px 0;
 }
 
-table.archive_normal td  {
-	text-align: center;
-	background: #EEE;
-
-}
-
 table.archive_normal td {
+  text-align: center;
+	background: #EEE;
 	vertical-align:middle;
 }
 
@@ -908,12 +901,7 @@ margin-bottom:20px;
 	font-size:18px;
 	text-transform: uppercase;
 	padding-bottom:6px;
-	background: url('../images/fp-news-bg.png') no-repeat 0px 32px;
-}
-
-.fp_news .entry {
-	display:block;
-	height:50px;	
+	background: url('../images/fp-news-bg.png') no-repeat 0 32px;
 }
 
 .fp_news .entry img  {
@@ -948,6 +936,7 @@ margin-bottom:20px;
 }
 
 .fp_news .entry {
+	height:50px;
 	display:block;
 	clear:both;
 	line-height:1.5;
