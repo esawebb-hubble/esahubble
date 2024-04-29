@@ -25,9 +25,9 @@
         <div class="slide">
             <a href="{{ release.get_absolute_url }}">
             {% if release.main_image.resource_banner1920 %}
-                <img draggable="false" data-lazy="{{ release.main_image.resource_banner1920.url }}" alt="{{ release.main_image.title }}">
+                <img draggable="false" src="{{ release.main_image.resource_banner1920.url }}" data-lazy="{{ release.main_image.resource_banner1920.url }}" alt="{{ release.main_image.title }}">
             {% else %}
-                <img draggable="false" data-lazy="{{ release.main_image.resource_wallpaper3.url }}" alt="{{ release.main_image.title }}">
+                <img draggable="false" src="{{ release.main_image.resource_wallpaper3.url }}" data-lazy="{{ release.main_image.resource_wallpaper3.url }}" alt="{{ release.main_image.title }}">
             {% endif %}
             <div class="pr-content">
                 <div class="pr-description">
@@ -67,7 +67,7 @@
                             <div class="title">{{ announcement.title }}</div>
                             <div class="date">{{ announcement.release_date|date:"j N Y" }} — {{ announcement.id }}</div>
                         </div>
-                        <img draggable="false" data-lazy="{{ announcement.main_visual.resource_thumb350x.url }}" alt="{{ announcement.main_visual.title }}">
+                        <img draggable="false" src="{{ announcement.main_visual.resource_thumb350x.url }}" data-lazy="{{ announcement.main_visual.resource_thumb350x.url }}" alt="{{ announcement.main_visual.title }}">
                         <div class="readmore"></div>
                     </a>
                 </div> <!-- slide -->
@@ -93,7 +93,7 @@
                 {% for potw in potws %}
                 <div class="slide">
                     <a href="{{ potw.get_absolute_url }}">
-                        <img draggable="false" data-lazy="{{ potw.visual.resource_screen640.url }}" class="img-responsive" alt="{{ potw.visual.title }}">
+                        <img draggable="false" src="{{ potw.visual.resource_screen640.url }}" data-lazy="{{ potw.visual.resource_screen640.url }}" class="img-responsive" alt="{{ potw.visual.title }}">
                         <div class="potw-description">
                             <div class="date">{{ potw.release_date|datetime:"DATE" }} — {{ potw.id }}</div>
                             <div class="title">{{ potw.visual.title }}</div>
@@ -209,7 +209,7 @@
                 <div class="slide">
                     <a href="{{ image.get_absolute_url }}">
                         <div class="img-wrapper">
-                            <img draggable="false" data-lazy="{{ image.resource_wallpaper1.url }}" class="img-responsive" alt="{{ image.title }}">
+                            <img draggable="false" src="{{ image.resource_wallpaper1.url }}" data-lazy="{{ image.resource_wallpaper1.url }}" class="img-responsive" alt="{{ image.title }}">
                         </div>
                         <div class="top100-description">
                             <div class="title">{{ image.title }}</div>
@@ -249,8 +249,8 @@
                     </div>
                     <div class="social-links">
                         <div class="icons">
-                            <a href="http://www.facebook.com/HubbleESA"><div class="sprites-facebook_42px_flat"></div></a>
-                            <a href="http://twitter.com/hubble_space">
+                            <a href="https://www.facebook.com/HubbleESA"><div class="sprites-facebook_42px_flat"></div></a>
+                            <a href="https://twitter.com/hubble_space">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" 
                                     class="bi bi-twitter-x" viewBox="0 0 16 16">
                                     <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
