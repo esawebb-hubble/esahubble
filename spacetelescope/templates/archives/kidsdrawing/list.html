@@ -20,41 +20,39 @@
 
 <div class="row no-page">
     <div class="col-md-12">
-{% block content %}
-        <h1>{% if archive_title %}{% trans archive_title %}{% else %}{{ archive|capfirst }} {% trans "Archive" %}{% endif %}{% if listview_feed_url %} <a href="{{ listview_feed_url }}" class="listviewrsslink"><span class="fa fa-rss"></span></a>{% endif %}</h1>
-    </div>
-
-    {% if 'products' in request.path %}
-    <div class="col-md-12 media-categories">
-        <ul>
-            <li><a href="/products/models3d/"{% if '/products/models3d/' in request.path %} class="selected"{% endif %}>{% trans "3D Models" %}</a></li>
-            <li><a href="/products/calendars/"{% if '/products/calendars/' in request.path %} class="selected"{% endif %}>{% trans "Calendars" %}</a></li>
-            <li><a href="/products/applications/"{% if '/products/applications/' in request.path %} class="selected"{% endif %}>{% trans "Apps" %}</a></li>
-            <li><a href="/products/logos/"{% if '/products/logos/' in request.path %} class="selected"{% endif %}>{% trans "Logos" %}</a></li>
-            <li><a href="/products/exhibitions/"{% if '/products/exhibitions/' in request.path %} class="selected"{% endif %}>{% trans "Exhibition Panels" %}</a></li>
-            <li><a href="/products/stickers/"{% if '/products/stickers/' in request.path %} class="selected"{% endif %}>{% trans "Stickers" %}</a></li>
-            <li><a href="/products/postcards/"{% if '/products/postcards/' in request.path %} class="selected"{% endif %}>{% trans "Postcards" %}</a></li>
-            <li><a href="/products/print_posters/"{% if '/products/print_posters/' in request.path %} class="selected"{% endif %}>{% trans "Printed Posters" %}</a></li>
-            <li><a href="/products/conf_posters/"{% if '/products/conf_posters/' in request.path %} class="selected"{% endif %}>{% trans "Conferences Posters" %}</a></li>
-            <li><a href="/products/merchandise/"{% if '/products/merchandise/' in request.path %} class="selected"{% endif %}>{% trans "Merchandise" %}</a></li>
-            <li><a href="/products/media/"{% if '/products/media/' in request.path %} class="selected"{% endif %}>{% trans "Media" %}</a></li>
-            <li><a href="/products/presentations/"{% if '/products/presentations/' in request.path %} class="selected"{% endif %}>{% trans "Presentations" %}</a></li>
-            <li><a href="/products/art/"{% if '/products/art/' in request.path %} class="selected"{% endif %}>{% trans "Space Art" %}</a></li>
-        </ul>
-    </div>
-    {% endif %}
-</div>
-
-<div class="row no-page">
-    <div class="col-md-12">
-        <div class="alert alert-info" role="alert" style="margin-right: 20px">
-            This page is no longer updated. Children's drawings, along with other creative content created by the public, are now hosted on the dedicated Flickr page <a href="https://www.flickr.com/groups/yourhubblepictures/">Your Hubble Pictures</a>.
+    {% block content %}
+            <h1>{% if archive_title %}{% trans archive_title %}{% else %}{{ archive|capfirst }} {% trans "Archive" %}{% endif %}{% if listview_feed_url %} <a href="{{ listview_feed_url }}" class="listviewrsslink"><span class="fa fa-rss"></span></a>{% endif %}</h1>
+    
+        {% if 'products' in request.path %}
+            <div class="col-md-12 media-categories">
+                <ul>
+                    <li><a href="/products/models3d/"{% if '/products/models3d/' in request.path %} class="selected"{% endif %}>{% trans "3D Models" %}</a></li>
+                    <li><a href="/products/calendars/"{% if '/products/calendars/' in request.path %} class="selected"{% endif %}>{% trans "Calendars" %}</a></li>
+                    <li><a href="/products/applications/"{% if '/products/applications/' in request.path %} class="selected"{% endif %}>{% trans "Apps" %}</a></li>
+                    <li><a href="/products/logos/"{% if '/products/logos/' in request.path %} class="selected"{% endif %}>{% trans "Logos" %}</a></li>
+                    <li><a href="/products/exhibitions/"{% if '/products/exhibitions/' in request.path %} class="selected"{% endif %}>{% trans "Exhibition Panels" %}</a></li>
+                    <li><a href="/products/stickers/"{% if '/products/stickers/' in request.path %} class="selected"{% endif %}>{% trans "Stickers" %}</a></li>
+                    <li><a href="/products/postcards/"{% if '/products/postcards/' in request.path %} class="selected"{% endif %}>{% trans "Postcards" %}</a></li>
+                    <li><a href="/products/print_posters/"{% if '/products/print_posters/' in request.path %} class="selected"{% endif %}>{% trans "Printed Posters" %}</a></li>
+                    <li><a href="/products/conf_posters/"{% if '/products/conf_posters/' in request.path %} class="selected"{% endif %}>{% trans "Conferences Posters" %}</a></li>
+                    <li><a href="/products/merchandise/"{% if '/products/merchandise/' in request.path %} class="selected"{% endif %}>{% trans "Merchandise" %}</a></li>
+                    <li><a href="/products/media/"{% if '/products/media/' in request.path %} class="selected"{% endif %}>{% trans "Media" %}</a></li>
+                    <li><a href="/products/presentations/"{% if '/products/presentations/' in request.path %} class="selected"{% endif %}>{% trans "Presentations" %}</a></li>
+                    <li><a href="/products/art/"{% if '/products/art/' in request.path %} class="selected"{% endif %}>{% trans "Space Art" %}</a></li>
+                </ul>
+            </div>
+        {% endif %}
+    
+        <div class="row no-page">
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert" style="margin-right: 20px">
+                    This page is no longer updated. Children's drawings, along with other creative content created by the public, are now hosted on the dedicated Flickr page <a href="https://www.flickr.com/groups/yourhubblepictures/">Your Hubble Pictures</a>.
+                </div>
+                {% include index_template %}
+            </div>
         </div>
-        {% include index_template %}
-    </div>
-</div>
-
-{% endblock %}
+    
+    {% endblock %}
     </div>
 </div>
 {% endblock %}

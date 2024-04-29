@@ -3,10 +3,12 @@
 
 {% for entry in submenu %}
     <li class="{% if entry.selected %}curr{{ entry.level|add:"-1" }}{% if not entry.leaf_selected %}s{% endif %}{% else %}std{{ entry.level|add:"-1" }}{% endif %}">
-        <a href="{{ entry.link }}"{% if entry.on_click %} target="_blank"{% endif %}">{% trans entry.title|safe %}</a>
+        <a href="{{ entry.link }}" {% if entry.on_click %} target="_blank" {% endif %}>
+            {% trans entry.title|safe %}
+        </a>
         {% if entry.children|length %}
             <ul class="sub{{ entry.level }}">
-            {% render_submenu entry.children sitemap %}
+                {% render_submenu entry.children sitemap %}
             </ul>
         {% endif %}
     </li>

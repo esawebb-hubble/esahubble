@@ -22,7 +22,7 @@
 {% elif object.resource_medium %}
 <div class="archive-image archive-image-dark{% if not object.zoomable %} popup{% endif %}">
     {% if object.resource_screen %}
-    <a class="popup" href="{% if object.zoomable %}{{ object.get_absolute_url }}zoomable/{% else %}{{ object.resource_screen.url }}{% endif %}" title="{{object.title|safe}}"/>
+    <a class="popup" href="{% if object.zoomable %}{{ object.get_absolute_url }}zoomable/{% else %}{{ object.resource_screen.url }}{% endif %}" title="{{object.title|safe}}">
         <img
             class="img-responsive"
             src="{% if object.resource_thumb700x %}{{ object.resource_thumb700x.url }}{% else %}{{ object.resource_screen.url }}{% endif %}"

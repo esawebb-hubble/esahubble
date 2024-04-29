@@ -5,19 +5,19 @@
 
 {% if object.sketchfab_id %}
 <div class="archive-image">
-    <iframe width="100%" height="480" src="https://sketchfab.com/models/{{ object.sketchfab_id }}/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+    <iframe style="width: 100%; height: 480px; border: none;" src="https://sketchfab.com/models/{{ object.sketchfab_id }}/embed" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
 </div>
 {% elif object.resource_medium %}
 <div class="archive-image popup">
     {% if object.resource_screen %}
-        <a class="popup" href="{{ object.resource_screen.url }}" title="{{ object }}" />
+        <a class="popup" href="{{ object.resource_screen.url }}" title="{{ object }}">
             <div class="image-container">
-                <img class="img-responsive" src="{{ object.resource_screen.url }}" border="0" alt="{{ object }}" />
+                <img style="border: none;" class="img-responsive" src="{{ object.resource_screen.url }}" alt="{{ object }}" />
             </div>
         </a>
     {% else %}
         <div class="image-container">
-            <img class="img-responsive" src="{{ object.resource_medium.url }}" style="width: 320px;" border="0" alt="{{ object }}" />
+            <img style="border: none; width: 320px;" class="img-responsive" src="{{ object.resource_medium.url }}" alt="{{ object }}" />
         </div>
     {% endif %}
 </div>
