@@ -11,7 +11,7 @@
                 {% if link.url %}<a href="{{ link.url }}">{% trans link.title %}</a><br />{% endif %}
             {% endfor %}
             {% if admin.metadata %}
-                <table>
+                <table aria-describedby="Admin metadata">
                 {% for metadata in admin.metadata %}
                     {% if metadata.field_value %}
                         {% trans metadata.field_name as field_name %}
