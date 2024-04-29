@@ -102,9 +102,9 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
         <hr />
         <div class="bulkpricing">
         <h3>Product details</h3>
-        <table>
+        <table aria-describedby="Product details">
         <tr>
-            <td><strong>ID</td><td>{{ object.id }}</td>
+            <td><strong>ID</strong></td><td>{{ object.id }}</td>
         </tr>
         {% if object.isbn %}<tr style="vertical-align: top;"><td><strong>ISBN</strong></td><td>{{ object.isbn}}</td></tr>{% endif %}
         {% if object.size %}<tr style="vertical-align: top;"><td><strong>Dimensions</strong></td><td>{{ object.size }}</td></tr>{% endif %}
@@ -120,7 +120,7 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
         <hr />
         <div class="bulkpricing">
         <h3>Bulk pricing</h3>
-        <table>
+        <table aria-describedby="Bulk pricing">
             <tr><td><strong>Minimum Quantity</strong></td><td><strong>Unit Price</strong></td></tr>
         {% for qty,price in product.get_qty_price_list reversed %}
         <tr><td>{{qty|normalize_decimal}}</td><td>{{price|currency}}</td></tr>
