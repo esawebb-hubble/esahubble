@@ -32,7 +32,7 @@ import socket
 
 import datetime
 
-def store_JSON(path_json, dict):
+def store_json(path_json, dict):
     '''
     stores the data in dict in JSON format
     the JSON data will be presented by the website using dynamic.js
@@ -69,22 +69,20 @@ def store_JSON(path_json, dict):
     f.write('}\n')
     f.close()
     print("produced", path_json)
-    return
     
 def new_id(long_caption_link):
     '''
     creates 2003-28-a out of the long caption link ...eases/2003/28/image/a/
     returns '-' if failed
     '''
-    id = ''
-    pattern = re.compile('.*?([0-9]*?)/([0-9]*?)/image/([a-z]?)')
+    pattern_to_recompile = re.compile('.*?(\d*?)/(\d*?)/image/([a-z]?)')
     try:
-        results = pattern.findall(long_caption_link)[0]
-        id  = results[0]+'-'+results[1]
-        if results[2] != '': id = id +'-'+results[2]
-    except:
-        id = '-'
-    return id
+        results = pattern_to_recompile.findall(long_caption_link)[0]
+        id_new  = results[0]+'-'+results[1]
+        if results[2] != '': id_new = id_new +'-'+results[2]
+    except IndexError:
+        id_new = '-'
+    return id_new
 
 
 if __name__ == '__main__':
@@ -173,6 +171,6 @@ if __name__ == '__main__':
         
         print("%s\t%s\t%s\t%s" % (image.id, hubble_id, spacetelescope_url, image.long_caption_link))
         logger.info(str(count)+' / '+n_images + ' ' + image.id + ' ' + hubble_id + ' ' + middle  + ' ' + image.long_caption_link + ' ' + thumberror)
-    store_JSON(jsonfile,dict)
+    store_json(jsonfile,dict)
            
         
