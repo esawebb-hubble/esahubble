@@ -89,8 +89,10 @@ DEBUG_TOOLBAR = DEBUG
 DEBUG_TOOLBAR_CONFIG = {}
 DEBUG_TOOLBAR_PANELS = []
 
+HUBBLE_DEFAULT_EMAIL = 'web@esahubble.org'
+
 ADMINS = (
-    ('Web team ESAHubble', 'web@esahubble.org'),
+    ('Web team ESAHubble', HUBBLE_DEFAULT_EMAIL),
 )
 MANAGERS = ADMINS
 
@@ -415,7 +417,7 @@ FILE_UPLOAD_PERMISSIONS = 0o666
 # EMAIL CONFIG
 SERVER_EMAIL = 'nobody@esahubble.org'
 DEFAULT_FROM_EMAIL = 'nobody@esahubble.org'
-DEFAULT_MAIL_USER = ['web@esahubble.org']
+DEFAULT_MAIL_USER = [HUBBLE_DEFAULT_EMAIL]
 DEFAULT_MAIL_TAGGING = ['zidmani@gmail.com']
 EMAIL_SUBJECT_PREFIX = '[SPACETELESCOPE-LOCAL]'
 
@@ -598,7 +600,7 @@ ARCHIVE_WORKFLOWS = {
     'media.video.rename': ('spacetelescope.workflows.media', 'video_rename'),
 }
 
-VIDEO_RENAME_NOTIFY = ['web@esahubble.org', 'hubbleesa@gmail.com']
+VIDEO_RENAME_NOTIFY = [HUBBLE_DEFAULT_EMAIL, 'hubbleesa@gmail.com']
 
 ARCHIVE_CROSSLINKS = djangoplicity.crosslinks.crosslinks_for_domain('spacetelescope.org')
 
