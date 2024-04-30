@@ -63,9 +63,12 @@ def change_datetime(obj):
                 obj.release_date = release_date
                 obj.save()
                 success = True
-            except:
-                print(obj.id,' save failed!')
-                pass
+            except AttributeError as e:
+                print(obj.id, 'AttributeError:', e)
+            except ValueError as e:
+                print(obj.id, 'ValueError:', e)
+            except Exception as e:
+                print(obj.id, 'Save failed:', e)
     return success
 
 
