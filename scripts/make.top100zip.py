@@ -39,15 +39,15 @@ if __name__ == '__main__':
 
     try:
         if not isinstance( getattr( Image.Archive, fmt ), ResourceManager ):
-            raise Exception( "Specified format is not a valid resource format." )
+            raise ValueError( "Specified format is not a valid resource format." )
 
         zipfile = "top100-%s.zip" % fmt
 
         if tmppath and not os.path.exists( tmppath ):
-            raise Exception( "Temporary directory %s does not exists." % tmppath )
+            raise FileNotFoundError( "Temporary directory %s does not exists." % tmppath )
 
         if not os.path.exists( outputdir ):
-            raise Exception( "Output directory %s does not exists." % outputdir )
+            raise FileNotFoundError( "Output directory %s does not exists." % outputdir )
 
         outputfile = os.path.join( outputdir, zipfile )
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
             shutil.move( zippath, outputfile )
         else:
-            raise Exception( "Couldn't generate zip file %s" % outputfile )
+            raise FileNotFoundError( "Couldn't generate zip file %s because %s does not exist." % (outputfile, zippath))
     except Exception as e:
         print("Error: {}".format(e) )
     finally:

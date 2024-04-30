@@ -134,19 +134,22 @@ if __name__ == '__main__':
     jsonfile = '/Users/lnielsen/Desktop/Hubble/' + now.strftime("%Y-%m-%d") + 'a.js'
     print('store results in ', jsonfile)
     for image in images:
+        hubble_id = '?'
         if image.long_caption_link.find('http://hubblesite.org') == -1: continue
         count = count + 1
         try:
             remote   = urllib.request.urlopen(image.long_caption_link)
-        except:
+        except Exception as e:
             remote  = 'timeout?'
         for line in remote:
             if line.find('release-number') > -1:
                 break
-        try:
-            hubble_id = pattern.findall(line)[0].strip()            
-        except:
-            hubble_id = '?'
+            try:
+                hubble_id = pattern.findall(line)[0].strip()
+            except IndexError as error:
+                hubble_id = '?'
+                logger.info("An error occurred: %s", error)
+
         middle = new_id(image.long_caption_link)
         spacetelescope_thumb = spacetelescope_thumb_pre + image.id + spacetelescope_thumb_post
         spacetelescope_url   = spacetelescope_site_pre + image.id + '/'
