@@ -69,7 +69,7 @@ class Top100FeedSettings():
 
 class ScienceAnnouncementFeedSettings():
     title = 'ESA/Hubble Science Announcements'
-    link = 'http://www.spacetelescope.org/science/announcements/'
+    link = 'https://www.esahubble.org/science/announcements/'
     description = 'ESA/Hubble Science Announcements Feed'
 
 

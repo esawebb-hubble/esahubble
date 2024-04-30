@@ -114,11 +114,11 @@ if __name__ == '__main__':
     # http://www.spacetelescope.org/static/archives/images/screen/opo0328a.jpg
     
     
-    hubble_pre = r'''http://imgsrc.hubblesite.org/hu/db/images/hs-'''
+    hubble_pre = r'''https://imgsrc.hubblesite.org/hu/db/images/hs-'''
     hubble_thumb_post = r'''-small_web.jpg'''
     hubble_original_post = r'''-full_jpg.jpg'''
-    spacetelescope_site_pre = r'''http://www.spacetelescope.org/images/'''
-    spacetelescope_thumb_pre = r'''http://www.spacetelescope.org/static/archives/images/screen/'''
+    spacetelescope_site_pre = r'''https://esahubble.org/images/'''
+    spacetelescope_thumb_pre = r'''https://esahubble.org/media/archives/images/screen/'''
     spacetelescope_thumb_post = r'''.jpg'''
     
     test =  '''<h2 class="release-number"><strong>News Release Number:</strong> STScI-2006-25</h2>'''
@@ -135,7 +135,7 @@ if __name__ == '__main__':
     print('store results in ', jsonfile)
     for image in images:
         hubble_id = '?'
-        if image.long_caption_link.find('http://hubblesite.org') == -1: continue
+        if image.long_caption_link.find('https://hubblesite.org') == -1: continue
         count = count + 1
         try:
             remote   = urllib.request.urlopen(image.long_caption_link)

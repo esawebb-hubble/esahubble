@@ -136,11 +136,11 @@ urlpatterns += [
     # TODO: check these groups and update if necessary
     # url( r'^contacts/subscribe/messenger/(?P<uid>.*)/', GroupSubscribe.as_view(group=27, template_name='contacts/messenger_public_subscribe.html'), name='messenger_subscribe'),
 
-    url( r'^rss/feed.xml$', RedirectView.as_view(url='http://feeds.feedburner.com/hubble_news/') ),
-    url( r'^rss/vodcast.xml$', RedirectView.as_view(url='http://feeds.feedburner.com/hubblecast_sd/') ),
-    url( r'^rss/vodcasthd.xml$', RedirectView.as_view(url='http://feeds.feedburner.com/hubblecast/') ),
-    url( r'^rss/vodcastfullhd.xml$', RedirectView.as_view(url='http://feeds.feedburner.com/hubblecast_fullhd/') ),
-    url( r'^rss/hubblecasthd_amp.xml$', RedirectView.as_view(url='http://feeds.feedburner.com/hubblecast/') ),
+    url( r'^rss/feed.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubble_news/') ),
+    url( r'^rss/vodcast.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubblecast_sd/') ),
+    url( r'^rss/vodcasthd.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubblecast/') ),
+    url( r'^rss/vodcastfullhd.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubblecast_fullhd/') ),
+    url( r'^rss/hubblecasthd_amp.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubblecast/') ),
 
     # User authentication
     url( r'^login/$', django.contrib.auth.views.LoginView.as_view(template_name='login.html') ),
