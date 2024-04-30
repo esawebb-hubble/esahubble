@@ -82,27 +82,28 @@ let sorttable = {
 
     // work through each column and calculate its type
     let headrow = table.tHead.rows[0].cells;
-    for (let i=0; i<headrow.length; i++) {
+    let override;
+    for (let i = 0; i < headrow.length; i++) {
       // manually override the type with a sorttable_type attribute
       if (!headrow[i].className.match(/\bsorttable_nosort\b/)) { // skip this col
         let mtch = headrow[i].className.match(/\bsorttable_([a-z0-9]+)\b/);
-        if (mtch) { let override = mtch[1]; }
-	      if (mtch && typeof sorttable["sort_"+override] == 'function') {
-	        headrow[i].sorttable_sortfunction = sorttable["sort_"+override];
-	      } else {
-	        headrow[i].sorttable_sortfunction = sorttable.guessType(table,i);
-	      }
-	      // make it clickable to sort
-	      headrow[i].sorttable_columnindex = i;
-	      headrow[i].sorttable_tbody = table.tBodies[0];
-	      dean_addEvent(headrow[i],"click", sorttable.innerSortFunction = function(e) {
+        if (mtch) {override = mtch[1];}
+        if (mtch && typeof sorttable["sort_" + override] == 'function') {
+          headrow[i].sorttable_sortfunction = sorttable["sort_" + override];
+        } else {
+          headrow[i].sorttable_sortfunction = sorttable.guessType(table, i);
+        }
+        // make it clickable to sort
+        headrow[i].sorttable_columnindex = i;
+        headrow[i].sorttable_tbody = table.tBodies[0];
+        dean_addEvent(headrow[i], "click", sorttable.innerSortFunction = function (e) {
 
           if (this.className.search(/\bsorttable_sorted\b/) !== -1) {
             // if we're already sorted by this column, just
             // reverse the table, which is quicker
             sorttable.reverse(this.sorttable_tbody);
             this.className = this.className.replace('sorttable_sorted',
-                                                    'sorttable_sorted_reverse');
+              'sorttable_sorted_reverse');
             this.removeChild(document.getElementById('sorttable_sortfwdind'));
             let sortrevind = document.createElement('span');
             sortrevind.id = "sorttable_sortrevind";
@@ -115,7 +116,7 @@ let sorttable = {
             // re-reverse the table, which is quicker
             sorttable.reverse(this.sorttable_tbody);
             this.className = this.className.replace('sorttable_sorted_reverse',
-                                                    'sorttable_sorted');
+              'sorttable_sorted');
             this.removeChild(document.getElementById('sorttable_sortrevind'));
             let sortfwdind = document.createElement('span');
             sortfwdind.id = "sorttable_sortfwdind";
@@ -126,16 +127,20 @@ let sorttable = {
 
           // remove sorttable_sorted classes
           let theadrow = this.parentNode;
-          forEach(theadrow.childNodes, function(cell) {
+          forEach(theadrow.childNodes, function (cell) {
             if (cell.nodeType === 1) { // an element
-              cell.className = cell.className.replace('sorttable_sorted_reverse','');
-              cell.className = cell.className.replace('sorttable_sorted','');
+              cell.className = cell.className.replace('sorttable_sorted_reverse', '');
+              cell.className = cell.className.replace('sorttable_sorted', '');
             }
           });
           let sortfwdind = document.getElementById('sorttable_sortfwdind');
-          if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
+          if (sortfwdind) {
+            sortfwdind.parentNode.removeChild(sortfwdind);
+          }
           let sortrevind = document.getElementById('sorttable_sortrevind');
-          if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
+          if (sortrevind) {
+            sortrevind.parentNode.removeChild(sortrevind);
+          }
 
           this.className += ' sorttable_sorted';
           sortfwdind = document.createElement('span');
@@ -143,29 +148,29 @@ let sorttable = {
           sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
           this.appendChild(sortfwdind);
 
-	        // build an array to sort. This is a Schwartzian transform thing,
-	        // i.e., we "decorate" each row with the actual sort key,
-	        // sort based on the sort keys, and then put the rows back in order
-	        // which is a lot faster because you only do getInnerText once per row
-	        let row_array = [];
-	        let col = this.sorttable_columnindex;
-	        let rows = this.sorttable_tbody.rows;
-	        for (let j=0; j<rows.length; j++) {
-	          row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
-	        }
-	        /* If you want a stable sort, uncomment the following line */
-	        //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
-	        /* and comment out this one */
-	        row_array.sort(this.sorttable_sortfunction);
+          // build an array to sort. This is a Schwartzian transform thing,
+          // i.e., we "decorate" each row with the actual sort key,
+          // sort based on the sort keys, and then put the rows back in order
+          // which is a lot faster because you only do getInnerText once per row
+          let row_array = [];
+          let col = this.sorttable_columnindex;
+          let rows = this.sorttable_tbody.rows;
+          for (let j = 0; j < rows.length; j++) {
+            row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
+          }
+          /* If you want a stable sort, uncomment the following line */
+          //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
+          /* and comment out this one */
+          row_array.sort(this.sorttable_sortfunction);
 
-	        let tb = this.sorttable_tbody;
-	        for (let j=0; j<row_array.length; j++) {
-	          tb.appendChild(row_array[j][1]);
-	        }
+          let tb = this.sorttable_tbody;
+          for (let j = 0; j < row_array.length; j++) {
+            tb.appendChild(row_array[j][1]);
+          }
 
-	        delete row_array;
-	      });
-	    }
+          delete row_array;
+        });
+      }
     }
   },
 
@@ -356,10 +361,6 @@ if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", sorttable.init, false);
 }
 
-/* for Safari */
-if (/WebKit/i.test(navigator.userAgent)) {
-}
-
 /* for other browsers */
 window.onload = sorttable.init;
 
@@ -375,7 +376,9 @@ function dean_addEvent(element, type, handler) {
 		// assign each event handler a unique ID
 		if (!handler.$$guid) handler.$$guid = dean_addEvent.guid++;
 		// create a hash table of event types for the element
-		if (!element.events) element.events = {};
+		if (!element.events){
+      element.events = {}
+    }
 		// create a hash table of event handlers for each element/event pair
     let handlers = element.events[type];
     if (!handlers) {
