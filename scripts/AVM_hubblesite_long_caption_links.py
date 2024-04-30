@@ -30,9 +30,9 @@ import hubblesite as hb
 
 def get_root(link):
     '''
-    example: from http://hubblesite.org/newsarchive/..... get http://hubblesite.org
+    example: from https://esahubble.org/newsarchive/..... get https://esahubble.org
     '''
-    off = len('http://')
+    off = len('https://')
     end = off + link[off:].find('/')
     return link[:end]
     
@@ -133,15 +133,15 @@ def get_long_caption_link(url, iterator, check_reachability_flag = True):
                 long_c = line[start:end]
                 if long_c[0] == '''"''': long_c = long_c[1:]
                 if long_c[-1] == '''"''': long_c = long_c[:-1]
-                if long_c[0] == '/': long_c = 'http://hubblesite.org' + long_c
+                if long_c[0] == '/': long_c = 'https://hubblesite.org' + long_c
                 
                 # now replace the last letter in the link with the iterator (heic0515c) /a/ --> /c/
                 end = long_c.rfind('/')
                 start = long_c[:end].rfind('/')
                 long_c = long_c[:start] +'/' + iterator + '/'
-                if check_reachability_flag == True:
+                if check_reachability_flag:
                     check =  check_reachability(long_c)
-                    if check != True: long_c = None 
+                    if not check: long_c = None
                 break
     return long_c
 

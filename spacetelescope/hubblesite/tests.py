@@ -127,7 +127,7 @@ class TestAVM(TestCase):
 @tag('avm', 'avm_utils')
 class UtilsTest(TestCase):
     def test_get_url_content(self):
-        url = 'http://hubblesite.org/newscenter/archive/releases/2005/37/image/'
+        url = 'https://hubblesite.org/newscenter/archive/releases/2005/37/image/'
         text, redirect = get_url_content(url)
 
         self.assertEqual(redirect, 'https://hubblesite.org/contents/news-releases/2005/news-2005-37.html')
