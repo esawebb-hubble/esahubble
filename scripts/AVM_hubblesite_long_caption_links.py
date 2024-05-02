@@ -154,38 +154,37 @@ def analyse(images):
     hubblesite: 800
     heritage: 55
     '''
-    dict = {}  #dict containing little dicts ldict
+    my_dict = {}  #dict containing little dicts ldict
     ldict = {}
-    list = []
-    linkdict = {} # collects the possible roots for long_caption_links
+    my_list = []
+    link_dict = {} # collects the possible roots for long_caption_links
     for image in images:
         if image.long_caption_link.find('http') == -1: continue
 
-        list.append(image.id)
+        my_list.append(image.id)
 
         prefix = image.id[:3]
         link   = get_root(image.long_caption_link)
-        if link in linkdict:
-            linkdict[link] = linkdict[link] + 1
-        else: linkdict[link] = 1
-        if prefix in dict:
-            ldict = dict[prefix]
+        if link in link_dict:
+            link_dict[link] = link_dict[link] + 1
+        else: link_dict[link] = 1
+        if prefix in my_dict:
+            ldict = my_dict[prefix]
             if link in ldict:
                 n = ldict[link]
                 n = n + 1
                 ldict[link] = n
             if link not in ldict:
                 ldict[link] = 1
-        dict[prefix] = ldict
-        if not prefix in dict:
-            ldict = {}
-            ldict[link] = 1
-            dict[prefix] = ldict
-    list.sort()
-    print(list)
-    for d in list(dict.keys()):
-        print(d, dict[d])
-    print(linkdict)
+        my_dict[prefix] = ldict
+        if prefix not in my_dict:
+            ldict = {link: 1}
+            my_dict[prefix] = ldict
+    my_list.sort()
+    print(my_list)
+    for d in list(dict):
+        print(d, my_dict[d])
+    print(link_dict)
 
 def get_related_PR(id):
     temp = ''   
