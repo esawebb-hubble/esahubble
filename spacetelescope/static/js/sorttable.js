@@ -223,23 +223,23 @@ let sorttable = {
       return node.getAttribute("sorttable_customkey");
     }
     else if (typeof node.textContent != 'undefined' && !hasInputs) {
-      return node.textContent.replace(/^\s+|\s+$/g, '');
+      return node.textContent.trim();
     }
     else if (typeof node.innerText != 'undefined' && !hasInputs) {
-      return node.innerText.replace(/^\s+|\s+$/g, '');
+      return node.innerText.trim();
     }
     else if (typeof node.text != 'undefined' && !hasInputs) {
-      return node.text.replace(/^\s+|\s+$/g, '');
+      return node.text.trim();
     }
     else {
       switch (node.nodeType) {
         case 3:
           if (node.nodeName.toLowerCase() === 'input') {
-            return node.value.replace(/^\s+|\s+$/g, '');
+            return node.value.trim();
           }
           return ''
         case 4:
-          return node.nodeValue.replace(/^\s+|\s+$/g, '');
+          return node.nodeValue.trim();
         case 1:
           return '';
         case 11:
@@ -247,7 +247,7 @@ let sorttable = {
           for (let i = 0; i < node.childNodes.length; i++) {
             innerText += sorttable.getInnerText(node.childNodes[i]);
           }
-          return innerText.replace(/^\s+|\s+$/g, '');
+          return innerText.trim();
         default:
           return '';
       }
