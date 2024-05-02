@@ -1,4 +1,3 @@
-from __future__ import print_function
 #
 # -*- coding: utf-8 -*-
 #
@@ -11,12 +10,10 @@ from __future__ import print_function
 #   script to test and apply functions in hubblesite/avm.py
 #   
 #*************************************************************************************************************
-
+from __future__ import print_function
 from builtins import chr
 from spacetelescope.hubblesite import avm
 import os, sys
-import logging
-logger = logging.getLogger(__name__)
 
 def prepare4unicode():
     import sys, codecs, locale
@@ -25,11 +22,9 @@ def prepare4unicode():
     # little unicode test
     star = chr(9734)
     print(star)
-    return 
 
 if __name__ == '__main__':
     # for testing
-    logging.basicConfig()
     prepare4unicode()
     
     script_path = os.path.dirname(sys.argv[0])
@@ -48,13 +43,3 @@ if __name__ == '__main__':
             jsonkey = jsonmapper.mapping[key]['fieldname']
             if jsonkey in list(dataset.keys()): jsondata = dataset[jsonkey]
             print("%-30s: %-90s JSON: %s" % (key, avmdict[key], jsondata))
-        
-
-            
-        
-            
-
-                         
-
-
-
