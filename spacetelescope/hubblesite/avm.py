@@ -77,7 +77,7 @@ class jsonmapper(object):
     # TODO: sometimes AVMFormat should be string, but in json it is a csv list of strings like in Credit, 
     #       return a list of strings instead?
     # in future, use this in a Deserializer function  
-    def __init__(self, dataset = {}):
+    def __init__(self, dataset = None):
         self.jsondict = dataset
         self.mapping = {
     # 3.1 Creator Metadata
@@ -269,11 +269,11 @@ class jsonmapper(object):
               'image/pdf':  'PDF'}
         filetype = filetype.lower()
         try:
-            type = CV[filetype]
+            my_type = CV[filetype]
         except KeyError:
-            type = None
+            my_type = None
             logger.error("ValueError in string_2_file_type_cv trying to convert %s" % filetype)
-        return type
+        return my_type
     
     def string_2_spatial_quality_cv(self, text):
         CV = {'Full': 'Full',           # – Verified full WCS information (though may exclude CD matrix). 

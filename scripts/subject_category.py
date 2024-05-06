@@ -130,7 +130,7 @@ def add_avmtag(image, name, code):
     else: print("%-45s; %-9s; %s; already existing tag;%s; %s;\t title: %s" % (image.id, sc.avm_code(), sc.name, existing_tag.avm_code(), existing_tag.name, image.title))                                             
     return added
 
-def treat_x(sc, image, remove = True): 
+def treat_x(sc, image):
     tag = sc.avm_code()
     changed = False
     if tag == 'X.101.10':   # 'Extrasolar Planets Videos' 1  
@@ -140,16 +140,16 @@ def treat_x(sc, image, remove = True):
         
     elif tag == 'X.101.11':        # 'JWST Images/Videos' 24
         # add subject_name JWST
-        changed = add_subjectname(image,'JWST')
+        add_subjectname(image,'JWST')
         # set image.type = 'Artwork'
         print("%-45s; %-9s; %s; set image.type = 'Artwork'" % (image.id, sc.avm_code(), sc.name))
         image.type = 'Artwork'
         image.subject_category.remove(sc)
         changed = True
 
-    elif tag == 'X.101.12':        # 'Spacecraft Images/Videos' 20
+    elif tag == 'X.101.12' or tag == 'X.101.22':        # 'Spacecraft Images/Videos' 20
         # replace with 8.2 Spacecraft 
-        changed = add_avmtag(image,  'Spacecraft','E.8.2')    
+        changed = add_avmtag(image,  'Spacecraft','E.8.2')
         image.subject_category.remove(sc)
 
     elif tag == 'X.101.13':        # 'Miscellaneous  Images/Videos' 165
@@ -164,11 +164,6 @@ def treat_x(sc, image, remove = True):
         image.type = 'Artwork'
         image.subject_category.remove(sc)
         changed = True
-        
-    elif tag == 'X.101.22':        # 'Mission' 132
-        # replace with 8.2 Spacecraft
-        changed = add_avmtag(image,  'Spacecraft','E.8.2')
-        image.subject_category.remove(sc)
         
     elif tag == 'X.101.3':        # 'Solar System Images/Videos' 577
         # A

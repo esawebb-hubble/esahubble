@@ -41,7 +41,7 @@ class FrontpageView(TemplateView):
         return context
 
 
-def d2d(request):
+def d2d():
     '''
     Generic "Data provide" D2D feed
     '''
