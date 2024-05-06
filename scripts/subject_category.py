@@ -140,7 +140,7 @@ def treat_x(sc, image):
         
     elif tag == 'X.101.11':        # 'JWST Images/Videos' 24
         # add subject_name JWST
-        changed = add_subjectname(image,'JWST')
+        add_subjectname(image,'JWST')
         # set image.type = 'Artwork'
         print("%-45s; %-9s; %s; set image.type = 'Artwork'" % (image.id, sc.avm_code(), sc.name))
         image.type = 'Artwork'
