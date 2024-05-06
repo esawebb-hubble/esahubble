@@ -147,9 +147,9 @@ def treat_x(sc, image):
         image.subject_category.remove(sc)
         changed = True
 
-    elif tag == 'X.101.12':        # 'Spacecraft Images/Videos' 20
+    elif tag == 'X.101.12' or tag == 'X.101.22':        # 'Spacecraft Images/Videos' 20
         # replace with 8.2 Spacecraft 
-        changed = add_avmtag(image,  'Spacecraft','E.8.2')    
+        changed = add_avmtag(image,  'Spacecraft','E.8.2')
         image.subject_category.remove(sc)
 
     elif tag == 'X.101.13':        # 'Miscellaneous  Images/Videos' 165
@@ -164,11 +164,6 @@ def treat_x(sc, image):
         image.type = 'Artwork'
         image.subject_category.remove(sc)
         changed = True
-        
-    elif tag == 'X.101.22':        # 'Mission' 132
-        # replace with 8.2 Spacecraft
-        changed = add_avmtag(image,  'Spacecraft','E.8.2')
-        image.subject_category.remove(sc)
         
     elif tag == 'X.101.3':        # 'Solar System Images/Videos' 577
         # A
