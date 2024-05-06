@@ -15,7 +15,6 @@ from __future__ import print_function
 from future import standard_library
 standard_library.install_aliases()
 from builtins import str
-from djangoplicity.utils import optionparser
 from djangoplicity.media.models import Image
 from djangoplicity.releases.models import Release
 
@@ -185,7 +184,7 @@ def analyse(images):
         print(d, my_dict[d])
     print(link_dict)
 
-def get_related_PR(id):
+def get_related_pr(id):
     temp = ''   
     pattern = re.compile(r'''([a-z]*)(\d*)''')
     temp = pattern.findall(id)
@@ -224,7 +223,7 @@ if __name__ == '__main__':
         if image.long_caption_link.find('http') == -1:
             if image.press_release_link.find('http') == -1:
                 # get id of related press release 
-                related, iterator = get_related_PR(image.id)
+                related, iterator = get_related_pr(image.id)
                 # find the link to hubblesite.org NASA Press Release
                 result =  analyse_links(related)
                 if result:
