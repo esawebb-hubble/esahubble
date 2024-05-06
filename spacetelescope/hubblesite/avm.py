@@ -77,7 +77,7 @@ class jsonmapper(object):
     # TODO: sometimes AVMFormat should be string, but in json it is a csv list of strings like in Credit, 
     #       return a list of strings instead?
     # in future, use this in a Deserializer function  
-    def __init__(self, dataset = {}):
+    def __init__(self, dataset = None):
         self.jsondict = dataset
         self.mapping = {
     # 3.1 Creator Metadata
