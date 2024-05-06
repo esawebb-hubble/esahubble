@@ -188,7 +188,7 @@ def analyse(images):
 
 def get_related_PR(id):
     temp = ''   
-    pattern = re.compile(r'''([a-z]*)([0-9]*)''')
+    pattern = re.compile(r'''([a-z]*)(\d*)''')
     temp = pattern.findall(id)
     related = temp[0][0] + temp[0][1]
     iterator = temp[1][0]

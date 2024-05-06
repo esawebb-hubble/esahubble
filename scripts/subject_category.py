@@ -34,29 +34,28 @@ def analyse_taxonomy(generate_code = False ):
     and generate sceleton for the code
     '''
     # 1 build dictionary
-    X_Tags = {}
+    x_tags = {}
 
 
     for xth in TaxonomyHierarchy.objects.filter(top_level = 'X'):
-        X_Tags[xth.avm_code()] = [xth.name,0]
+        x_tags[xth.avm_code()] = [xth.name,0]
         
-    for Img in Image.objects.all():#.filter(pk = 'eso9212d'):
+    for img in Image.objects.all():#.filter(pk = 'eso9212d'):
         x_tag  = False
-        for sc in  Img.subject_category.all():
+        for sc in  img.subject_category.all():
             if sc.top_level == 'X': x_tag = True
         if x_tag:
-            [name, number] = X_Tags[sc.avm_code()]
-            X_Tags[sc.avm_code()] = [name, number + 1]
+            [name, number] = x_tags[sc.avm_code()]
+            x_tags[sc.avm_code()] = [name, number + 1]
       
-    keys = list(X_Tags.keys())
+    keys = list(x_tags.keys())
     keys.sort()
     if generate_code:
         for key in keys:
-            print("    elif tag == '%s':       # '%s' %d" % (key, X_Tags[key][0], X_Tags[key][1])) 
+            print("    elif tag == '%s':       # '%s' %d" % (key, x_tags[key][0], x_tags[key][1]))
             print("        pass")
         print('-----------------------')
-    pprint.pprint(X_Tags) 
-    return  
+    pprint.pprint(x_tags)
 
 def scan_tags(image, name):
     found = None
@@ -192,55 +191,53 @@ def treat_x(sc, image, remove = True):
         image.subject_category.remove(sc)
         
     elif tag == 'X.101.7':        # 'Galaxies Images/Videos' 474
-        Ds = ['opo9228b',''] # Cosmology
-        Cs = [] # local universe
-        Bs = [] # Milky Way
-        type = ''
-        if image.id in Bs:
-            type = 'B'    
-        elif image.id in Cs: 
-            type = 'C'
-        elif image.id in Ds: 
-            type = 'D'
+        ds = ['opo9228b',''] # Cosmology
+        cs = [] # local universe
+        bs = [] # Milky Way
+        if image.id in bs:
+            image_type = 'B'
+        elif image.id in cs:
+            image_type = 'C'
+        elif image.id in ds:
+            image_type = 'D'
         
         # maybe there is a tag for Milky Way => B
         elif scan_tags(image, 'ilky'):
-            type = 'B'
+            image_type = 'B'
         # or maybe a tag for Cosmology => D
         elif scan_tags(image, 'Cosmology'): 
-            type = 'D'
+            image_type = 'D'
         else: 
-            type = 'C'
+            image_type = 'C'
     
-        changed = add_avmtag(image, 'Galax', type + '.5')
+        changed = add_avmtag(image, 'Galax', image_type + '.5')
         image.subject_category.remove(sc)
         
     elif tag == 'X.101.8':        # 'Quasars/AGN/Black Hole Images/Videos' 85
         # 1. determine top_level
-        type = ''
-        if image.distance > 0.1 and image.distance < 11:
-            type = 'D'    
+        if 0.1 < image.distance < 11:
+            image_type = 'D'
         # maybe there is a tag for Cosmology => D
         elif scan_tags(image, 'Cosmology'): 
-            type = 'D'
+            image_type = 'D'
         # check if there is a tag for Milky Way => B
         elif scan_tags(image, 'ilky'):
-            type = 'B'
-        else: type = ''
+            image_type = 'B'
+        else: image_type = ''
 
         # determine sub_levels AGN / BH / Quasar?           
-        TITLE = str(image.title).upper()   
-        if TITLE.find('MILKY WAY') > -1 and type == '':
+        title = str(image.title).upper()
+        if title.find('MILKY WAY') > -1 and image_type == '':
             changed = add_avmtag(image, 'Black Hole', 'B' + '.5.4.6')
-        if TITLE.find('BLACK HOLE') > -1:
-            if type == '': type = 'C'
-            changed = add_avmtag(image, 'Black Hole', type + '.5.4.6')
-        if TITLE.find('QUASAR') > -1:
-            if type == '': type = 'D'
-            changed = add_avmtag(image, 'Quasar', type + '.5.3.2.1')
-        if TITLE.find('ACTIVE') > -1:
-            if type == '': type = 'C'
-            changed = add_avmtag(image, 'AGN', type + '.5.3.2')    
+        if title.find('BLACK HOLE') > -1:
+            if image_type == '': image_type = 'C'
+            changed = add_avmtag(image, 'Black Hole', image_type + '.5.4.6')
+        if title.find('QUASAR') > -1:
+            if image_type == '': image_type = 'D'
+            changed = add_avmtag(image, 'Quasar', image_type + '.5.3.2.1')
+        if title.find('ACTIVE') > -1:
+            if image_type == '': image_type = 'C'
+            changed = add_avmtag(image, 'AGN', image_type + '.5.3.2')
             
         if changed: image.subject_category.remove(sc)
         else: print("%-45s; %-9s; %s; BH or AGN? ; ; ;\t title: %s" % (image.id, sc.avm_code(), sc.name,  image.title))                                             
@@ -271,38 +268,38 @@ if __name__ == '__main__':
     count = 0
     #  First process the easier tags, then in 2. round the newly created tags can be used to check the top_level       
     print('Images 1. round')
-    for Img in Image.objects.all():
-        n_tags = len(Img.subject_category.all()) 
-        for sc in  Img.subject_category.all():
+    for img in Image.objects.all():
+        n_tags = len(img.subject_category.all())
+        for sc in  img.subject_category.all():
             if sc.top_level == 'X': 
                 if sc.avm_code() == 'X.101.8' or sc.avm_code() == 'X.101.7': continue  
                 count = count + 1
-                changed_images.add(treat_x(sc, Img))
+                changed_images.add(treat_x(sc, img))
 
     print("apply the changes")
-    for Img in changed_images:
-        if Img:
+    for img in changed_images:
+        if img:
             try: 
-                Img.save()
+                img.save()
             except Exception:
-                print("save failed with %s in %s" % (sc.name, Img.id))
+                print("save failed with %s in %s" % (sc.name, img.id))
 
     print('Images 2. round')
-    for Img in Image.objects.all():
-        n_tags = len(Img.subject_category.all()) 
-        for sc in  Img.subject_category.all():
+    for img in Image.objects.all():
+        n_tags = len(img.subject_category.all())
+        for sc in  img.subject_category.all():
             if sc.top_level == 'X': 
                 if sc.avm_code() == 'X.101.8' or sc.avm_code() == 'X.101.7': 
                     count = count + 1
-                    changed_images.add(treat_x(sc, Img))
+                    changed_images.add(treat_x(sc, img))
 
     print("apply the changes")
-    for Img in changed_images:
-        if Img:
+    for img in changed_images:
+        if img:
             try: 
-                Img.save()
+                img.save()
             except Exception:
-                print("save failed with %s in %s" % (sc.name, Img.id))
+                print("save failed with %s in %s" % (sc.name, img.id))
             
     print('treated', count, 'tags')
     

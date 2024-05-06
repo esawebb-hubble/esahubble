@@ -18,8 +18,6 @@ def replace_creator_metadata(queryset):
         except Exception:
             print('Error replacing creator metadata')
 
-    return
-
 print("Replacing images creator metadata information")
 queryset = Image.objects.all()
 replace_creator_metadata(queryset)

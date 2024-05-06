@@ -76,7 +76,7 @@ def process_objects(objs):
     '''
     find the objects that need a correction of the release_date
     '''
-    pat = re.compile('[a-zA-Z]+([0-9]{2})\S+')
+    pat = re.compile('[a-zA-Z]+(\d{2})\S+')
     
     count = 0
     finddate1 = datetime.strptime('2011-03-03 18:00:00','%Y-%m-%d %H:%M:%S')
