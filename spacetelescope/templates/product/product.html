@@ -80,14 +80,14 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
     </div>
     <div class="col-md-3">
         <div class="product-detail">
-        <h2 style="">{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: {% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+        <h2>{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: {% if sale %}<del id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</del>{% endif %}
         <span id="price">{{ product|discount_price:sale|currency }}</span>
         </h2>
 
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
         {% url 'satchmo_smart_add' as satchmo_smart_add %}
         <form id="options" action="{{ satchmo_smart_add }}" method="post">{% csrf_token %}
-        {% trans "Quantity" %} <input type="text" size="5" name="quantity" id="quantity" value="1" class="priced" />
+            <label for="quantity">{% trans "Quantity" %}</label><input type="text" size="5" name="quantity" id="quantity" value="1" class="priced" />
         <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
         <input type="submit" name="addcart" value="{% trans "Add to cart" %}" />
         {% plugin_point "product_add_buttons" %}

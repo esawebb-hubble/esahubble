@@ -17,7 +17,7 @@
     <div class="cold-md-12">
         <h3>Order Status</h3>
     </div>
-    <table class="table">
+    <table class="table" aria-describedby="Order Status">
         <tr><th>Date/time</th><th>Status</th></tr>
         {% for status in order.orderstatus_set.all %}
         <tr><td>{{ status.time_stamp|date:"j F Y H:i" }}</td><td>{{ status.status|status_label }}{% if status.notes %} ({{ status.notes }}){% endif %}</td></tr>
