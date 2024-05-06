@@ -5,12 +5,15 @@ from __future__ import absolute_import
 # Authors:
 #   Lars Holm Nielsen <lnielsen@eso.org>
 #   Luis Clara Gomes <lcgomes@eso.org>
-import os
 
-from spacetelescope.hubblesite.avm import jsonmapper, remove_duplicates, load_json
-from spacetelescope.hubblesite.utils import *
 from django.test import TestCase, tag
+from spacetelescope.hubblesite.avm import jsonmapper, remove_duplicates, load_json
+from spacetelescope.hubblesite.utils import get_url_content, remove_void
+
+import datetime
+import os
 import pytz
+
 
 
 @tag('avm')
