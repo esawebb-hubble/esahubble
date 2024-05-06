@@ -269,11 +269,11 @@ class jsonmapper(object):
               'image/pdf':  'PDF'}
         filetype = filetype.lower()
         try:
-            type = CV[filetype]
+            my_type = CV[filetype]
         except KeyError:
-            type = None
+            my_type = None
             logger.error("ValueError in string_2_file_type_cv trying to convert %s" % filetype)
-        return type
+        return my_type
     
     def string_2_spatial_quality_cv(self, text):
         CV = {'Full': 'Full',           # – Verified full WCS information (though may exclude CD matrix). 
