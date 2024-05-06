@@ -100,8 +100,6 @@ def process_objects(objs):
                     if YY != dt.strftime('%y'):
                         if change_datetime(obj): count = count + 1
                         print(obj.id, 'old: ', dt, '\t new: ', obj.release_date ,'\t\t reason: ', YY,' != ', dt.strftime('%y'))
-        else:
-            pass
     return count
 
 
