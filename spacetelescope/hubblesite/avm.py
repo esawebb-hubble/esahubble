@@ -53,19 +53,19 @@ def remove_duplicates(data):
     in the jsondata are often more than one entries for each ID, one with tiff, one with jpeg
     take all the jpeg versions and add all other image IDs that do not have a jpeg version
     '''
-    list = []
+    image_list = []
     list_ids = []
     other = []
     for dataset in data:
         if dataset['Image Format'] == u'image/jpeg': 
-            list.append(dataset)
+            image_list.append(dataset)
             list_ids.append(dataset['Identifier'])
         else: other.append(dataset)
     for o in other:
         if o['Identifier'] not in list_ids:
-            list.append(o)
+            image_list.append(o)
             list_ids.append(o['Identifier'])          
-    return list
+    return image_list
 
 class jsonmapper(object):
     '''
@@ -167,17 +167,17 @@ class jsonmapper(object):
     def strings2stringlist(self, strings):
         ''' converts comma (;,) separated values to a list of strings
         '''
-        list = None
+        string_list = None
         strings = strings.replace(',',';') 
-        list = self.semicolonstrings2stringlist(strings)
-        return list
+        string_list = self.semicolonstrings2stringlist(strings)
+        return string_list
     
     def semicolonstrings2stringlist(self, strings):
         ''' converts semicolon (;) separated values to a list of strings
         '''
-        list = None  
-        if strings and strings.find(';'): list = [s.strip() for s in strings.split(';')]
-        return list
+        string_list = None
+        if strings and strings.find(';'): string_list = [s.strip() for s in strings.split(';')]
+        return string_list
     
     def replace_html(self, text):
         '''
@@ -190,10 +190,10 @@ class jsonmapper(object):
         ''' skip X., return list with category objects
         '''
         strings = self.replace_html(strings)
-        list = self.strings2stringlist(strings)
-        for l in list: 
-            if l[0] == 'X': list.remove(l) 
-        return list
+        category_list = self.strings2stringlist(strings)
+        for value in category_list:
+            if value[0] == 'X': category_list.remove(value)
+        return category_list
     
     def starttimes2datetimelist( self, starttimes ):
         dates = []

@@ -195,52 +195,50 @@ def treat_x(sc, image, remove = True):
         Ds = ['opo9228b',''] # Cosmology
         Cs = [] # local universe
         Bs = [] # Milky Way
-        type = ''
         if image.id in Bs:
-            type = 'B'    
+            image_type = 'B'
         elif image.id in Cs: 
-            type = 'C'
+            image_type = 'C'
         elif image.id in Ds: 
-            type = 'D'
+            image_type = 'D'
         
         # maybe there is a tag for Milky Way => B
         elif scan_tags(image, 'ilky'):
-            type = 'B'
+            image_type = 'B'
         # or maybe a tag for Cosmology => D
         elif scan_tags(image, 'Cosmology'): 
-            type = 'D'
+            image_type = 'D'
         else: 
-            type = 'C'
+            image_type = 'C'
     
-        changed = add_avmtag(image, 'Galax', type + '.5')
+        changed = add_avmtag(image, 'Galax', image_type + '.5')
         image.subject_category.remove(sc)
         
     elif tag == 'X.101.8':        # 'Quasars/AGN/Black Hole Images/Videos' 85
         # 1. determine top_level
-        type = ''
-        if image.distance > 0.1 and image.distance < 11:
-            type = 'D'    
+        if 0.1 < image.distance < 11:
+            image_type = 'D'
         # maybe there is a tag for Cosmology => D
         elif scan_tags(image, 'Cosmology'): 
-            type = 'D'
+            image_type = 'D'
         # check if there is a tag for Milky Way => B
         elif scan_tags(image, 'ilky'):
-            type = 'B'
-        else: type = ''
+            image_type = 'B'
+        else: image_type = ''
 
         # determine sub_levels AGN / BH / Quasar?           
-        TITLE = str(image.title).upper()   
-        if TITLE.find('MILKY WAY') > -1 and type == '':
+        title = str(image.title).upper()
+        if title.find('MILKY WAY') > -1 and image_type == '':
             changed = add_avmtag(image, 'Black Hole', 'B' + '.5.4.6')
-        if TITLE.find('BLACK HOLE') > -1:
-            if type == '': type = 'C'
-            changed = add_avmtag(image, 'Black Hole', type + '.5.4.6')
-        if TITLE.find('QUASAR') > -1:
-            if type == '': type = 'D'
-            changed = add_avmtag(image, 'Quasar', type + '.5.3.2.1')
-        if TITLE.find('ACTIVE') > -1:
-            if type == '': type = 'C'
-            changed = add_avmtag(image, 'AGN', type + '.5.3.2')    
+        if title.find('BLACK HOLE') > -1:
+            if image_type == '': image_type = 'C'
+            changed = add_avmtag(image, 'Black Hole', image_type + '.5.4.6')
+        if title.find('QUASAR') > -1:
+            if image_type == '': image_type = 'D'
+            changed = add_avmtag(image, 'Quasar', image_type + '.5.3.2.1')
+        if title.find('ACTIVE') > -1:
+            if image_type == '': image_type = 'C'
+            changed = add_avmtag(image, 'AGN', image_type + '.5.3.2')
             
         if changed: image.subject_category.remove(sc)
         else: print("%-45s; %-9s; %s; BH or AGN? ; ; ;\t title: %s" % (image.id, sc.avm_code(), sc.name,  image.title))                                             
