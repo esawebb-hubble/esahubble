@@ -61,7 +61,7 @@ def remove_void(text):
     return text
 
 
-long_caption_link_pattern = re.compile( '.*?([0-9]*?)/([0-9]*?)/image/([a-z]{1,2})/?$' )
+long_caption_link_pattern = re.compile( '.*?(\d*?)/(\d*?)/image/([a-z]{1,2})/?$' )
 def stsci_image_id( long_caption_link ):
     """
     creates 2003-28-a out of the long caption link ...eases/2003/28/image/a/
@@ -101,7 +101,7 @@ def get_release_date( text ):
     """
     release_date = None
     text = remove_void( text )
-    pat = re.compile(r'<h2 class="date">.*?<strong>([\S]+)[\s]+([\S]+),[\s]*?([\S]+)[\s]*?</strong>[\s]+([\S]+):([\S]+)[\s]+([\S]+)[\s]+\(?([A-Z]+)\)?[\s]+</h2>') 
+    pat = re.compile(r'<h2 class="date">.*?<strong>(\S+)\s+(\S+),\s*?(\S+)\s*?</strong>\s+(\S+):(\S+)\s+(\S+)\s+\(?([A-Z]+)\)?\s+</h2>')
 
     date = None
     try:
@@ -134,8 +134,8 @@ def get_release_date( text ):
 
     return release_date
 
-id_pattern = re.compile('(ann|heic|opo|potw)([0-9]{2})([0-9]{2})([a-zA-Z]{1,2})?')
-ext_id_pattern = re.compile('(ann|heic|opo|potw)([0-9]{2})([0-9]{2})([a-zA-Z]{1,2}[0-9]{0,2})?')
+id_pattern = re.compile('(ann|heic|opo|potw)(\d{2})(\d{2})([a-zA-Z]{1,2})?')
+ext_id_pattern = re.compile('(ann|heic|opo|potw)(\d{2})(\d{2})([a-zA-Z]{1,2}\d{0,2})?')
 def split_id( id, extended=False ):
     """
     Split id into components
@@ -182,7 +182,7 @@ def opo_image_list_links( url_images ):
     (text, redirect) = get_url_content( url_images )
     text = remove_void(text)
         
-    pat = re.compile(r'(<a href="(/newscenter/archive/[^"]+)">)[\s]?<span class="link">(.*?)</span>.*?</a>')  
+    pat = re.compile(r'(<a href="(/newscenter/archive/[^"]+)">)\s?<span class="link">(.*?)</span>.*?</a>')
     links = None
     try:
         links = pat.findall( text )
