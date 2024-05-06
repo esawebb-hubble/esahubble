@@ -130,7 +130,7 @@ def add_avmtag(image, name, code):
     else: print("%-45s; %-9s; %s; already existing tag;%s; %s;\t title: %s" % (image.id, sc.avm_code(), sc.name, existing_tag.avm_code(), existing_tag.name, image.title))                                             
     return added
 
-def treat_x(sc, image, remove = True): 
+def treat_x(sc, image):
     tag = sc.avm_code()
     changed = False
     if tag == 'X.101.10':   # 'Extrasolar Planets Videos' 1  
