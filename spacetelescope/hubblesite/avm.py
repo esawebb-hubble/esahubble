@@ -196,18 +196,15 @@ class jsonmapper(object):
         return list
     
     def starttimes2datetimelist( self, starttimes ):
-        '''
-        starttimes: 2005-03-18;2007-06-14;2002-06-15;2002-06-14;2002-06-13;2002-06-12,"-","-"
-        '''
         dates = []
-        list = self.strings2stringlist( starttimes )
-        for l in list:
+        star_times_list = self.strings2stringlist( starttimes )
+        for value in star_times_list:
             try:
-                date = self.datestring2datetime( l )
+                date = self.datestring2datetime( value )
             except ValueError:    # "-", '-', -, other format?
                 date = None
-                if len(l) > 4:    # other format?
-                    logger.error("ValueError in starttimes2datetimelist trying to convert %s into a datetime object" % l)    
+                if len(value) > 4:    # other format?
+                    logger.error("ValueError in starttimes2datetimelist trying to convert %s into a datetime object" % value)
             dates.append( date )        
         return dates
     

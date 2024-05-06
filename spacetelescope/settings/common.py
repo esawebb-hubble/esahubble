@@ -129,8 +129,6 @@ SITE_ID = 1
 USE_I18N = False
 USE_L10N = True
 
-#LOCALE_PATHS = ( DJANGOPLICITY_ROOT + "/locale", PRJBASE + "/locale", )
-
 # Default date and time formats (con be overridden by locale)
 DATE_FORMAT = ugettext('j F Y')
 DATE_LONG_FORMAT = ugettext('j F Y')
@@ -209,7 +207,6 @@ TEMPLATES = [
                 'djangoplicity.utils.context_processors.google_analytics_id',
                 'djangoplicity.utils.context_processors.djangoplicity_environment',
                 'djangoplicity.archives.context_processors.internal_request',
-                # 'satchmo_store.shop.context_processors.settings',
             ],
         },
     },
@@ -278,22 +275,18 @@ MIDDLEWARE += [
 
     # Module for URL redirection based on regular expressions
     'djangoplicity.utils.middleware.RegexRedirectMiddleware',  # Response
-
-    # 'djangoplicity.archives.contrib.satchmo.middleware.SatchmoSSLRedirectOverride',
 ]
 
 DJANGO_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.postgres',
-    # 'satchmo_store.shop',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.redirects',
     'django.contrib.sessions',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    #'django.contrib.comments',
     'django.contrib.messages',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
@@ -303,14 +296,9 @@ DJANGOPLICITY_APPS = [
     'djangoplicity',
     'djangoplicity.menus',
     'djangoplicity.reports',
-    #'djangoplicity.massmailer',
-    #'djangoplicity.news',
     'djangoplicity.pages',
     'djangoplicity.media',
-    #'djangoplicity.contrib.redirects',
     'djangoplicity.archives',
-    # 'djangoplicity.archives.contrib.satchmo',
-    # 'djangoplicity.archives.contrib.satchmo.freeorder',
     'djangoplicity.archives.contrib.security',
     'djangoplicity.announcements',
     'djangoplicity.science',
@@ -321,7 +309,6 @@ DJANGOPLICITY_APPS = [
     'djangoplicity.adminhistory',
     'djangoplicity.utils',
     'djangoplicity.celery',
-    #'djangoplicity.events',
     'djangoplicity.mailinglists',
     'djangoplicity.newsletters',
     'djangoplicity.iframe',
@@ -329,37 +316,15 @@ DJANGOPLICITY_APPS = [
     'djangoplicity.customsearch',
     'djangoplicity.admincomments',
     'djangoplicity.simplearchives',
-    #'djangoplicity.eventcalendar',
     'djangoplicity.actions',
     'djangoplicity.cutter',
-    #'djangoplicity.mailer',
-    #'djangoplicity.scrum',
-    #'djangoplicity.kiosk.engine',
-    #'djangoplicity.kiosk.slides',
+
 ]
 
 THIRD_PARTY_APPS = [
     'mptt',
-    # 'django_extensions',
     'django_mailman',
-    # 'registration',
     'sorl.thumbnail',
-    # 'keyedcache',
-    ### Satchmo
-    # 'livesettings',
-    # 'satchmo_utils',
-    # 'satchmo_store.contact',
-    # 'product',
-    # 'product.modules.configurable',
-    # 'shipping',
-    # 'payment',
-    # 'djangoplicity.concardis',
-    # 'l10n',
-    # 'tax',
-    # 'tax.modules.no',
-    # 'app_plugins',
-    # 'shipping.modules.tieredweight',
-    # 'captcha',
     'gunicorn',
     'django_ace',
     'rest_framework',
@@ -414,68 +379,12 @@ EMAIL_SUBJECT_PREFIX = '[SPACETELESCOPE-LOCAL]'
 ##################
 
 AUTHENTICATION_BACKENDS = (
-    # 'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-#AUTH_PROFILE_MODULE = ''
+
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
-
-#############
-# LDAP AUTH #
-#############
-'''
-Disabled when migrated to esahubble.org
-import ldap
-from django_auth_ldap.config import LDAPSearch, ActiveDirectoryGroupType
-
-AUTH_LDAP_SERVER_URI = ""
-
-AUTH_LDAP_GLOBAL_OPTIONS = {
-    ldap.OPT_REFERRALS: 0,
-    ldap.OPT_PROTOCOL_VERSION: 3,
-    ldap.OPT_X_TLS_REQUIRE_CERT: ldap.OPT_X_TLS_NEVER
-}
-
-AUTH_LDAP_BIND_DN = ""
-AUTH_LDAP_BIND_PASSWORD = ""
-AUTH_LDAP_USER_SEARCH = LDAPSearch( "DC=ads,DC=eso,DC=org",
-    ldap.SCOPE_SUBTREE, "(&(objectCategory=user)(objectClass=person)(sAMAccountName=%(user)s)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))" )
-
-AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "givenName",
-    "last_name": "sn",
-    "email": "mail"
-}
-
-AUTH_LDAP_GROUP_TYPE = ActiveDirectoryGroupType()
-AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
-    "dc=ads,dc=eso,dc=org",
-    ldap.SCOPE_SUBTREE, "(objectClass=group)"
-)
-
-# Defaults:
-# - ePOD staff will get active/staff account - but no permissions.
-# - All ESO staff will get an inactive account on login - this account has to manually be activated.
-AUTH_LDAP_ALWAYS_UPDATE_USER = False  # Prevent user from being updated every time a user logs in.
-
-AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-    "is_active": "CN=SA-PAD-EPR,OU=Garching,OU=Shared Acess Groups,OU=Groups,DC=ads,DC=eso,DC=org",
-    "is_staff": "CN=SA-PAD-EPR,OU=Garching,OU=Shared Acess Groups,OU=Groups,DC=ads,DC=eso,DC=org",
-}
-
-############
-# AUTH_TKT #
-############
-AUTH_TKT_UNAUTH_URL = '/access_denied/'
-AUTH_TKT_COOKIE_NAME = 'auth_tkt'
-AUTH_TKT_HTACCESS = '.esoacc'
-# AUTH_TKT_REDIRECT_FIELD_NAME = 'next'
-# AUTH_TKT_IGNOREIP = 'off'
-# AUTH_TKT_TIMEOUT_URL = ''
-# AUTH_TKT_FILEPERMS =
-'''
 
 #########
 # PAGES #
@@ -487,7 +396,7 @@ PAGE_TEMPLATE_CHOICES = (
 )
 
 #############
-# PAGIANTOR #
+# PAGINATOR #
 #############
 DEFAULT_PAGINATE_BY = 10
 PAGINATOR_ADJ = 5
@@ -511,7 +420,6 @@ ARCHIVES = (
     ('djangoplicity.media.models.VideoSubtitle', 'djangoplicity.media.options.VideoSubtitleOptions'),
     ('djangoplicity.media.models.ImageComparison', 'djangoplicity.media.options.ImageComparisonOptions'),
     ('djangoplicity.releases.models.Release', 'djangoplicity.releases.options.ReleaseOptions'),
-    #('djangoplicity.announcements.models.Announcement','djangoplicity.announcements.options.AnnouncementOptions'),
     ('djangoplicity.products2.models.Model3d', 'djangoplicity.products2.options.Model3dOptions'),
     ('djangoplicity.products2.models.Calendar', 'djangoplicity.products2.options.CalendarOptions'),
     ('djangoplicity.products2.models.Application', 'djangoplicity.products2.options.ApplicationOptions'),
@@ -563,7 +471,6 @@ VIDEOS_FEATURED_SUBJECT = 'hubblecast'
 VIDEOS_SUBTITLES_FORMATS = ('hd_and_apple', 'medium_podcast')
 # List of extra formats which should be removed when importing new videos.
 VIDEOS_FORMATS_REMOVE = [
-    #'hd_broadcast_720p25',
 ]
 
 RELEASE_LINK_PREFIX = "heic"
@@ -704,14 +611,6 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'djangoplicity.contentserver.tasks.check_content_server_resources',
         'schedule': crontab(minute=0, hour=4),
     },
-    # Mon 29 Apr 10:53:57 CEST 2019 - Mathias
-    # Disabled as CDN77 complained it created too many hits (and forced
-    # pre-fetch of the full archive)
-    #  'check-content-server-resources-all': {
-    #      'task': 'djangoplicity.contentserver.tasks.check_content_server_resources',
-    #      'schedule': crontab(minute=0, hour=10, day_of_week='sun'),
-    #      'kwargs': {'last': 15000},  # Large enough to check all resources
-    #  },
     'cdn77-purge-prefetch': {
         'task': 'djangoplicity.contentserver.cdn77_tasks.purge_prefetch',
         'schedule': crontab(minute='*/10'),  # Every 10 minutes
@@ -737,7 +636,6 @@ DJANGOPLICITY_ADMIN_JS = "djangoplicity/js/admin.js"
 SUBJECT_CATEGORY_CSS = "djangoplicity/css/widgets.css"
 
 REGEX_REDIRECTS = (
-#   ( re.compile( '/hubbleshop/webshop/webshop\.php\?show=sales&section=(books|cdroms)' ), '/shop/category/\g<1>/' ),
     ( re.compile( r'/about/history/sm4blog/(.+)' ), r'/static/sm4blog/\g<1>' ),
     ( re.compile( r'/news/(doc|pdf|text)/(.+)' ), r'/static/archives/releases/\g<1>/\g<2>' ),
     ( re.compile( r'/news/(science_paper)/(.+)' ), r'/static/archives/releases/science_papers/\g<1>' ),
@@ -766,8 +664,6 @@ REGEX_REDIRECTS = (
     ( re.compile( r'/videos/scripts/(.+)' ), r'/static/archives/videos/script/\g<1>' ),
 )
 
-SITE_DOMAIN = "www.spacetelescope.org"
-
 # ======================================================================
 # SITE SPECIFIC SECTIONS
 # ======================================================================
@@ -794,19 +690,10 @@ SHOP_CONF = {
 DIRNAME = os.path.abspath( os.path.dirname( __file__ ) )
 LOCAL_DEV = True
 
-# MIDDLEWARE += [
-#     "threaded_multihost.middleware.ThreadLocalMiddleware",
-# ]
-
-# AUTHENTICATION_BACKENDS += ( 'satchmo_store.accounts.email-auth.EmailBackend', )
-
 SATCHMO_SETTINGS = {
     'SHOP_BASE': '/shop',
     'MULTISHOP': False,
     'SSL': True,
-#   'SHOP_URLS': patterns('',
-#       ( r'^checkout/', 'spacetelescope.views.shop_closed' ),
-#   )
 }
 
 SITE_NAME = "Hubbleshop"
@@ -835,7 +722,6 @@ LIVESETTINGS_OPTIONS = {
             u'PAYMENT': {
                 u'COUNTRY_MATCH': u'False',
                 u'MINIMUM_ORDER': u'2.99',
-                #u'ORDER_EMAIL_EXTRA': u'distribution@spacetelescope.org',
                 u'ORDER_EMAIL_OWNER': u'True',
                 u'MODULES': u'["PAYMENT_CONCARDIS"]'
             },
@@ -852,8 +738,6 @@ LIVESETTINGS_OPTIONS = {
                 u'NUM_DISPLAY': u'20',
             },
             u'SHIPPING': {
-                #u'PER_DAYS': u'1 - 3 business days',
-                #u'PER_SERVICE': u'Deutsche Post/DHL',
                 u'SELECT_CHEAPEST': u'False',
                 u'HIDING': u'NO',
                 u'MODULES': u'["shipping.modules.tieredweight","djangoplicity.archives.contrib.satchmo.esoshipping.officedelivery","djangoplicity.archives.contrib.satchmo.esoshipping.pickup"]',
