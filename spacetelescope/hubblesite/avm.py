@@ -118,7 +118,7 @@ class jsonmapper(object):
      'Temporal.IntegrationTime':      { 'fieldname': 'Exposure Times','func': self.semicolonstrings2stringlist},
      'DatasetID':                     { 'fieldname': 'Dataset IDs',  'func': self.strings2stringlist},
     # 3.4 Coordinate Metadata
-     'Spatial.CoordinateFrame':       { 'fieldname': 'Ref Frame', 'func':  self.string2coordinateframeCV},
+     'Spatial.CoordinateFrame':       { 'fieldname': 'Ref Frame', 'func':  self.string_2_coordinate_framecv},
      'Spatial.Equinox':               { 'fieldname': 'Equinox'},
       # TODO: Decide which json-fields to use
      'Spatial.ReferenceValue':        { 'fieldname': 'Spatial Reference Value',  'func': self.semicolonstrings2stringlist}, 
@@ -127,8 +127,8 @@ class jsonmapper(object):
      'Spatial.ReferencePixel':        { 'fieldname': 'Spatial Reference Pixel',  'func': self.strings2stringlist},
      'Spatial.Scale':                 { 'fieldname': 'Image Scale', 'func': self.strings2stringlist},    
      'Spatial.Rotation':              { 'fieldname': 'Spatial Rotation'},
-     'Spatial.CoordsystemProjection': { 'fieldname': 'Coord Proj', 'func': self.string2coordprojectionsCV},
-     'Spatial.Quality':               { 'fieldname': 'Spatial Quality', 'func': self.string2spatialqualityCV},
+     'Spatial.CoordsystemProjection': { 'fieldname': 'Coord Proj', 'func': self.string_2_coord_projections_cv},
+     'Spatial.Quality':               { 'fieldname': 'Spatial Quality', 'func': self.string_2_spatial_quality_cv},
      'Spatial.Notes':                 { 'fieldname': 'Spatial Notes', 'func':   self.replace_html},
      'Spatial.FITSHeader':            { 'fieldname': 'SpatialFITSHeader'},
      'Spatial.CDMatrix':              { 'fieldname': 'CD matrix',  'func': self.strings2stringlist},                 # AVM 1.1 (depreciated) 
@@ -141,7 +141,7 @@ class jsonmapper(object):
      'MetadataDate':                  { 'fieldname': 'Metadata Date', 'func': self.datetimestring2datetime},
      'MetadataVersion':               { 'fieldname': 'Meta Version'},
     # 3.6 File Metadata
-     'File.Type':                     { 'fieldname': 'Image Format',   'func': self.string2filetypeCV},                               
+     'File.Type':                     { 'fieldname': 'Image Format',   'func': self.string_2_file_type_cv},
      'File.Dimension':                { 'fieldname': 'Image Length', 'func': lambda fieldname: [ self.jsondict['Image Length'], self.jsondict['Image Width'] ]},         
      'File.Size':                     { 'fieldname': 'File Size', 'func': self.strings2stringlist},        
      'File.BitDepth':                 { 'fieldname': 'Bit Depth'}, 
@@ -242,7 +242,7 @@ class jsonmapper(object):
         date = self.cet_datetime(date)
         return date
     
-    def string2coordinateframeCV(self, frame):
+    def string_2_coordinate_frame_cv(self, frame):
         
         CV = {'ICRS': 'ICRS', # – celestial epoch-independent system 
               'FK5': 'FK5',   # – celestial, default J2000 epoch 
@@ -256,11 +256,11 @@ class jsonmapper(object):
             framecv = CV[frame]
         except KeyError:
             framecv = None
-            logger.error("ValueError in string2coordinateframeCV trying to convert %s" % frame)    
+            logger.error("ValueError in string_2_coordinate_framecv trying to convert %s" % frame)
         return framecv
 
     
-    def string2filetypeCV(self, filetype):
+    def string_2_file_type_cv(self, filetype):
         CV = {'image/tiff': 'TIFF',
               'image/jpeg': 'JPEG',
               'image/png':  'PNG',
@@ -272,20 +272,20 @@ class jsonmapper(object):
             type = CV[filetype]
         except KeyError:
             type = None
-            logger.error("ValueError in string2filetypeCV trying to convert %s" % filetype)    
+            logger.error("ValueError in string_2_file_type_cv trying to convert %s" % filetype)
         return type
     
-    def string2spatialqualityCV(self, text):
+    def string_2_spatial_quality_cv(self, text):
         CV = {'Full': 'Full',           # – Verified full WCS information (though may exclude CD matrix). 
               'Position': 'Position'    # – Spatial.ReferenceValue describes a coordinate contained somewhere within the image. Other included WCS info is to be taken as approximate or incomplete.  
               }
         try:
             CV = CV[text]
         except KeyError:
-            logger.error("ValueError in string2spatialqualityCV trying to convert %s" % text)    
+            logger.error("ValueError in string_2_spatial_quality_cv trying to convert %s" % text)
         return CV
     
-    def string2coordprojectionsCV(self, text):
+    def string_2_coord_projections_cv(self, text):
         CV = {'TAN': 'TAN', # – tangent 
               'SIN': 'SIN', # – sinusoidal 
               'ARC': 'ARC', # – arc sky
@@ -296,7 +296,7 @@ class jsonmapper(object):
         try:
             CV = CV[text]
         except KeyError:
-            logger.error("ValueError in string2coordprojectionsCV trying to convert %s" % text)    
+            logger.error("ValueError in string_2_coord_projections_cv trying to convert %s" % text)
         return CV   
     
     def avmdict(self):

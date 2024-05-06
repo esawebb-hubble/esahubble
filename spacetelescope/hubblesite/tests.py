@@ -81,30 +81,30 @@ class TestAVM(TestCase):
 
         self.assertEqual(st2dl[0].isoformat(), '2005-03-23T06:00:00+01:00')
 
-    def test_string2coordinateframeCV(self):
-        frame_cv = self.test_jm.string2coordinateframeCV('icrs')
-        not_existent_frame_cv = self.test_jm.string2coordinateframeCV('2tp')
+    def test_string_2_coordinate_frame_cv(self):
+        frame_cv = self.test_jm.string_2_coordinate_frame_cv('icrs')
+        not_existent_frame_cv = self.test_jm.string_2_coordinate_frame_cv('2tp')
 
         self.assertEqual(frame_cv, 'ICRS')
         self.assertEqual(not_existent_frame_cv, None)
 
-    def test_string2filetypeCV(self):
-        frame_cv = self.test_jm.string2filetypeCV('image/tiff')
-        not_existent_frame_cv = self.test_jm.string2filetypeCV('toff')
+    def test_string_2_file_type_cv(self):
+        frame_cv = self.test_jm.string_2_file_type_cv('image/tiff')
+        not_existent_frame_cv = self.test_jm.string_2_file_type_cv('toff')
 
         self.assertEqual(frame_cv, 'TIFF')
         self.assertEqual(not_existent_frame_cv, None)
 
-    def test_string2spatialqualityCV(self):
-        frame_cv = self.test_jm.string2spatialqualityCV('Full')
-        frame_cv2 = self.test_jm.string2spatialqualityCV('toff')
+    def test_string_2_spatial_quality_cv(self):
+        frame_cv = self.test_jm.string_2_spatial_quality_cv('Full')
+        frame_cv2 = self.test_jm.string_2_spatial_quality_cv('toff')
 
         self.assertEqual(frame_cv, 'Full')
         self.assertEqual(frame_cv2, {'Full': 'Full', 'Position': 'Position'})
 
-    def test_string2coordprojectionsCV(self):
-        frame_cv = self.test_jm.string2coordprojectionsCV('TAN')
-        frame_cv2 = self.test_jm.string2coordprojectionsCV('toff')
+    def test_string_2_coord_projections_cv(self):
+        frame_cv = self.test_jm.string_2_coord_projections_cv('TAN')
+        frame_cv2 = self.test_jm.string_2_coord_projections_cv('toff')
         cv = {
             'TAN': 'TAN',
             'SIN': 'SIN',
