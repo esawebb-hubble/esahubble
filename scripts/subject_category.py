@@ -34,29 +34,28 @@ def analyse_taxonomy(generate_code = False ):
     and generate sceleton for the code
     '''
     # 1 build dictionary
-    X_Tags = {}
+    x_tags = {}
 
 
     for xth in TaxonomyHierarchy.objects.filter(top_level = 'X'):
-        X_Tags[xth.avm_code()] = [xth.name,0]
+        x_tags[xth.avm_code()] = [xth.name,0]
         
-    for Img in Image.objects.all():#.filter(pk = 'eso9212d'):
+    for img in Image.objects.all():#.filter(pk = 'eso9212d'):
         x_tag  = False
-        for sc in  Img.subject_category.all():
+        for sc in  img.subject_category.all():
             if sc.top_level == 'X': x_tag = True
         if x_tag:
-            [name, number] = X_Tags[sc.avm_code()]
-            X_Tags[sc.avm_code()] = [name, number + 1]
+            [name, number] = x_tags[sc.avm_code()]
+            x_tags[sc.avm_code()] = [name, number + 1]
       
-    keys = list(X_Tags.keys())
+    keys = list(x_tags.keys())
     keys.sort()
     if generate_code:
         for key in keys:
-            print("    elif tag == '%s':       # '%s' %d" % (key, X_Tags[key][0], X_Tags[key][1])) 
+            print("    elif tag == '%s':       # '%s' %d" % (key, x_tags[key][0], x_tags[key][1]))
             print("        pass")
         print('-----------------------')
-    pprint.pprint(X_Tags) 
-    return  
+    pprint.pprint(x_tags)
 
 def scan_tags(image, name):
     found = None
@@ -192,14 +191,14 @@ def treat_x(sc, image, remove = True):
         image.subject_category.remove(sc)
         
     elif tag == 'X.101.7':        # 'Galaxies Images/Videos' 474
-        Ds = ['opo9228b',''] # Cosmology
-        Cs = [] # local universe
-        Bs = [] # Milky Way
-        if image.id in Bs:
+        ds = ['opo9228b',''] # Cosmology
+        cs = [] # local universe
+        bs = [] # Milky Way
+        if image.id in bs:
             image_type = 'B'
-        elif image.id in Cs: 
+        elif image.id in cs:
             image_type = 'C'
-        elif image.id in Ds: 
+        elif image.id in ds:
             image_type = 'D'
         
         # maybe there is a tag for Milky Way => B
@@ -269,38 +268,38 @@ if __name__ == '__main__':
     count = 0
     #  First process the easier tags, then in 2. round the newly created tags can be used to check the top_level       
     print('Images 1. round')
-    for Img in Image.objects.all():
-        n_tags = len(Img.subject_category.all()) 
-        for sc in  Img.subject_category.all():
+    for img in Image.objects.all():
+        n_tags = len(img.subject_category.all())
+        for sc in  img.subject_category.all():
             if sc.top_level == 'X': 
                 if sc.avm_code() == 'X.101.8' or sc.avm_code() == 'X.101.7': continue  
                 count = count + 1
-                changed_images.add(treat_x(sc, Img))
+                changed_images.add(treat_x(sc, img))
 
     print("apply the changes")
-    for Img in changed_images:
-        if Img:
+    for img in changed_images:
+        if img:
             try: 
-                Img.save()
+                img.save()
             except Exception:
-                print("save failed with %s in %s" % (sc.name, Img.id))
+                print("save failed with %s in %s" % (sc.name, img.id))
 
     print('Images 2. round')
-    for Img in Image.objects.all():
-        n_tags = len(Img.subject_category.all()) 
-        for sc in  Img.subject_category.all():
+    for img in Image.objects.all():
+        n_tags = len(img.subject_category.all())
+        for sc in  img.subject_category.all():
             if sc.top_level == 'X': 
                 if sc.avm_code() == 'X.101.8' or sc.avm_code() == 'X.101.7': 
                     count = count + 1
-                    changed_images.add(treat_x(sc, Img))
+                    changed_images.add(treat_x(sc, img))
 
     print("apply the changes")
-    for Img in changed_images:
-        if Img:
+    for img in changed_images:
+        if img:
             try: 
-                Img.save()
+                img.save()
             except Exception:
-                print("save failed with %s in %s" % (sc.name, Img.id))
+                print("save failed with %s in %s" % (sc.name, img.id))
             
     print('treated', count, 'tags')
     
