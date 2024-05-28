@@ -32,11 +32,3 @@ def user_create_handler( sender=None, instance=None, created=None, raw=False, **
             pass
 
 post_save.connect( user_create_handler, User )
-
-#
-#from django_auth_ldap.backend import populate_user
-#
-#def populate_user_handler( sender=None, user=None, ldap_user=None, **kwargs ):
-#   print ldap_user.attrs
-#
-#populate_user.connect( populate_user_handler, LDAPBackend )

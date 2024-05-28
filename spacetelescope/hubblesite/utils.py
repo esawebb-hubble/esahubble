@@ -61,7 +61,7 @@ def remove_void(text):
     return text
 
 
-long_caption_link_pattern = re.compile( '.*?([0-9]*?)/([0-9]*?)/image/([a-z]{1,2})/?$' )
+long_caption_link_pattern = re.compile( '.*?(\d*?)/(\d*?)/image/([a-z]{1,2})/?$' )
 def stsci_image_id( long_caption_link ):
     """
     creates 2003-28-a out of the long caption link ...eases/2003/28/image/a/
@@ -73,7 +73,15 @@ def stsci_image_id( long_caption_link ):
         if results[2] == '':
             return None
         return "STScI-PRC-%s-%s-%s" % ( results[0], results[1], results[2] )
-    except:
+    except IndexError:
+        # Handle IndexError: list index out of range
+        return None
+    except (TypeError, AttributeError):
+        # Handle TypeError or AttributeError: invalid arguments or attributes
+        return None
+    except Exception as e:
+        # Handle other exceptions
+        print(f"An error occurred: {e}")
         return None
 
 def get_cet_release_date( *args ):
@@ -93,10 +101,8 @@ def get_release_date( text ):
     """
     release_date = None
     text = remove_void( text )
-    pat = re.compile(r'<h2 class="date">.*?<strong>([\S]+)[\s]+([\S]+),[\s]*?([\S]+)[\s]*?</strong>[\s]+([\S]+):([\S]+)[\s]+([\S]+)[\s]+\(?([A-Z]+)\)?[\s]+</h2>') 
-    
-    # link = release_images(link) # link now ends with .../image/ and points to the release images
-    # pat = re.compile(r'<h2 class="date">.*?<strong>([\S]+)[\s]+([\S]+),[\s]*?([\S]+)[\s]*?</strong>[\s]+([\S]+):([\S]+)[\s]+([\S]+)[\s]+([\S]+)[\s]+</h2>') 
+    pat = re.compile(r'<h2 class="date">.*?<strong>(\S+)\s+(\S+),\s*?(\S+)\s*?</strong>\s+(\S+):(\S+)\s+(\S+)\s+\(?([A-Z]+)\)?\s+</h2>')
+
     date = None
     try:
         date = pat.findall( text )[0]
@@ -115,13 +121,21 @@ def get_release_date( text ):
         # take care of timezones
         tz_eastern = pytz.timezone( 'US/Eastern' )
         release_date = tz_eastern.localize( release_date )
-    except:      # TODO: remove catch all
+    except IndexError:
+        # Handle IndexError: list index out of range
+        release_date = None
+    except (TypeError, ValueError, AttributeError):
+        # Handle TypeError, ValueError, AttributeError: invalid arguments or attributes
+        release_date = None
+    except Exception as e:
+        # Handle other exceptions
+        print(f"An error occurred: {e}")
         release_date = None
 
     return release_date
 
-id_pattern = re.compile('(ann|heic|opo|potw)([0-9]{2})([0-9]{2})([a-zA-Z]{1,2})?')
-ext_id_pattern = re.compile('(ann|heic|opo|potw)([0-9]{2})([0-9]{2})([a-zA-Z]{1,2}[0-9]{0,2})?')
+id_pattern = re.compile('(ann|heic|opo|potw)(\d{2})(\d{2})([a-zA-Z]{1,2})?')
+ext_id_pattern = re.compile('(ann|heic|opo|potw)(\d{2})(\d{2})([a-zA-Z]{1,2}\d{0,2})?')
 def split_id( id, extended=False ):
     """
     Split id into components
@@ -154,13 +168,13 @@ def id_vs_releasedate( object ):
 
 def long_caption_link_to_thumb( link ):
     results = long_caption_link_pattern.findall( link )[0]
-    return "http://imgsrc.hubblesite.org/hu/db/images/hs-%s-%s-%s-thumb.jpg" % ( results[0], results[1], results[2] )
+    return "https://imgsrc.hubblesite.org/hu/db/images/hs-%s-%s-%s-thumb.jpg" % ( results[0], results[1], results[2] )
     
 
 def opo_image_list_links( url_images ):
     '''
     list all links and titles for image releases
-    example: http://hubblesite.org/newscenter/archive/releases/2005/37/image/:
+    example: https://hubblesite.org/newscenter/archive/releases/2005/37/image/:
     ['A Giant Hubble Mosaic of the Crab Nebula', '/newscenter/archive/releases/2005/37/image/a/']
     ['Crab Nebula: a Dead Star Creates Celestial Havoc', '/newscenter/archive/releases/2005/37/image/b/']
     '''
@@ -168,79 +182,28 @@ def opo_image_list_links( url_images ):
     (text, redirect) = get_url_content( url_images )
     text = remove_void(text)
         
-    pat = re.compile(r'(<a href="(/newscenter/archive/[^"]+)">)[\s]?<span class="link">(.*?)</span>.*?</a>')  
+    pat = re.compile(r'(<a href="(/newscenter/archive/[^"]+)">)\s?<span class="link">(.*?)</span>.*?</a>')
     links = None
     try:
         links = pat.findall( text )
-    except:      # TODO: remove catch all
-        pass
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
     newlinks = []
     for l in links:
         description = l[2]
         link        = l[1]
-        if link.find('http://hubblesite.org') == -1: 
-            link = 'http://hubblesite.org' + link
+        if link.find('https://hubblesite.org') == -1:
+            link = 'https://hubblesite.org' + link
         newl = [description,link]
         newlinks.append(newl)
     return newlinks
 
-#def release_images_link( linkt ):
-#   """
-#   returns link to the release images section for a press release link
-#   """
-#   if link == '''http://hubblesite.org/newscenter/archive/''': link = None
-#   
-#   if link:
-#       if link.find('image') == -1:
-#           if link[-1] == '/':
-#               link = link + 'image/'
-#           else:
-#               link = link + '/image/'
-#       else:
-#           end = link.find('image')
-#           link = link[:end] + 'image/'
-#   return link
-#
-#def list_links(url_images):   # [^>]
-#   '''
-#   list all links and titles for image releases
-#   example: http://hubblesite.org/newscenter/archive/releases/2005/37/image/:
-#   ['A Giant Hubble Mosaic of the Crab Nebula', '/newscenter/archive/releases/2005/37/image/a/']
-#   ['Crab Nebula: a Dead Star Creates Celestial Havoc', '/newscenter/archive/releases/2005/37/image/b/']
-#   '''
-#   newlinks = None
-#   try:
-#       site = urllib2.urlopen(url_images)
-#       text = site.read()
-#       
-#       # remove all linebreaks and double whitespace
-#       text = remove_void(text)
-#        
-#       pat = re.compile(r'(<a href="(/newscenter/archive/[^"]+)">)[\s]?<span class="link">(.*?)</span>.*?</a>')  
-#       links = None
-#       try:
-#           links = pat.findall(text)
-#       except:
-#           pass
-#       newlinks = []
-#       for l in links:
-#           description = l[2]
-#           link        = l[1]
-#           if link.find('http://hubblesite.org') == -1: 
-#               link = 'http://hubblesite.org' + link
-#           newl = [description,link]
-#           newlinks.append(newl)
-#   except:
-#       newlinks = None
-#   return newlinks
-#     
-
 
 if __name__ == '__main__':
-    tests = [r'http://hubblesite.org/newscenter/archive/releases/1990/06/', 
-             r'http://hubblesite.org/newscenter/archive/releases/1990/06/image/a/',
-             'http://hubblesite.org/newscenter/archive/releases/2011/08/']
+    tests = [r'https://hubblesite.org/newscenter/archive/releases/1990/06/',
+             r'https://hubblesite.org/newscenter/archive/releases/1990/06/image/a/',
+             'https://hubblesite.org/newscenter/archive/releases/2011/08/']
 
     for t in tests:
         print(image_url_info(t))
-        #print get_release_date(t).strftime('%Y-%B-%d %I:%M %p %Z')

@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 # This file is distributed under the same license as the Django package.
 #
-from django.conf.locale.en_GB.formats import *
 
 DATE_FORMAT = 'j F Y'                   # '25 October 2006'
 TIME_FORMAT = 'H:i'                     # '14:30'

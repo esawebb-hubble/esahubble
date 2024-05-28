@@ -32,7 +32,7 @@ def get_redirect(link):
     try:
         remote   = urllib.request.urlopen(link) 
         redirect = remote.geturl()
-    except:
+    except urllib.error.URLError:
         redirect = None            
     return redirect
 
@@ -100,12 +100,10 @@ def get_release_date(link):
             aware = tz.localize(naive, is_dts)
             release_date = tz.normalize(aware)
             release_date = release_date.astimezone(utc)  
-        except:
+        except Exception:
             print("no datetime information found")
-            pass
-    except:
+    except urllib.error.URLError:
         print(link, ' could not be read')
-        pass
     
     return release_date # in UTC
 
@@ -115,7 +113,7 @@ def release_images(link):
     '''
     link = get_redirect(link)
     # some special cases that might occure
-    if link == '''http://hubblesite.org/newscenter/archive/''': link = None
+    if link == '''https://hubblesite.org/newscenter/archive/''': link = None
     
     if link:
         if link.find('image') == -1:
@@ -147,17 +145,19 @@ def list_links(url_images):   # [^>]
         links = None
         try:
             links = pat.findall(text)
-        except:
+        except IndexError:
             pass
         newlinks = []
         for l in links:
             description = l[2]
             link        = l[1]
-            if link.find('http://hubblesite.org') == -1: 
-                link = 'http://hubblesite.org' + link
+            if link.find('https://hubblesite.org') == -1:
+                link = 'https://hubblesite.org' + link
             newl = [description,link]
             newlinks.append(newl)
-    except:
+    except urllib.error.URLError:
+        newlinks = None
+    except IndexError:
         newlinks = None
     return newlinks
       
@@ -167,8 +167,8 @@ if __name__ == '__main__':
     #routines to test the helper functions
     
 
-    tests = [r'http://hubblesite.org/newscenter/archive/releases/1990/06/', 
-             r'http://hubblesite.org/newscenter/archive/releases/1990/06/image/a/']
+    tests = [r'https://hubblesite.org/newscenter/archive/releases/1990/06/',
+             r'https://hubblesite.org/newscenter/archive/releases/1990/06/image/a/']
 
     for t in tests:
         print(t)
@@ -177,7 +177,7 @@ if __name__ == '__main__':
     exit()
     
     print("list_links:")
-    release = r'''http://hubblesite.org/newscenter/archive/releases/2005/37'''
+    release = r'''https://hubblesite.org/newscenter/archive/releases/2005/37'''
     images = release_images(release)
     
 

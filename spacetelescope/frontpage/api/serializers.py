@@ -50,7 +50,7 @@ class ESASkySerializer(serializers.ModelSerializer):
         def get_float(value):
             try:
                 return float(value)
-            except:  # pylint: disable=bare-except
+            except ValueError:  # pylint: disable=bare-except
                 return None
 
         def s_to_f(array):

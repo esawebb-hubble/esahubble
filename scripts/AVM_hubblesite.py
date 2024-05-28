@@ -32,7 +32,7 @@ import socket
 
 import datetime
 
-def store_JSON(path_json, dict):
+def store_json(path_json, dict):
     '''
     stores the data in dict in JSON format
     the JSON data will be presented by the website using dynamic.js
@@ -69,22 +69,20 @@ def store_JSON(path_json, dict):
     f.write('}\n')
     f.close()
     print("produced", path_json)
-    return
     
 def new_id(long_caption_link):
     '''
     creates 2003-28-a out of the long caption link ...eases/2003/28/image/a/
     returns '-' if failed
     '''
-    id = ''
-    pattern = re.compile('.*?([0-9]*?)/([0-9]*?)/image/([a-z]?)')
+    pattern_to_recompile = re.compile('.*?(\d*?)/(\d*?)/image/([a-z]?)')
     try:
-        results = pattern.findall(long_caption_link)[0]
-        id  = results[0]+'-'+results[1]
-        if results[2] != '': id = id +'-'+results[2]
-    except:
-        id = '-'
-    return id
+        results = pattern_to_recompile.findall(long_caption_link)[0]
+        id_new  = results[0]+'-'+results[1]
+        if results[2] != '': id_new = id_new +'-'+results[2]
+    except IndexError:
+        id_new = '-'
+    return id_new
 
 
 if __name__ == '__main__':
@@ -116,11 +114,11 @@ if __name__ == '__main__':
     # http://www.spacetelescope.org/static/archives/images/screen/opo0328a.jpg
     
     
-    hubble_pre = r'''http://imgsrc.hubblesite.org/hu/db/images/hs-'''
+    hubble_pre = r'''https://imgsrc.hubblesite.org/hu/db/images/hs-'''
     hubble_thumb_post = r'''-small_web.jpg'''
     hubble_original_post = r'''-full_jpg.jpg'''
-    spacetelescope_site_pre = r'''http://www.spacetelescope.org/images/'''
-    spacetelescope_thumb_pre = r'''http://www.spacetelescope.org/static/archives/images/screen/'''
+    spacetelescope_site_pre = r'''https://esahubble.org/images/'''
+    spacetelescope_thumb_pre = r'''https://esahubble.org/media/archives/images/screen/'''
     spacetelescope_thumb_post = r'''.jpg'''
     
     test =  '''<h2 class="release-number"><strong>News Release Number:</strong> STScI-2006-25</h2>'''
@@ -136,19 +134,22 @@ if __name__ == '__main__':
     jsonfile = '/Users/lnielsen/Desktop/Hubble/' + now.strftime("%Y-%m-%d") + 'a.js'
     print('store results in ', jsonfile)
     for image in images:
-        if image.long_caption_link.find('http://hubblesite.org') == -1: continue
+        hubble_id = '?'
+        if image.long_caption_link.find('https://hubblesite.org') == -1: continue
         count = count + 1
         try:
             remote   = urllib.request.urlopen(image.long_caption_link)
-        except:
+        except Exception as e:
             remote  = 'timeout?'
         for line in remote:
             if line.find('release-number') > -1:
                 break
-        try:
-            hubble_id = pattern.findall(line)[0].strip()            
-        except:
-            hubble_id = '?'
+            try:
+                hubble_id = pattern.findall(line)[0].strip()
+            except IndexError as error:
+                hubble_id = '?'
+                logger.info("An error occurred: %s", error)
+
         middle = new_id(image.long_caption_link)
         spacetelescope_thumb = spacetelescope_thumb_pre + image.id + spacetelescope_thumb_post
         spacetelescope_url   = spacetelescope_site_pre + image.id + '/'
@@ -173,6 +174,6 @@ if __name__ == '__main__':
         
         print("%s\t%s\t%s\t%s" % (image.id, hubble_id, spacetelescope_url, image.long_caption_link))
         logger.info(str(count)+' / '+n_images + ' ' + image.id + ' ' + hubble_id + ' ' + middle  + ' ' + image.long_caption_link + ' ' + thumberror)
-    store_JSON(jsonfile,dict)
+    store_json(jsonfile,dict)
            
         

@@ -53,19 +53,19 @@ def remove_duplicates(data):
     in the jsondata are often more than one entries for each ID, one with tiff, one with jpeg
     take all the jpeg versions and add all other image IDs that do not have a jpeg version
     '''
-    list = []
+    image_list = []
     list_ids = []
     other = []
     for dataset in data:
         if dataset['Image Format'] == u'image/jpeg': 
-            list.append(dataset)
+            image_list.append(dataset)
             list_ids.append(dataset['Identifier'])
         else: other.append(dataset)
     for o in other:
         if o['Identifier'] not in list_ids:
-            list.append(o)
+            image_list.append(o)
             list_ids.append(o['Identifier'])          
-    return list
+    return image_list
 
 class jsonmapper(object):
     '''
@@ -77,7 +77,7 @@ class jsonmapper(object):
     # TODO: sometimes AVMFormat should be string, but in json it is a csv list of strings like in Credit, 
     #       return a list of strings instead?
     # in future, use this in a Deserializer function  
-    def __init__(self, dataset = {}):
+    def __init__(self, dataset = None):
         self.jsondict = dataset
         self.mapping = {
     # 3.1 Creator Metadata
@@ -118,7 +118,7 @@ class jsonmapper(object):
      'Temporal.IntegrationTime':      { 'fieldname': 'Exposure Times','func': self.semicolonstrings2stringlist},
      'DatasetID':                     { 'fieldname': 'Dataset IDs',  'func': self.strings2stringlist},
     # 3.4 Coordinate Metadata
-     'Spatial.CoordinateFrame':       { 'fieldname': 'Ref Frame', 'func':  self.string2coordinateframeCV},
+     'Spatial.CoordinateFrame':       { 'fieldname': 'Ref Frame', 'func':  self.string_2_coordinate_framecv},
      'Spatial.Equinox':               { 'fieldname': 'Equinox'},
       # TODO: Decide which json-fields to use
      'Spatial.ReferenceValue':        { 'fieldname': 'Spatial Reference Value',  'func': self.semicolonstrings2stringlist}, 
@@ -127,8 +127,8 @@ class jsonmapper(object):
      'Spatial.ReferencePixel':        { 'fieldname': 'Spatial Reference Pixel',  'func': self.strings2stringlist},
      'Spatial.Scale':                 { 'fieldname': 'Image Scale', 'func': self.strings2stringlist},    
      'Spatial.Rotation':              { 'fieldname': 'Spatial Rotation'},
-     'Spatial.CoordsystemProjection': { 'fieldname': 'Coord Proj', 'func': self.string2coordprojectionsCV},
-     'Spatial.Quality':               { 'fieldname': 'Spatial Quality', 'func': self.string2spatialqualityCV},
+     'Spatial.CoordsystemProjection': { 'fieldname': 'Coord Proj', 'func': self.string_2_coord_projections_cv},
+     'Spatial.Quality':               { 'fieldname': 'Spatial Quality', 'func': self.string_2_spatial_quality_cv},
      'Spatial.Notes':                 { 'fieldname': 'Spatial Notes', 'func':   self.replace_html},
      'Spatial.FITSHeader':            { 'fieldname': 'SpatialFITSHeader'},
      'Spatial.CDMatrix':              { 'fieldname': 'CD matrix',  'func': self.strings2stringlist},                 # AVM 1.1 (depreciated) 
@@ -141,7 +141,7 @@ class jsonmapper(object):
      'MetadataDate':                  { 'fieldname': 'Metadata Date', 'func': self.datetimestring2datetime},
      'MetadataVersion':               { 'fieldname': 'Meta Version'},
     # 3.6 File Metadata
-     'File.Type':                     { 'fieldname': 'Image Format',   'func': self.string2filetypeCV},                               
+     'File.Type':                     { 'fieldname': 'Image Format',   'func': self.string_2_file_type_cv},
      'File.Dimension':                { 'fieldname': 'Image Length', 'func': lambda fieldname: [ self.jsondict['Image Length'], self.jsondict['Image Width'] ]},         
      'File.Size':                     { 'fieldname': 'File Size', 'func': self.strings2stringlist},        
      'File.BitDepth':                 { 'fieldname': 'Bit Depth'}, 
@@ -167,17 +167,17 @@ class jsonmapper(object):
     def strings2stringlist(self, strings):
         ''' converts comma (;,) separated values to a list of strings
         '''
-        list = None
+        string_list = None
         strings = strings.replace(',',';') 
-        list = self.semicolonstrings2stringlist(strings)
-        return list
+        string_list = self.semicolonstrings2stringlist(strings)
+        return string_list
     
     def semicolonstrings2stringlist(self, strings):
         ''' converts semicolon (;) separated values to a list of strings
         '''
-        list = None  
-        if strings and strings.find(';'): list = [s.strip() for s in strings.split(';')]
-        return list
+        string_list = None
+        if strings and strings.find(';'): string_list = [s.strip() for s in strings.split(';')]
+        return string_list
     
     def replace_html(self, text):
         '''
@@ -190,24 +190,21 @@ class jsonmapper(object):
         ''' skip X., return list with category objects
         '''
         strings = self.replace_html(strings)
-        list = self.strings2stringlist(strings)
-        for l in list: 
-            if l[0] == 'X': list.remove(l) 
-        return list
+        category_list = self.strings2stringlist(strings)
+        for value in category_list:
+            if value[0] == 'X': category_list.remove(value)
+        return category_list
     
     def starttimes2datetimelist( self, starttimes ):
-        '''
-        starttimes: 2005-03-18;2007-06-14;2002-06-15;2002-06-14;2002-06-13;2002-06-12,"-","-"
-        '''
         dates = []
-        list = self.strings2stringlist( starttimes )
-        for l in list:
+        star_times_list = self.strings2stringlist( starttimes )
+        for value in star_times_list:
             try:
-                date = self.datestring2datetime( l )
+                date = self.datestring2datetime( value )
             except ValueError:    # "-", '-', -, other format?
                 date = None
-                if len(l) > 4:    # other format?
-                    logger.error("ValueError in starttimes2datetimelist trying to convert %s into a datetime object" % l)    
+                if len(value) > 4:    # other format?
+                    logger.error("ValueError in starttimes2datetimelist trying to convert %s into a datetime object" % value)
             dates.append( date )        
         return dates
     
@@ -245,7 +242,7 @@ class jsonmapper(object):
         date = self.cet_datetime(date)
         return date
     
-    def string2coordinateframeCV(self, frame):
+    def string_2_coordinate_frame_cv(self, frame):
         
         CV = {'ICRS': 'ICRS', # – celestial epoch-independent system 
               'FK5': 'FK5',   # – celestial, default J2000 epoch 
@@ -256,14 +253,14 @@ class jsonmapper(object):
               }
         frame = frame.upper()
         try:
-            frameCV = CV[frame]
+            framecv = CV[frame]
         except KeyError:
-            frameCV = None
-            logger.error("ValueError in string2coordinateframeCV trying to convert %s" % frame)    
-        return frameCV
+            framecv = None
+            logger.error("ValueError in string_2_coordinate_framecv trying to convert %s" % frame)
+        return framecv
 
     
-    def string2filetypeCV(self, filetype):
+    def string_2_file_type_cv(self, filetype):
         CV = {'image/tiff': 'TIFF',
               'image/jpeg': 'JPEG',
               'image/png':  'PNG',
@@ -272,23 +269,23 @@ class jsonmapper(object):
               'image/pdf':  'PDF'}
         filetype = filetype.lower()
         try:
-            type = CV[filetype]
+            my_type = CV[filetype]
         except KeyError:
-            type = None
-            logger.error("ValueError in string2filetypeCV trying to convert %s" % filetype)    
-        return type
+            my_type = None
+            logger.error("ValueError in string_2_file_type_cv trying to convert %s" % filetype)
+        return my_type
     
-    def string2spatialqualityCV(self, text):
+    def string_2_spatial_quality_cv(self, text):
         CV = {'Full': 'Full',           # – Verified full WCS information (though may exclude CD matrix). 
               'Position': 'Position'    # – Spatial.ReferenceValue describes a coordinate contained somewhere within the image. Other included WCS info is to be taken as approximate or incomplete.  
               }
         try:
             CV = CV[text]
         except KeyError:
-            logger.error("ValueError in string2spatialqualityCV trying to convert %s" % text)    
+            logger.error("ValueError in string_2_spatial_quality_cv trying to convert %s" % text)
         return CV
     
-    def string2coordprojectionsCV(self, text):
+    def string_2_coord_projections_cv(self, text):
         CV = {'TAN': 'TAN', # – tangent 
               'SIN': 'SIN', # – sinusoidal 
               'ARC': 'ARC', # – arc sky
@@ -299,7 +296,7 @@ class jsonmapper(object):
         try:
             CV = CV[text]
         except KeyError:
-            logger.error("ValueError in string2coordprojectionsCV trying to convert %s" % text)    
+            logger.error("ValueError in string_2_coord_projections_cv trying to convert %s" % text)
         return CV   
     
     def avmdict(self):

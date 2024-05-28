@@ -18,8 +18,6 @@ def replace_creator_metadata(queryset):
         except Exception:
             print('Error replacing creator metadata')
 
-    return
-
 print("Replacing videos creator metadata information")
 queryset = Video.objects.all()
 replace_creator_metadata(queryset)

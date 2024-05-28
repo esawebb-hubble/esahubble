@@ -16,8 +16,14 @@
 */
 
 
-var stIsIE = /*@cc_on!@*/false;
+const stIsIE = /*@cc_on!@*/false;
 
+ // sniff
+const _timer = setInterval(function() {
+    if (/loaded|complete/.test(document.readyState)) {
+        sorttable.init(); // call the onload handler
+    }
+}, 10);
 let sorttable = {
   init: function() {
     // quit if this function has already been called
@@ -32,7 +38,7 @@ let sorttable = {
     sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
 
     forEach(document.getElementsByTagName('table'), function(table) {
-      if (table.className.search(/\bsortable\b/) != -1) {
+      if (table.className.search(/\bsortable\b/) !== -1) {
         sorttable.makeSortable(table);
       }
     });
@@ -40,7 +46,7 @@ let sorttable = {
   },
 
   makeSortable: function(table) {
-    if (table.getElementsByTagName('thead').length == 0) {
+    if (table.getElementsByTagName('thead').length === 0) {
       // table doesn't have a tHead. Since it should have, create one and
       // put the first table row in it.
       let the = document.createElement('thead');
@@ -50,7 +56,7 @@ let sorttable = {
     // Safari doesn't support table.tHead, sigh
     if (table.tHead == null) table.tHead = table.getElementsByTagName('thead')[0];
 
-    if (table.tHead.rows.length != 1) return; // can't cope with two header rows
+    if (table.tHead.rows.length !== 1) return; // can't cope with two header rows
 
     // Sorttable v1 put rows with a class of "sortbottom" at the bottom (as
     // "total" rows, for example). This is B&R, since what you're supposed
@@ -58,7 +64,7 @@ let sorttable = {
     // for backwards compatibility, move them to tfoot (creating it if needed).
     let sortbottomrows = [];
     for (let i=0; i<table.rows.length; i++) {
-      if (table.rows[i].className.search(/\bsortbottom\b/) != -1) {
+      if (table.rows[i].className.search(/\bsortbottom\b/) !== -1) {
         sortbottomrows[sortbottomrows.length] = table.rows[i];
       }
     }
@@ -76,27 +82,28 @@ let sorttable = {
 
     // work through each column and calculate its type
     let headrow = table.tHead.rows[0].cells;
-    for (let i=0; i<headrow.length; i++) {
+    let override;
+    for (let i = 0; i < headrow.length; i++) {
       // manually override the type with a sorttable_type attribute
       if (!headrow[i].className.match(/\bsorttable_nosort\b/)) { // skip this col
         let mtch = headrow[i].className.match(/\bsorttable_([a-z0-9]+)\b/);
-        if (mtch) { let override = mtch[1]; }
-	      if (mtch && typeof sorttable["sort_"+override] == 'function') {
-	        headrow[i].sorttable_sortfunction = sorttable["sort_"+override];
-	      } else {
-	        headrow[i].sorttable_sortfunction = sorttable.guessType(table,i);
-	      }
-	      // make it clickable to sort
-	      headrow[i].sorttable_columnindex = i;
-	      headrow[i].sorttable_tbody = table.tBodies[0];
-	      dean_addEvent(headrow[i],"click", sorttable.innerSortFunction = function(e) {
+        if (mtch) {override = mtch[1];}
+        if (mtch && typeof sorttable["sort_" + override] == 'function') {
+          headrow[i].sorttable_sortfunction = sorttable["sort_" + override];
+        } else {
+          headrow[i].sorttable_sortfunction = sorttable.guessType(table, i);
+        }
+        // make it clickable to sort
+        headrow[i].sorttable_columnindex = i;
+        headrow[i].sorttable_tbody = table.tBodies[0];
+        dean_addEvent(headrow[i], "click", sorttable.innerSortFunction = function (e) {
 
-          if (this.className.search(/\bsorttable_sorted\b/) != -1) {
+          if (this.className.search(/\bsorttable_sorted\b/) !== -1) {
             // if we're already sorted by this column, just
             // reverse the table, which is quicker
             sorttable.reverse(this.sorttable_tbody);
             this.className = this.className.replace('sorttable_sorted',
-                                                    'sorttable_sorted_reverse');
+              'sorttable_sorted_reverse');
             this.removeChild(document.getElementById('sorttable_sortfwdind'));
             let sortrevind = document.createElement('span');
             sortrevind.id = "sorttable_sortrevind";
@@ -104,12 +111,12 @@ let sorttable = {
             this.appendChild(sortrevind);
             return;
           }
-          if (this.className.search(/\bsorttable_sorted_reverse\b/) != -1) {
+          if (this.className.search(/\bsorttable_sorted_reverse\b/) !== -1) {
             // if we're already sorted by this column in reverse, just
             // re-reverse the table, which is quicker
             sorttable.reverse(this.sorttable_tbody);
             this.className = this.className.replace('sorttable_sorted_reverse',
-                                                    'sorttable_sorted');
+              'sorttable_sorted');
             this.removeChild(document.getElementById('sorttable_sortrevind'));
             let sortfwdind = document.createElement('span');
             sortfwdind.id = "sorttable_sortfwdind";
@@ -120,16 +127,20 @@ let sorttable = {
 
           // remove sorttable_sorted classes
           let theadrow = this.parentNode;
-          forEach(theadrow.childNodes, function(cell) {
-            if (cell.nodeType == 1) { // an element
-              cell.className = cell.className.replace('sorttable_sorted_reverse','');
-              cell.className = cell.className.replace('sorttable_sorted','');
+          forEach(theadrow.childNodes, function (cell) {
+            if (cell.nodeType === 1) { // an element
+              cell.className = cell.className.replace('sorttable_sorted_reverse', '');
+              cell.className = cell.className.replace('sorttable_sorted', '');
             }
           });
-          sortfwdind = document.getElementById('sorttable_sortfwdind');
-          if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
-          sortrevind = document.getElementById('sorttable_sortrevind');
-          if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
+          let sortfwdind = document.getElementById('sorttable_sortfwdind');
+          if (sortfwdind) {
+            sortfwdind.parentNode.removeChild(sortfwdind);
+          }
+          let sortrevind = document.getElementById('sorttable_sortrevind');
+          if (sortrevind) {
+            sortrevind.parentNode.removeChild(sortrevind);
+          }
 
           this.className += ' sorttable_sorted';
           sortfwdind = document.createElement('span');
@@ -137,29 +148,29 @@ let sorttable = {
           sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
           this.appendChild(sortfwdind);
 
-	        // build an array to sort. This is a Schwartzian transform thing,
-	        // i.e., we "decorate" each row with the actual sort key,
-	        // sort based on the sort keys, and then put the rows back in order
-	        // which is a lot faster because you only do getInnerText once per row
-	        let row_array = [];
-	        let col = this.sorttable_columnindex;
-	        let rows = this.sorttable_tbody.rows;
-	        for (let j=0; j<rows.length; j++) {
-	          row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
-	        }
-	        /* If you want a stable sort, uncomment the following line */
-	        //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
-	        /* and comment out this one */
-	        row_array.sort(this.sorttable_sortfunction);
+          // build an array to sort. This is a Schwartzian transform thing,
+          // i.e., we "decorate" each row with the actual sort key,
+          // sort based on the sort keys, and then put the rows back in order
+          // which is a lot faster because you only do getInnerText once per row
+          let row_array = [];
+          let col = this.sorttable_columnindex;
+          let rows = this.sorttable_tbody.rows;
+          for (let j = 0; j < rows.length; j++) {
+            row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
+          }
+          /* If you want a stable sort, uncomment the following line */
+          //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
+          /* and comment out this one */
+          row_array.sort(this.sorttable_sortfunction);
 
-	        let tb = this.sorttable_tbody;
-	        for (let j=0; j<row_array.length; j++) {
-	          tb.appendChild(row_array[j][1]);
-	        }
+          let tb = this.sorttable_tbody;
+          for (let j = 0; j < row_array.length; j++) {
+            tb.appendChild(row_array[j][1]);
+          }
 
-	        delete row_array;
-	      });
-	    }
+          delete row_array;
+        });
+      }
     }
   },
 
@@ -168,7 +179,7 @@ let sorttable = {
     let sortfn = sorttable.sort_alpha;
     for (let i=0; i<table.tBodies[0].rows.length; i++) {
       let text = sorttable.getInnerText(table.tBodies[0].rows[i].cells[column]);
-      if (text != '') {
+      if (text !== '') {
         if (text.match(/^-?[£$¤]?[\d,.]+%?$/)) {
           return sorttable.sort_numeric;
         }
@@ -212,31 +223,31 @@ let sorttable = {
       return node.getAttribute("sorttable_customkey");
     }
     else if (typeof node.textContent != 'undefined' && !hasInputs) {
-      return node.textContent.replace(/^\s+|\s+$/g, '');
+      return node.textContent.trim();
     }
     else if (typeof node.innerText != 'undefined' && !hasInputs) {
-      return node.innerText.replace(/^\s+|\s+$/g, '');
+      return node.innerText.trim();
     }
     else if (typeof node.text != 'undefined' && !hasInputs) {
-      return node.text.replace(/^\s+|\s+$/g, '');
+      return node.text.trim();
     }
     else {
       switch (node.nodeType) {
         case 3:
-          if (node.nodeName.toLowerCase() == 'input') {
-            return node.value.replace(/^\s+|\s+$/g, '');
+          if (node.nodeName.toLowerCase() === 'input') {
+            return node.value.trim();
           }
+          return ''
         case 4:
-          return node.nodeValue.replace(/^\s+|\s+$/g, '');
-          break;
+          return node.nodeValue.trim();
         case 1:
+          return '';
         case 11:
-          var innerText = '';
+          let innerText = '';
           for (let i = 0; i < node.childNodes.length; i++) {
             innerText += sorttable.getInnerText(node.childNodes[i]);
           }
-          return innerText.replace(/^\s+|\s+$/g, '');
-          break;
+          return innerText.trim();
         default:
           return '';
       }
@@ -266,38 +277,44 @@ let sorttable = {
     return aa-bb;
   },
   sort_alpha: function(a,b) {
-    if (a[0]==b[0]) return 0;
+    if (a[0]===b[0]) return 0;
     if (a[0]<b[0]) return -1;
     return 1;
   },
-  sort_ddmm: function(a,b) {
-    mtch = a[0].match(sorttable.DATE_RE);
-    let y = mtch[3]; let m = mtch[2]; let d = mtch[1];
-    if (m.length == 1) m = '0'+m;
-    if (d.length == 1) d = '0'+d;
-    let dt1 = y+m+d;
-    mtch = b[0].match(sorttable.DATE_RE);
-    y = mtch[3]; m = mtch[2]; d = mtch[1];
-    if (m.length == 1) m = '0'+m;
-    if (d.length == 1) d = '0'+d;
-    let dt2 = y+m+d;
-    if (dt1==dt2) return 0;
-    if (dt1<dt2) return -1;
+  sort_mmdd: function(a, b) {
+    const extractDate = (dateString) => {
+        const match = dateString.match(sorttable.DATE_RE);
+        const y = match[3];
+        let d = match[2];
+        let m = match[1];
+        if (m.length === 1) m = '0' + m;
+        if (d.length === 1) d = '0' + d;
+        return y + m + d;
+    };
+
+    const dt1 = extractDate(a[0]);
+    const dt2 = extractDate(b[0]);
+
+    if (dt1 === dt2) return 0;
+    if (dt1 < dt2) return -1;
     return 1;
   },
-  sort_mmdd: function(a,b) {
-    mtch = a[0].match(sorttable.DATE_RE);
-    y = mtch[3]; d = mtch[2]; m = mtch[1];
-    if (m.length == 1) m = '0'+m;
-    if (d.length == 1) d = '0'+d;
-    dt1 = y+m+d;
-    mtch = b[0].match(sorttable.DATE_RE);
-    y = mtch[3]; d = mtch[2]; m = mtch[1];
-    if (m.length == 1) m = '0'+m;
-    if (d.length == 1) d = '0'+d;
-    dt2 = y+m+d;
-    if (dt1==dt2) return 0;
-    if (dt1<dt2) return -1;
+  sort_ddmm: function(a, b) {
+    const extractDate = (dateString) => {
+        const match = dateString.match(sorttable.DATE_RE);
+        let y = match[3];
+        let m = match[2];
+        let d = match[1];
+        if (m.length === 1) m = '0' + m;
+        if (d.length === 1) d = '0' + d;
+        return y + m + d;
+    };
+
+    const dt1 = extractDate(a[0]);
+    const dt2 = extractDate(b[0]);
+
+    if (dt1 === dt2) return 0;
+    if (dt1 < dt2) return -1;
     return 1;
   },
 
@@ -305,13 +322,13 @@ let sorttable = {
     // A stable sort function to allow multi-level sorting of data
     // see: http://en.wikipedia.org/wiki/Cocktail_sort
     // thanks to Joseph Nahmias
-    var b = 0;
-    var t = list.length - 1;
-    var swap = true;
+    let b = 0;
+    let t = list.length - 1;
+    let swap = true;
 
     while(swap) {
         swap = false;
-        for(var i = b; i < t; ++i) {
+        for(let i = b; i < t; ++i) {
             if ( comp_func(list[i], list[i+1]) > 0 ) {
                 let q = list[i]; list[i] = list[i+1]; list[i+1] = q;
                 swap = true;
@@ -344,27 +361,6 @@ if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", sorttable.init, false);
 }
 
-/* for Internet Explorer */
-/*@cc_on @*/
-/*@if (@_win32)
-    document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
-    var script = document.getElementById("__ie_onload");
-    script.onreadystatechange = function() {
-        if (this.readyState == "complete") {
-            sorttable.init(); // call the onload handler
-        }
-    };
-/*@end @*/
-
-/* for Safari */
-if (/WebKit/i.test(navigator.userAgent)) { // sniff
-    var _timer = setInterval(function() {
-        if (/loaded|complete/.test(document.readyState)) {
-            sorttable.init(); // call the onload handler
-        }
-    }, 10);
-}
-
 /* for other browsers */
 window.onload = sorttable.init;
 
@@ -380,10 +376,12 @@ function dean_addEvent(element, type, handler) {
 		// assign each event handler a unique ID
 		if (!handler.$$guid) handler.$$guid = dean_addEvent.guid++;
 		// create a hash table of event types for the element
-		if (!element.events) element.events = {};
+		if (!element.events){
+      element.events = {}
+    }
 		// create a hash table of event handlers for each element/event pair
-		var handlers = element.events[type];
-		if (!handlers) {
+    let handlers = element.events[type];
+    if (!handlers) {
 			handlers = element.events[type] = {};
 			// store the existing event handler (if there is one)
 			if (element["on" + type]) {
@@ -395,7 +393,7 @@ function dean_addEvent(element, type, handler) {
 		// assign a global event handler to do all the work
 		element["on" + type] = handleEvent;
 	}
-};
+}
 // a counter used to create unique IDs
 dean_addEvent.guid = 1;
 
@@ -408,15 +406,15 @@ function removeEvent(element, type, handler) {
 			delete element.events[type][handler.$$guid];
 		}
 	}
-};
+}
 
 function handleEvent(event) {
-	var returnValue = true;
-	// grab the event object (IE uses a global event object)
+  let returnValue = true;
+  // grab the event object (IE uses a global event object)
 	event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
 	// get a reference to the hash table of event handlers
-	var handlers = this.events[event.type];
-	// execute each event handler
+  const handlers = this.events[event.type];
+  // execute each event handler
 	for (let i in handlers) {
 		this.$$handleEvent = handlers[i];
 		if (this.$$handleEvent(event) === false) {
@@ -424,17 +422,17 @@ function handleEvent(event) {
 		}
 	}
 	return returnValue;
-};
+}
 
 function fixEvent(event) {
 	// add W3C standard event methods
 	event.preventDefault = fixEvent.preventDefault;
 	event.stopPropagation = fixEvent.stopPropagation;
 	return event;
-};
+}
 fixEvent.preventDefault = function() {
 	this.returnValue = false;
-};
+}
 fixEvent.stopPropagation = function() {
   this.cancelBubble = true;
 }
@@ -457,7 +455,7 @@ if (!Array.forEach) { // mozilla already supports this
 
 // generic enumeration
 Function.prototype.forEach = function(object, block, context) {
-	for (var key in object) {
+	for (const key in object) {
 		if (typeof this.prototype[key] == "undefined") {
 			block.call(context, object[key], key, object);
 		}
@@ -472,9 +470,9 @@ String.forEach = function(string, block, context) {
 };
 
 // globally resolve forEach enumeration
-var forEach = function(object, block, context) {
+let forEach = function(object, block, context) {
 	if (object) {
-		var resolve = Object; // default
+    let resolve = Object; // default
 		if (object instanceof Function) {
 			// functions have a "length" property
 			resolve = Function;

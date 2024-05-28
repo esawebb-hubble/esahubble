@@ -3,7 +3,7 @@
 
 <ul class="level0 mainmenu-aim">
 {% for entry in submenu %}
-<li{% if entry.leaf_selected or entry.selected %} class="current{% if entry.leaf_selected %} current-leaf{% endif %}"{% endif %}><a href="{{ entry.link|default:"#" }}"{% if entry.on_click %} target="_blank"{% endif %}>{% trans entry.title|safe %}{% if entry.children|length %}<span class="fa fa-angle-down level0-children-arrows"></span>{% endif %}</a>
+<li{% if entry.leaf_selected or entry.selected %} class="current{% if entry.leaf_selected %} current-leaf{% endif %}"{% endif %}><a href="{{ entry.link|default:"#" }}"{% if entry.on_click %} target="_blank" rel="noopener" {% endif %}>{% trans entry.title|safe %}{% if entry.children|length %}<span class="fa fa-angle-down level0-children-arrows"></span>{% endif %}</a>
     {% if entry.children|length %}
     <span class="mobile-children">
         <span class="fa fa-angle-down"></span>

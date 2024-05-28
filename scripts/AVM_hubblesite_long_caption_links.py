@@ -15,7 +15,6 @@ from __future__ import print_function
 from future import standard_library
 standard_library.install_aliases()
 from builtins import str
-from djangoplicity.utils import optionparser
 from djangoplicity.media.models import Image
 from djangoplicity.releases.models import Release
 
@@ -30,9 +29,9 @@ import hubblesite as hb
 
 def get_root(link):
     '''
-    example: from http://hubblesite.org/newsarchive/..... get http://hubblesite.org
+    example: from https://esahubble.org/newsarchive/..... get https://esahubble.org
     '''
-    off = len('http://')
+    off = len('https://')
     end = off + link[off:].find('/')
     return link[:end]
     
@@ -95,8 +94,10 @@ def analyse_links(pr_id):
                     else:
                         if get_ranking(long_caption_link) < get_ranking(link):
                             long_caption_link = link
-    except:
+
+    except IndexError:
         pass
+
     return long_caption_link
 
 def check_reachability(url):
@@ -120,27 +121,26 @@ def get_long_caption_link(url, iterator, check_reachability_flag = True):
     long_c = None
     try:
         remote   = urllib.request.urlopen(url)
-    except:
+    except urllib.error.URLError:
         remote  = 'timeout?'
     for line in remote:
-        if line.find('<a href=') > -1:
-            if line.find('''/image/''') > -1:
-                look_for = '''<a href='''
-                start = line.find(look_for) + len(look_for)
-                end   = line[start:].find('''>''')
-                long_c = line[start:end]
-                if long_c[0] == '''"''': long_c = long_c[1:]
-                if long_c[-1] == '''"''': long_c = long_c[:-1]
-                if long_c[0] == '/': long_c = 'http://hubblesite.org' + long_c
-                
-                # now replace the last letter in the link with the iterator (heic0515c) /a/ --> /c/
-                end = long_c.rfind('/')
-                start = long_c[:end].rfind('/')
-                long_c = long_c[:start] +'/' + iterator + '/'
-                if check_reachability_flag == True:
-                    check =  check_reachability(long_c)
-                    if check != True: long_c = None 
-                break
+        if line.find('<a href=') > -1 and line.find('''/image/''') > -1:
+            look_for = '''<a href='''
+            start = line.find(look_for) + len(look_for)
+            end = line[start:].find('''>''')
+            long_c = line[start:end]
+            if long_c[0] == '''"''': long_c = long_c[1:]
+            if long_c[-1] == '''"''': long_c = long_c[:-1]
+            if long_c[0] == '/': long_c = 'https://hubblesite.org' + long_c
+
+            # now replace the last letter in the link with the iterator (heic0515c) /a/ --> /c/
+            end = long_c.rfind('/')
+            start = long_c[:end].rfind('/')
+            long_c = long_c[:start] + '/' + iterator + '/'
+            if check_reachability_flag:
+                check = check_reachability(long_c)
+                if not check: long_c = None
+            break
     return long_c
 
     
@@ -152,42 +152,41 @@ def analyse(images):
     hubblesite: 800
     heritage: 55
     '''
-    dict = {}  #dict containing little dicts ldict
+    my_dict = {}  #dict containing little dicts ldict
     ldict = {}
-    list = []
-    linkdict = {} # collects the possible roots for long_caption_links
+    my_list = []
+    link_dict = {} # collects the possible roots for long_caption_links
     for image in images:
         if image.long_caption_link.find('http') == -1: continue
 
-        list.append(image.id)
+        my_list.append(image.id)
 
         prefix = image.id[:3]
         link   = get_root(image.long_caption_link)
-        if link in linkdict:
-            linkdict[link] = linkdict[link] + 1
-        else: linkdict[link] = 1
-        if prefix in dict:
-            ldict = dict[prefix]
+        if link in link_dict:
+            link_dict[link] = link_dict[link] + 1
+        else: link_dict[link] = 1
+        if prefix in my_dict:
+            ldict = my_dict[prefix]
             if link in ldict:
                 n = ldict[link]
                 n = n + 1
                 ldict[link] = n
             if link not in ldict:
                 ldict[link] = 1
-        dict[prefix] = ldict
-        if not prefix in dict:
-            ldict = {}
-            ldict[link] = 1
-            dict[prefix] = ldict
-    list.sort()
-    print(list)
-    for d in list(dict.keys()):
-        print(d, dict[d])
-    print(linkdict)
+        my_dict[prefix] = ldict
+        if prefix not in my_dict:
+            ldict = {link: 1}
+            my_dict[prefix] = ldict
+    my_list.sort()
+    print(my_list)
+    for d in list(dict):
+        print(d, my_dict[d])
+    print(link_dict)
 
-def get_related_PR(id):
+def get_related_pr(id):
     temp = ''   
-    pattern = re.compile(r'''([a-z]*)([0-9]*)''')
+    pattern = re.compile(r'''([a-z]*)(\d*)''')
     temp = pattern.findall(id)
     related = temp[0][0] + temp[0][1]
     iterator = temp[1][0]
@@ -224,7 +223,7 @@ if __name__ == '__main__':
         if image.long_caption_link.find('http') == -1:
             if image.press_release_link.find('http') == -1:
                 # get id of related press release 
-                related, iterator = get_related_PR(image.id)
+                related, iterator = get_related_pr(image.id)
                 # find the link to hubblesite.org NASA Press Release
                 result =  analyse_links(related)
                 if result:
@@ -275,17 +274,17 @@ if __name__ == '__main__':
                 try:
                     image.save()
                     psavecount = psavecount + 1
-                except:
+                except Exception:
                     print(image.id, ': failed to store press_release_link ', press_release_link)
                     
             
-            if (long_c): 
+            if long_c:
                 hcount = hcount + 1
                 image.long_caption_link = long_c
                 try:
                     image.save()
                     savecount = savecount + 1
-                except:
+                except Exception:
                     print(image.id, ': failed to store long_caption_link ', long_c)
                     
     print(str(hcount), 'long_caption_links found')

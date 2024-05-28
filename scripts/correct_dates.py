@@ -63,9 +63,12 @@ def change_datetime(obj):
                 obj.release_date = release_date
                 obj.save()
                 success = True
-            except:
-                print(obj.id,' save failed!')
-                pass
+            except AttributeError as e:
+                print(obj.id, 'AttributeError:', e)
+            except ValueError as e:
+                print(obj.id, 'ValueError:', e)
+            except Exception as e:
+                print(obj.id, 'Save failed:', e)
     return success
 
 
@@ -73,7 +76,7 @@ def process_objects(objs):
     '''
     find the objects that need a correction of the release_date
     '''
-    pat = re.compile('[a-zA-Z]+([0-9]{2})\S+')
+    pat = re.compile('[a-zA-Z]+(\d{2})\S+')
     
     count = 0
     finddate1 = datetime.strptime('2011-03-03 18:00:00','%Y-%m-%d %H:%M:%S')
@@ -97,8 +100,6 @@ def process_objects(objs):
                     if YY != dt.strftime('%y'):
                         if change_datetime(obj): count = count + 1
                         print(obj.id, 'old: ', dt, '\t new: ', obj.release_date ,'\t\t reason: ', YY,' != ', dt.strftime('%y'))
-        else:
-            pass
     return count
 
 

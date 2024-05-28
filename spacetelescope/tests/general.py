@@ -10,7 +10,7 @@ class TestGeneralPurpose(TestCase):
 
     def test_feed(self):
         response = self.client.get('/rss/feed.xml', follow=True)
-        utils.check_redirection_to(self, response, 'http://feeds.feedburner.com/hubble_news/')
+        utils.check_redirection_to(self, response, 'https://feeds.feedburner.com/hubble_news/')
 
     def test_d2d_view(self):
         response = self.client.get('/d2d/')

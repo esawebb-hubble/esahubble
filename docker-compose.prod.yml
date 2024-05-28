@@ -22,6 +22,7 @@ x-common: &common
     AWS_S3_REGION_NAME:
     AWS_S3_ENDPOINT_URL:
     AWS_S3_CUSTOM_DOMAIN:
+    INTERNAL_IPS:
   volumes:
     - /mnt/volume_fra1_01/web/media:/home/hubbleadm/media
     - /mnt/volume_fra1_01/web/import:/home/hubbleadm/import
