@@ -60,3 +60,5 @@ newrelic
 
 #AWS S3 SDK
 boto3==1.34.10
+
+django-crispy-forms==1.14.0
