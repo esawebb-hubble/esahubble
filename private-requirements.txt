@@ -3,5 +3,4 @@ git+https://github.com/djangoplicity/djangoplicity-actions.git@release/python3
 git+https://github.com/djangoplicity/djangoplicity-customsearch.git@release/python3
 git+https://github.com/djangoplicity/djangoplicity-newsletters.git@newsletters-esahubble
 git+https://github.com/djangoplicity/djangoplicity-products2@Feature/video-conference-background-product
-git+https://github.com/djangoplicity/djangoplicity-contacts@contacts-esahubble
 git+https://github.com/djangoplicity/djangoplicity@djangoplicity-esahubble
