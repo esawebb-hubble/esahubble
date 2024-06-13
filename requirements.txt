@@ -62,3 +62,6 @@ newrelic
 boto3==1.34.10
 
 django-crispy-forms==1.14.0
+
+#Sampling profiler for Python programs
+py-spy==0.3.14
