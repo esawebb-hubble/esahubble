@@ -268,7 +268,7 @@ MIDDLEWARE += [
     'django.middleware.common.CommonMiddleware',  # Request/Response
 
     # Sets a boolean session variable INTERNAL_REQUEST if request.META['REMOTE_ADDR'] is in INTERNAL_IPS
-    'djangoplicity.archives.middleware.InternalRequestMiddleware',  # Request
+    #'djangoplicity.archives.middleware.InternalRequestMiddleware',  # Request
 
     # Module for URL redirection.
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',  # Response
