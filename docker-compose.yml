@@ -9,6 +9,8 @@ services:
   nginx:
     image: nginx:1.17
     container_name: hubble-nginx
+    environment:
+      INTERNAL_IPS: ${INTERNAL_IPS}
     restart: always
     depends_on:
       - web
@@ -21,6 +23,7 @@ services:
     restart: always
     environment:
       SERVICE_TYPE: "web"
+      INTERNAL_IPS: ${INTERNAL_IPS}
     volumes:
       - statics:/home/hubbleadm/static
     expose:
@@ -29,11 +32,15 @@ services:
   broker:
     image: rabbitmq:3.8.3
     container_name: hubble-broker
+    environment:
+      INTERNAL_IPS: ${INTERNAL_IPS}
     restart: always
 
   celery:
     image: *hubble-image
     container_name: hubble-celery
+    environment:
+      INTERNAL_IPS: ${INTERNAL_IPS}
     restart: always
     command:
       [
@@ -52,6 +59,8 @@ services:
   flower:
     image: *hubble-image
     container_name: hubble-flower
+    environment:
+      INTERNAL_IPS: ${INTERNAL_IPS}
     restart: always
     # TODO: Change url prefix to /admin/tasks when having nginx proxy
     command:
@@ -71,6 +80,8 @@ services:
   beat:
     image: *hubble-image
     container_name: hubble-beat
+    environment:
+      INTERNAL_IPS: ${INTERNAL_IPS}
     restart: always
     command:
       [
