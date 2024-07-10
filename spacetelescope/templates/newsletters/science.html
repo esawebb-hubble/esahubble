@@ -4,7 +4,7 @@
 {% block html_title %}ESA/Hubble/JWST Science Newsletter{% endblock %}
 
 {% block header %}
-    {% with width="700" height="300" color="#9ca3a9" jwst_logo_width=100 jwst_logo_url=base_url|add:"/assets/images/"|add:"esa-jwst-logo.png" logo_width="140" logo_url=base_url|add:MEDIA_URL|add:"esa_nl_logo.png" hubble_logo_width="100" hubble_logo_url=base_url|add:"/assets/images/"|add:"logo.png" %}
+    {% with width="700" height="300" color="#9ca3a9" jwst_logo_width="100" jwst_logo_url=base_url|add:"/assets/images/"|add:"esa-jwst-logo.png" logo_width="140" logo_url=base_url|add:MEDIA_URL|add:"esa_nl_logo.png" hubble_logo_width="100" hubble_logo_url=base_url|add:"/assets/images/"|add:"logo.png" %}
         {% block header_content %}
 
             {% if data.main_image %}
