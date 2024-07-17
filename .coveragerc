@@ -11,13 +11,13 @@ omit =
     */tests.py
     */tests/*
     */static/*
-    spacetelescope/wsgi.py
-    spacetelescope/settings/prod.py
-    spacetelescope/settings/staging.py
-    spacetelescope/templates/pages/page_noborder.html
-    spacetelescope/templates/pages/blank_page.html
-    spacetelescope/templates/shop/checkout/coposweb/confirm.html
-    spacetelescope/templates/shop/checkout/coposweb/pay_ship.html
+    hubble/wsgi.py
+    hubble/settings/prod.py
+    hubble/settings/staging.py
+    hubble/templates/pages/page_noborder.html
+    hubble/templates/pages/blank_page.html
+    hubble/templates/shop/checkout/coposweb/confirm.html
+    hubble/templates/shop/checkout/coposweb/pay_ship.html
 
 plugins =
     django_coverage_plugin

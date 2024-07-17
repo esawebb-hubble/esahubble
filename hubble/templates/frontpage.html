@@ -1,0 +1,341 @@
+{% extends "core.html" %}
+
+{% load djangoplicity_datetime %}
+{% load media_video %}
+{% load pages %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_header %}
+    <meta property="og:title" content="ESA/Hubble Space Telescope" />
+    <meta property="og:description" content="The ESA page for the Hubble Space Telescope, the space-based observatory that has revolutionised modern astronomy." />
+    <meta property="og:image" content="https://www.esahubble.org/static/archives/images/screen/hubble_earth_sp01.jpg" />
+    <meta property="og:image:secure_url" content="https://www.esahubble.org/static/archives/images/screen/hubble_earth_sp01.jpg" />
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v20.0&appId=3101792223374208" nonce="Bexcprxh"></script>
+    <script async src="https://platform.twitter.com/widgets.js" integrity="sha384-2tybKFlI8VO9WeecxiJMRsCpfm6xp0mNzAuAFOxtqzenagQgy+bKmARu8EXVJhPu" crossorigin="anonymous" max-w charset="utf-8"></script>
+{% endblock %}
+
+{% block content_area %}
+<div id="fb-root"></div>
+
+<div id="pr-carousel-wrapper">
+    <div id="pr-carousel">
+        {% for release in releases %}
+        <div class="slide">
+            <a href="{{ release.get_absolute_url }}">
+            {% if release.main_image.resource_banner1920 %}
+                <img draggable="false" src="{{ release.main_image.resource_banner1920.url }}" data-lazy="{{ release.main_image.resource_banner1920.url }}" alt="{{ release.main_image.title }}">
+            {% else %}
+                <img draggable="false" src="{{ release.main_image.resource_wallpaper3.url }}" data-lazy="{{ release.main_image.resource_wallpaper3.url }}" alt="{{ release.main_image.title }}">
+            {% endif %}
+            <div class="pr-content">
+                <div class="pr-description">
+                    <div class="pr-type">{{ release.id }} — {{ release.release_type.name }}</div>
+                    <div class="pr-title">{{ release.title }}</div>
+                    <div class="pr-extra">
+                        <div class="pr-headline">{{ release.headline }}</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>  <!-- slide -->
+        {% endfor %}
+    </div> <!-- pr-carousel -->
+</div> <!-- pr-carousel-wrapper -->
+
+<div class="container" id="body">
+
+{% embed_page_no_unpublished frontpage_main %}
+
+{% if announcements %}
+<div class="row announcements">
+    <div class="col-md-12">
+        <div id="ann-carousel-wrapper">
+            <div class="section-header">
+                <div class="section-title">
+                    <a href="{% url 'announcements_defaultquery' %}">{% trans 'What\'s New' %}</a>
+                </div>
+                <div class="section-navigation">
+                </div>
+            </div>
+            <div id="ann-carousel">
+                {% for announcement in announcements %}
+                <div class="slide">
+                    <a href="{{ announcement.get_absolute_url }}">
+                        <div class="ann-description">
+                            <div class="title">{{ announcement.title }}</div>
+                            <div class="date">{{ announcement.release_date|date:"j N Y" }} — {{ announcement.id }}</div>
+                        </div>
+                        <img draggable="false" src="{{ announcement.main_visual.resource_thumb350x.url }}" data-lazy="{{ announcement.main_visual.resource_thumb350x.url }}" alt="{{ announcement.main_visual.title }}">
+                        <div class="readmore"></div>
+                    </a>
+                </div> <!-- slide -->
+                {% endfor %}
+            </div> <!-- ann-carousel -->
+        </div> <!-- ann-carousel-wrapper -->
+    </div>
+</div> <!-- announcements -->
+{% endif %}
+
+<div class="row frontpage-section middle-section">
+    <div class="col-md-8">
+        {% if potws %}
+        <div id="potw-carousel-wrapper">
+            <div class="section-header">
+                <div class="section-title">
+                    <a href="{% url 'potw_defaultquery' %}">{% trans "Picture of the Week" %}</a>
+                </div>
+                <div class="section-navigation">
+                </div>
+            </div>
+            <div id="potw-carousel">
+                {% for potw in potws %}
+                <div class="slide">
+                    <a href="{{ potw.get_absolute_url }}">
+                        <img draggable="false" src="{{ potw.visual.resource_screen640.url }}" data-lazy="{{ potw.visual.resource_screen640.url }}" class="img-responsive" alt="{{ potw.visual.title }}">
+                        <div class="potw-description">
+                            <div class="date">{{ potw.release_date|datetime:"DATE" }} — {{ potw.id }}</div>
+                            <div class="title">{{ potw.visual.title }}</div>
+                        </div>
+                    </a>
+                </div> <!-- slide -->
+                {% endfor %}
+            </div> <!-- potw-carousel -->
+        </div>
+        {% endif %}
+        {% if spacesparks %}
+        <div id="hubblecast-carousel-wrapper">
+            <div class="section-header">
+                <div class="section-title">
+                    <a href="{% url 'videos_query_category' 'spacesparks' %}">{% trans "Space sparks" %}</a>
+                </div>
+                <div class="section-navigation">
+                </div>
+            </div>
+            <div id="hubblecast-carousel">
+                <div class="slide">
+                    {% if spacesparks.0.youtube_video_id and spacesparks.0.use_youtube %}
+                        <div class="youtube-wrapper">
+                            <div id="youtube-player"></div>
+                        </div>
+                    {% else %}
+                        {% embedvideo_subs spacesparks.0 'medium_podcast,h264' 'hd_and_apple,hd720p_screen,dome_preview' '' spacesparks.0.videosubtitle_set.all 0 %}
+                    {% endif %}
+                    <a href="{{ spacesparks.0.get_absolute_url }}">
+                        <div class="hubblecast-description{% if not spacesparks.0.youtube_video_id or not spacesparks.0.use_youtube %} hubblecast-description-jwplayer{% endif %}">
+                            <div class="date">{{ spacesparks.0.release_date|datetime:"DATE" }} — {{ spacesparks.0.id }}</div>
+                            <div class="title">{{ spacesparks.0.title }}</div>
+                    </div>
+                    </a>
+                </div>
+            </div> <!-- spacesparks-carousel -->
+        </div>
+        {% endif %}
+        <div id="newsletter-preview-container">
+            <div class="section-header">
+                <div class="section-title">
+                    <a href="newsletters/science">{% trans "ESA/Hubble science Newsletter" %}</a>
+                </div>
+            </div>
+            <div id="newsletter-preview">
+                <a href="{{ science_newsletter.get_absolute_url }}">
+                    <div class="img-wrapper">
+                        <img draggable="false" src="{{ science_newsletter.resource_screen.url }}" class="img-cropped" alt="Newsletter">
+                    </div>
+                    <div class="newsletter-description">
+                        <div class="title">{{ science_newsletter.subject }}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="social-feeds">
+            <div class="facebook-feeds">
+                <div class="section-header">
+                    <div class="section-title blue-title">
+                        {% trans "ESA/Hubble Facebook" %}
+                    </div>
+                </div>
+                <div class="fb-page" 
+                data-href="https://www.facebook.com/hubbleESA" 
+                data-tabs="timeline" 
+                data-width="304" 
+                data-height="625" 
+                data-small-header="true" 
+                data-adapt-container-width="true" 
+                data-hide-cover="true" 
+                data-show-facepile="false"
+                >
+                <blockquote cite="https://www.facebook.com/hubbleESA" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/hubbleESA">Hubble Space Telescope</a>
+                </blockquote>
+                </div>
+            </div>
+            <div class="twitter-feeds">
+                <div class="section-header">
+                    <div class="section-title blue-title">
+                        {% trans "ESA/Hubble on Twitter" %}
+                    </div>
+                </div>
+                <a
+                    class="twitter-timeline"
+                    href="https://twitter.com/HUBBLE_space?ref_src=twsrc%5Etfw"
+                    data-width="304"
+                    data-height="625"
+                >
+                    Tweets by HUBBLE_space
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if top100 %}
+<div class="row top100">
+    <div class="col-md-12">
+        <div id="top100-frontpage-carousel-wrapper">
+            <div class="section-header">
+                <div class="section-title">
+                    <a href="{% url 'images_query_top100' %}">{% trans "Top 100 Images" %}</a>
+                </div>
+                <div class="section-navigation">
+                </div>
+            </div>
+            <div id="top100-frontpage-carousel">
+                {% for image in top100 %}
+                <div class="slide">
+                    <a href="{{ image.get_absolute_url }}">
+                        <div class="img-wrapper">
+                            <img draggable="false" src="{{ image.resource_wallpaper1.url }}" data-lazy="{{ image.resource_wallpaper1.url }}" class="img-responsive" alt="{{ image.title }}">
+                        </div>
+                        <div class="top100-description">
+                            <div class="title">{{ image.title }}</div>
+                        </div>
+                    </a>
+                </div> <!-- slide -->
+                {% endfor %}
+            </div> <!-- #top100-frontpage-carousel -->
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="frontpage-section subscribe-to-hubble">
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="border">
+                    <div class="section-header">
+                        <div class="section-title blue-title">
+                            {% trans "ESA/Hubble Newsletters" %}
+                        </div>
+                    </div>
+                    <div id="subscribe-link">
+                        <a href="/newsletters">
+                            <img src="{% static 'frontpage/subscribe.jpg' %}" alt="Subscribe to Hubble news">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="border">
+                    <div class="section-header">
+                        <div class="section-title blue-title">
+                            {% trans "Link to Social Media Channels" %}
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <div class="icons">
+                            <a href="https://www.facebook.com/HubbleESA"><div class="sprites-facebook_42px_flat"></div></a>
+                            <a href="https://twitter.com/hubble_space">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" 
+                                    class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                                </svg>
+                            </a>
+                            <a href="http://www.youtube.com/user/HubbleESA"><div class="sprites-youtube_42px_flat"></div></a>
+                            <a href="http://www.flickr.com/photos/hubble_esa "><div class="sprites-flickr_42px_flat"></div></a>
+                            <a href="https://www.instagram.com/hubbleesa/"><div class="sprites-instagram"></div></a>
+                            <a href="https://www.linkedin.com/company/esahubble/"><div class="sprites-linkedin_42px_flat"></div></a>
+                            <a href="https://giphy.com/channel/esahubble"><div class="sprites-giphy_42px"></div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div> <!-- #body -->
+
+{% endblock content_area %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+
+// Load YouTube or JwPlayer
+{% if spacesparks.0 %}
+    {% if spacesparks.0.youtube_video_id and spacesparks.0.use_youtube %}
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '263',
+                width: '468',
+                videoId: '{{ spacesparks.0.youtube_video_id }}',
+                playerVars: {
+                    'modestbranding': 1,
+                    'hl': '{{ LANGUAGE_CODE }}',
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                }
+            });
+            function onPlayerReady(event) {
+                // event.target.setPlaybackQuality('large');
+            }
+        }
+    {% endif %}
+{% endif %}
+
+$(document).ready(function(){
+    {% if spacesparks.0 %}
+        {% if spacesparks.0.youtube_video_id and spacesparks.0.use_youtube %}
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        {% else %}
+            setupVideoPlayer('{{ spacesparks.0.id }}');
+        {% endif %}
+    {% endif %}
+
+    {% comment %}
+    Set hover target on pr-description, this cannot be done fully in CSS
+    as the image is outside the pr-description and cannot be "attached"
+    by the standard hover
+    {% endcomment %}
+    $('.pr-description').hover(function() {
+        $(this).parents('.pr-content').prev('img').toggleClass('hover');
+    });
+
+    // Set the announcements titles to the same heights:
+    var annTitleSelector = '#ann-carousel .ann-description .title';
+    var maxAnnHeight = Math.max.apply(null, $(annTitleSelector).map(function ()
+    {
+        return $(this).height();
+    }).get());
+    $(annTitleSelector).height(maxAnnHeight);
+
+});
+
+</script>
+{% endblock %}
+
+{% block addthis %}
+<!-- no addthis on frontpage -->
+{% endblock %}

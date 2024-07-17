@@ -11,7 +11,7 @@ import tempfile
 import shutil
 import django
 sys.path.append('/home/hubbleadm')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'spacetelescope.settings.prod'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hubble.settings.prod'
 django.setup()
 
 from djangoplicity.media.models import Image

@@ -74,7 +74,7 @@ compilemessages:
 	docker exec -it hubble django-admin compilemessages
 
 sass:
-	node-sass ./components/scss/hubble.scss ./spacetelescope/static/css/hubble.css
+	node-sass ./components/scss/hubble.scss ./hubble/static/css/hubble.css
 
 youtube-token:
 	docker exec -it hubble python ./scripts/youtube-token.py

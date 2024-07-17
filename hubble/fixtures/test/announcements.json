@@ -1,0 +1,124 @@
+[
+  {
+    "model": "announcements.announcement",
+    "pk": "10000",
+    "fields": {
+      "lang": "en",
+      "source": null,
+      "translation_ready": false,
+      "title": "Two New Hubblecasts Released for Hubble’s 30th Anniversary",
+      "subtitle": "",
+      "description": "<p>As COVID-19 continues to spread globally, NSF\u2019s OIR Lab is actively responding to the situation and taking measures to ensure the safety of its staff and the public. These measures are being taken out of precaution: no COVID-19 case has been confirmed at any of the OIR Lab-sites.\u00a0</p>&#13;\n<p><strong>Update March 24, 2020:</strong></p>&#13;\n<p>The Gemini North telescope halted night-time operations Monday 23 March, in response to Hawai\u2019i\u2019s\u00a0<a href=\"https://governor.hawaii.gov/wp-content/uploads/2020/03/2003162-ATG_Third-Supplementary-Proclamation-for-COVID-19-signed.pdf\">statewide order</a>\u00a0to restrict movement of residents and visitors to help curb the spread of COVID-19.\u00a0</p>&#13;\n<p>Essential systems will be maintained to keep the personnel, facility, and equipment safe. Staff that are able will continue to telework to support our users and communities. With this action, scientific operation at all OIR Lab telescopes has been suspended.</p>&#13;\n<p><strong>Update March 21, 2020:</strong></p>&#13;\n<p><strong>Time Allocation Committee US Semester 2020B</strong></p>&#13;\n<p>Due to the disruption in many people\u2019s work schedules caused by COVID-19, such as many of you having to relocate your work and teaching from the office to home, the NSF\u2019s OIR Lab has extended the deadline for all US Semester 2020B observing proposals by 1 week, from 31 March to 7 April 2020 (at 23:59 MST). Based on the expected workload of processing proposals, the NSF OIR staff will be able to accept the 1-week extension for proposals and still be able to keep to the semester 2020B schedule. The 7 April deadline applies to all OIR Lab Standard and Survey proposals, as well as Gemini LLP proposals.\u00a0If you have any questions, do not hesitate to contact me at\u00a0<a href=\"mailto:vsmith@noao.edu\">vsmith@noao.edu</a>.</p>&#13;\n<p><strong>Update March 20, 2020:</strong></p>&#13;\n<p>We have suspended all scientific operations at the Cerro Tololo Inter-American Observatory (including SOAR, and all tenant facilities), the Gemini South telescope, and the Kitt Peak National Observatory (incl. WIYN, and all tenant facilities). The telescopes and instruments are being shut down safely over the course of this week and only a skeleton crew will remain on the mountains.</p>&#13;\n<p>The Gemini North telescope is closed over the weekend due to bad weather, but the instruments are being kept cold. The Gemini leadership will assess the COVID-19 situation in Hawaii on Sunday and make a decision about reopening on Monday.</p>&#13;\n<p>The Rubin Observatory team is winding down construction activity on Cerro Pach\u00f3n, as described\u00a0<a href=\"https://project.lsst.org/coronavirus-update\">here</a>.</p>&#13;\n<p>We will restrict access to our base facilities as of Monday, 23 March.</p>&#13;\n<p><strong>Update March 18, 2020:</strong></p>&#13;\n<p>In response to the continued COVID-19 outbreak in the US and Chile, we are announcing the following changes at our facilities, effective immediately and until further notice.</p>&#13;\n<p>The Cerro Tololo Inter-American Observatory (including SOAR, and all tenant facilities), the Gemini South telescope and the Kitt Peak National Observatory (incl. WIYN, and all tenant facilities) will be suspending all scientific operations. The telescopes and instruments will be shut down safely over the course of this week and only a skeleton crew will remain on the mountains.\u00a0</p>&#13;\n<p>All sites are closed to visitors; events and all tours and classroom visits have been halted.</p>&#13;\n<p>Scientific operations are continuing at Gemini North with limited day-time summit crews.\u00a0We will not solicit Fast Turnaround Proposals for Gemini for the 31 March deadline.\u00a0</p>&#13;\n<p>We are restricting access to our base facilities. More information will be shared as soon as it is available.</p>&#13;\n<p><strong>Update March 17, 2020:</strong></p>&#13;\n<p>Proposals for Director\u2019s Discretionary time for both Gemini North and South are not being accepted until at least 15 April 2020.\u00a0</p>&#13;\n<p><strong>Update March 16, 2020:</strong></p>&#13;\n<p>The OIR Lab is progressing to a primarily teleworking mode over 16\u201317 March. At the same time, our operations are also transitioning as we prepare the summits to be maintained by skeleton crews.\u00a0</p>&#13;\n<p>We will provide further updates in the coming days.</p>&#13;\n<p><strong>Update March 13, 2020:</strong></p>&#13;\n<p>The Dark Energy Spectroscopic Instrument (DESI) team has suspended their commissioning activities.\u00a0 We are working with the Lawrence Berkeley Lab DESI team to put the instrument into a safe state.\u00a0</p>&#13;\n<p>There are no public visits, tours, public events, media visits and classroom visits in all\u00a0<a href=\"https://nationalastro.org/news1/contacts/\">OIR Lab locations</a>\u00a0until further notice.</p>&#13;\n<p>We have decided to change the US Semester 2020B Time Allocation Committee (TAC) meetings from in-person to virtual. Deadlines and meeting dates will remain the same. Participation will be via a remote connection. No external TAC panelists should travel to Tucson for this meeting, local panelists (except for Tucson-based AURA employees) should also participate remotely, and AURA-staff that are not based in Tucson may travel to Tucson to participate.</p>&#13;\n<p>If you have questions, please do not hesitate to contact Program Head, NSF\u2019s OIR Lab TAC\u00a0<a href=\"mailto:%20vsmith@noao.edu\">Verne V. Smith</a>\u00a0or TAC Coordinator,\u00a0<a href=\"mailto:%20mhartman@noao.edu\">Mia Hartman</a>.</p>&#13;\n<p>The\u00a0<a href=\"http://www.gemini.edu/gsm2020\">Gemini Science Meeting</a>\u00a0scheduled for June 2020 is postponed. All who have paid their registration fee for this meeting will receive a refund. There are plans to reschedule the meeting in Korea next year. Updates for next year\u2019s meeting will be sent to all who registered for this year\u2019s meeting and we invite all others to subscribe to updates at\u00a0<a href=\"http://www.gemini.edu/gsm2020\">http://www.gemini.edu/gsm2020</a>.</p>&#13;\n<p>We ask for the understanding of all those who may be affected by these measures. We are fully committed to putting the wellbeing and safety of people first.</p>&#13;\n<p>Read more on the\u00a0<a href=\"https://www.aura-astronomy.org/news/covid-19-update-on-aura-operations-and-facilities/\">AURA website</a>.</p>",
+      "contacts": "",
+      "links": "",
+      "featured": true,
+      "announcement_type": null,
+      "release_date": "2020-03-25T18:00:13",
+      "embargo_date": null,
+      "published": true,
+      "last_modified": "2020-04-01T00:06:51.714",
+      "created": "2020-03-25T17:59:18.073",
+      "release_task_id": "72d0e85d-9a7e-4877-90e5-6dd4ef7fb662",
+      "embargo_task_id": null,
+      "checksums": null
+    }
+  },
+  {
+    "model": "announcements.announcement",
+    "pk": "10001",
+    "fields": {
+      "lang": "en",
+      "source": null,
+      "translation_ready": false,
+      "title": "Video as main visual",
+      "subtitle": "",
+      "description": "This announcement has a main visual with an existent image that provides extra coverage",
+      "contacts": "",
+      "links": "",
+      "featured": true,
+      "announcement_type": null,
+      "release_date": "2020-03-25T18:00:13",
+      "embargo_date": null,
+      "published": true,
+      "last_modified": "2020-04-01T00:06:51.714",
+      "created": "2020-03-25T17:59:18.073",
+      "release_task_id": "72d0e85d-9a7e-4877-90e5-6dd4ef7fb662",
+      "embargo_task_id": null,
+      "checksums": null
+    }
+  },
+  {
+    "model": "announcements.announcementvideo",
+    "pk": "10000",
+    "fields": {
+      "announcement": "10000",
+      "archive_item": "10000",
+      "main_visual": false
+    }
+  },
+  {
+    "model": "announcements.announcementvideo",
+    "pk": "10001",
+    "fields": {
+      "announcement": "10001",
+      "archive_item": "10000",
+      "main_visual": true
+    }
+  },
+  {
+    "model": "announcements.announcementimage",
+    "pk": "10000",
+    "fields": {
+      "announcement_id": "10000",
+      "archive_item": "10000",
+      "main_visual": true
+    }
+  },
+  {
+    "model": "science.scienceannouncement",
+    "pk": "10000",
+    "fields": {
+      "lang": "en",
+      "source": null,
+      "translation_ready": false,
+      "title": "Test science announcement",
+      "subtitle": "",
+      "description": "<p>Maunakea Observatories issued an open letter intended to share their perspectives about the situation on Maunakea with the broader astronomy community.</p>\r\n<p><a href=\"https://maunakeaobservatories.org/aloha-to-scientific-colleagues/\">Read on Maunakea Observatories website</a></p>",
+      "contacts": "test contacts",
+      "links": "test links",
+      "featured": true,
+      "release_date": "2019-07-22T06:00:00",
+      "embargo_date": null,
+      "published": true,
+      "last_modified": "2020-03-31T22:30:57.937",
+      "created": "2020-03-31T22:30:57.937",
+      "release_task_id": "0f346155-3861-4c23-b9e9-b70cd4df8517",
+      "embargo_task_id": null,
+      "checksums": null
+    }
+  },
+  {
+    "model": "announcements.webupdatetype",
+    "pk": 10000,
+    "fields": {
+      "name": "Regular WebUpdate"
+    }
+  },
+  {
+    "model": "announcements.webupdate",
+    "pk": "10000",
+    "fields": {
+      "title": "Testing WebUpdate",
+      "link": "https://esahubble.org",
+      "description": "<p>A testing WebUpdate.</p>",
+      "type": 10000,
+      "release_date": "2020-03-01T23:55:44",
+      "published": true,
+      "last_modified": "2020-09-30T23:57:05.579",
+      "created": "2020-09-30T23:57:05.579",
+      "release_task_id": null,
+      "embargo_task_id": null,
+      "checksums": null
+    }
+  }
+]

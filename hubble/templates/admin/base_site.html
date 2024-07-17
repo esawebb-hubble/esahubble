@@ -1,0 +1,26 @@
+{% extends "admin/base_site_base.html" %}
+
+{% comment "TODO: Uncomment when satchmo is available" %}
+    {% load satchmo_util %}
+{% endcomment %}
+
+{% load i18n %}
+
+{% block branding %}<h1 id="site-name">{% trans 'ESA/Hubble Djangoplicity administration' %}</h1>{% endblock %}
+
+{% block extrahead_djangoplicity %}
+{% endblock %}
+
+{% block extrastyle_djangoplicity %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL}}/admin/css/base.css" />
+<style>
+#content-related { float:right; width:29em; position:relative; margin-right: -30em;}
+#content-related .module h2 { cursor: default; }
+#content-related .module h2 .status { font-style: italic; }
+div.tabular .vCurrencyField { width: 70%; }
+</style>
+{% endblock %}
+
+{% comment "TODO: Uncomment when satchmo is available" %}
+    {% block extra_admin_links %}| <a href="{% url 'adminshop_site:index' %}">Shop admin</a>{% endblock %}
+{% endcomment %}
