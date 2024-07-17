@@ -3,8 +3,8 @@
   "model": "sites.site",
   "pk": 1,
   "fields": {
-    "domain": "SPACETELESCOPE.encisosystems.com",
-    "name": "SPACETELESCOPE.encisosystems.com"
+    "domain": "HUBBLE.encisosystems.com",
+    "name": "HUBBLE.encisosystems.com"
   }
 },
 {
@@ -944,7 +944,7 @@
   "fields": {
     "name": "Default",
     "template": "pages/page_onecolumn.html",
-    "append_title": "| SPACETELESCOPE"
+    "append_title": "| HUBBLE"
   }
 },
 {

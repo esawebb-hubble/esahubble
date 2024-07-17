@@ -4,7 +4,7 @@ from rest_framework import generics, renderers
 from djangoplicity.media.models import Image
 from djangoplicity.media.options import ImageOptions
 
-from spacetelescope.frontpage.api.serializers import ESASkySerializer
+from hubble.frontpage.api.serializers import ESASkySerializer
 
 
 EXCLUDED_IMAGES = [

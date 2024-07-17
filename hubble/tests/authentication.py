@@ -1,8 +1,7 @@
 from django.test import TestCase, tag, Client
 from django.urls import reverse
 
-from spacetelescope.tests import utils
-
+from hubble.tests import utils
 
 @tag('auth')
 class TestAuthentication(TestCase):

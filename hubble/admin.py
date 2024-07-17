@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010 ESO & ESA/Hubble
 #
 # Authors:
@@ -26,7 +26,7 @@ import djangoplicity.pages.admin
 import djangoplicity.releases.admin
 import djangoplicity.reports.admin
 import djangoplicity.science.admin
-import spacetelescope.frontpage.admin
+import hubble.frontpage.admin
 # Products imports
 from djangoplicity.contrib.admin import DjangoplicityModelAdmin
 from djangoplicity.products2.admin import register_if_installed, ExhibitionGroupAdmin, OnlineArtAuthorAdmin, \
@@ -61,7 +61,7 @@ autoregister( admin_site, djangoplicity.newsletters.admin )
 autoregister( admin_site, djangoplicity.customsearch.admin )
 #autoregister( admin_site, djangoplicity.eventcalendar.admin )
 autoregister( admin_site, djangoplicity.science.admin )
-autoregister( admin_site, spacetelescope.frontpage.admin )
+autoregister( admin_site, hubble.frontpage.admin )
 
 autoregister( adminlogs_site, djangoplicity.actions.admin )
 autoregister( adminlogs_site, djangoplicity.admincomments.admin )

@@ -2,8 +2,7 @@ from django.test import TestCase, tag
 from django.urls import reverse
 from djangoplicity.products.models import Book
 
-from spacetelescope.tests import utils
-
+from hubble.tests import utils
 
 @tag('products')
 class TestProducts(TestCase):
@@ -39,7 +38,7 @@ class TestProducts(TestCase):
     def test_book_not_published(self):
         """
         This test provides coverage for:
-        spacetelescope/templates/403.html
+        hubble/templates/403.html
         """
         url = reverse('books_detail', args=[str(self.not_published_book.id)])
         response = self.client.get(url)

@@ -1,5 +1,5 @@
 /*
-# spacetelescope.org
+# esahubble.org
 # Copyright 2009-2010 ESO, ESA/Hubble, IAU
 #
 # Authors:

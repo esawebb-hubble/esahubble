@@ -1,7 +1,7 @@
 from django.test import TestCase, tag, Client
 from djangoplicity.releases.models import Release
 
-from spacetelescope.tests import utils
+from hubble.tests import utils
 
 
 @tag('releases')

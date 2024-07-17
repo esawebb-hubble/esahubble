@@ -5,7 +5,7 @@ from djangoplicity.media.models import Image
 from djangoplicity.utils.templatetags.djangoplicity_text_utils import remove_html_tags
 from djangoplicity.utils.datetimes import timezone
 
-from spacetelescope.frontpage.api.utils import get_first_subject, get_zoomable_source
+from hubble.frontpage.api.utils import get_first_subject, get_zoomable_source
 
 
 class ESASkySerializer(serializers.ModelSerializer):

@@ -2,7 +2,7 @@ from django.test import TestCase, tag, Client
 from product.models import Category, Product
 from satchmo_store.shop.models import Config
 
-from spacetelescope.tests import utils
+from hubble.tests import utils
 
 
 @tag('shop')

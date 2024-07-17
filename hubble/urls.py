@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010 ESO & ESA/Hubble
 #
 # Authors:
@@ -38,9 +38,9 @@ from djangoplicity.releases.options import ReleaseOptions
 from djangoplicity.science.models import ScienceAnnouncement
 from djangoplicity.science.options import ScienceAnnouncementOptions
 
-from spacetelescope.admin import admin_site, adminlogs_site, adminshop_site
-from spacetelescope.frontpage.api.views.image_views import ESASkyListView
-from spacetelescope.frontpage.views import FrontpageView, d2d
+from hubble.admin import admin_site, adminlogs_site, adminshop_site
+from hubble.frontpage.api.views.image_views import ESASkyListView
+from hubble.frontpage.views import FrontpageView, d2d
 
 
 urlpatterns = []

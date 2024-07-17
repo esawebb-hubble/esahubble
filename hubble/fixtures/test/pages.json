@@ -5,7 +5,7 @@
     "fields": {
       "name": "Default",
       "template": "pages/page_onecolumn.html",
-      "append_title": "| SPACETELESCOPE"
+      "append_title": "| HUBBLE"
     }
   },
   {

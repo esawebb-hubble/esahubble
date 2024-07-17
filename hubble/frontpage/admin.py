@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010-2015 ESO & ESA/Hubble
 #
 # Authors:
@@ -9,7 +9,7 @@
 
 from django.contrib import admin
 
-from spacetelescope.frontpage.models import Highlight
+from hubble.frontpage.models import Highlight
 
 
 class HighlightAdmin(admin.ModelAdmin):

@@ -1,7 +1,7 @@
 from django.test import TestCase, Client, tag
 from djangoplicity.media.models import Video, Image, PictureOfTheWeek, ImageComparison
 
-from spacetelescope.tests import utils
+from hubble.tests import utils
 
 
 @tag('media', 'images')

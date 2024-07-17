@@ -1,7 +1,6 @@
 from django.test import TestCase, Client, tag
 
-from spacetelescope.tests import utils
-
+from hubble.tests import utils
 
 @tag('general')
 class TestGeneralPurpose(TestCase):
@@ -21,4 +20,4 @@ class TestGeneralPurpose(TestCase):
         self.assertIn('URL', json_response)
 
         self.assertEqual('ESA/Hubble', json_response.get('Creator'))
-        self.assertEqual('https://www.spacetelescope.org', json_response.get('URL'))
+        self.assertEqual('https://www.esahubble.org', json_response.get('URL'))

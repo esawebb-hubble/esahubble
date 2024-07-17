@@ -7,8 +7,8 @@ from __future__ import absolute_import
 #   Luis Clara Gomes <lcgomes@eso.org>
 
 from django.test import TestCase, tag
-from spacetelescope.hubblesite.avm import jsonmapper, remove_duplicates, load_json
-from spacetelescope.hubblesite.utils import get_url_content, remove_void
+from hubble.hubblesite.avm import jsonmapper, remove_duplicates, load_json
+from hubble.hubblesite.utils import get_url_content, remove_void
 
 import datetime
 import os

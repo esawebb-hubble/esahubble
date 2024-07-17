@@ -1,8 +1,7 @@
 from django.test import TestCase, tag
 from djangoplicity.newsletters.models import NewsletterType, Newsletter
 
-from spacetelescope.tests import utils
-
+from hubble.tests import utils
 
 @tag('newsletters')
 class TestNewsletters(TestCase):

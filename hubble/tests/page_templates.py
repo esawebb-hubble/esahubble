@@ -1,7 +1,6 @@
 from django.test import TestCase, tag, Client
 
-from spacetelescope.tests import utils
-
+from hubble.tests import utils
 
 @tag('pages')
 class TestPageTemplate(TestCase):

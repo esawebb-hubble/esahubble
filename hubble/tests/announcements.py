@@ -2,7 +2,7 @@ from django.test import TestCase, tag, Client
 from djangoplicity.announcements.models import Announcement, WebUpdate
 from djangoplicity.science.models import ScienceAnnouncement
 
-from spacetelescope.tests import utils
+from hubble.tests import utils
 
 
 @tag('announcements')

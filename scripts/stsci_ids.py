@@ -5,7 +5,7 @@ HEIC vs OPO ids
 Generate Hubblesite OPO ids for all images with a long caption link. Output in CSV format.   
 """
 from __future__ import print_function
-from spacetelescope.hubblesite.utils import stsci_image_id
+from hubble.hubblesite.utils import stsci_image_id
 from djangoplicity.media.models import Image
 
 for im in Image.objects.all():

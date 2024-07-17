@@ -109,7 +109,7 @@
     "pk": "10000",
     "fields": {
       "title": "Testing WebUpdate",
-      "link": "https://spacetelescope.org",
+      "link": "https://esahubble.org",
       "description": "<p>A testing WebUpdate.</p>",
       "type": 10000,
       "release_date": "2020-03-01T23:55:44",
