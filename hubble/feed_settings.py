@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010 ESO & ESA/Hubble
 #
 # Authors:
@@ -17,14 +17,14 @@ class PictureOfTheWeekFeedSettings():
 
 class AnnouncementFeedSettings():
     title = 'Hubble Announcements'
-    link = 'https://www.spacetelescope.org/announcements/'
+    link = 'https://www.esahubble.org/announcements/'
     external_feed_url = "https://feeds.feedburner.com/hubble_announcements/"
 
 
 class VideoPodcastFeedSettings():
-    title = 'Spacetelescope.org Video Feed'
-    link = 'https://www.spacetelescope.org/videos/'
-    description = 'The Latest Videos from Spacetelescope.org'
+    title = 'Esahubble.org Video Feed'
+    link = 'https://www.esahubble.org/videos/'
+    description = 'The Latest Videos from Esahubble.org'
     enclosure_resources = {
             '': ['resource_hd_and_apple', 'resource_hd720p_screen', ],
             'hd': ['resource_hd_and_apple', 'resource_hd720p_screen', ],
@@ -35,14 +35,14 @@ class VideoPodcastFeedSettings():
 
 class ReleaseFeedSettings():
     title = 'Hubble News'
-    link = 'https://www.spacetelescope.org/news/'
+    link = 'https://www.esahubble.org/news/'
     description = "The latest news about astronomy and the NASA/ESA Hubble Space Telescope"
     external_feed_url = 'https://feeds.feedburner.com/hubble_news/'
 
 
 class HubblecastFeedSettings():
     title = 'Hubblecast %s'
-    link = 'https://www.spacetelescope.org/videos/hubblecast/'
+    link = 'https://www.esahubble.org/videos/hubblecast/'
     description = 'The latest news about astronomy, space and the NASA/ESA Hubble Space Telescope presented in High Definition is only for devices that play High Definition video (not iPhone or iPod). To watch the Hubblecast on your iPod and/or iPhone, please download the Standard Definition version also available on iTunes.'
     header_template = 'feeds/hubblecast_header.html'
     external_feed_url = 'https://feeds.feedburner.com/hubblecast/'

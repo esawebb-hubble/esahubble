@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010-2015 ESO & ESA/Hubble
 #
 # Authors:
@@ -18,7 +18,7 @@ from djangoplicity.media.options import ImageOptions, VideoOptions, PictureOfThe
 from djangoplicity.newsletters.models import Newsletter, NewsletterType
 from djangoplicity.releases.models import Release
 
-from spacetelescope.frontpage.models import Highlight
+from hubble.frontpage.models import Highlight
 
 
 class FrontpageView(TemplateView):
@@ -47,7 +47,7 @@ def d2d():
     '''
     return JsonResponse(OrderedDict([
         ('Creator', 'ESA/Hubble'),
-        ('URL', 'https://www.spacetelescope.org'),
+        ('URL', 'https://www.esahubble.org'),
         ('Contact', OrderedDict([
             ('Name', 'Lars Lindberg Christensen'),
             ('Email', 'lars@eso.org'),
@@ -58,18 +58,18 @@ def d2d():
             ('PostalCode', '85748'),
             ('Country', 'Germany'),
         ])),
-        ('Logo', 'https://www.spacetelescope.org/static/archives/logos/medium/esa_screen_blue.jpg'),
+        ('Logo', 'https://www.esahubble.org/static/archives/logos/medium/esa_screen_blue.jpg'),
         ('Feeds', [
             {
                 'Name': 'ESA/Hubble Images',
                 'Description': 'ESA/Hubble Images',
-                'URL': 'https://www.spacetelescope.org/images/d2d/',
+                'URL': 'https://www.esahubble.org/images/d2d/',
                 'Type': 'Images',
             },
             {
                 'Name': 'ESA/Hubble Videos',
                 'Description': 'ESA/Hubble Videos',
-                'URL': 'https://www.spacetelescope.org/videos/d2d/',
+                'URL': 'https://www.esahubble.org/videos/d2d/',
                 'Type': 'Videos',
             },
         ]

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010 ESO & ESA/Hubble
 #
 # Authors:
@@ -34,21 +34,21 @@ import warnings
 warnings.warn( "Use of appsregister have been deprecated. Please use South data migrations instead.", DeprecationWarning )
 
 PAGE_KEYS = {
-              "login": 'spacetelescope.login',
-              "logout": 'spacetelescope.logout',
-              "hubblecast_sidebar": "spacetelescope.hubblecast_sidebar",
-              "access_denied": "spacetelescope.access_denied",
+              "login": 'huble.login',
+              "logout": 'huble.logout',
+              "hubblecast_sidebar": "huble.hubblecast_sidebar",
+              "access_denied": "huble.access_denied",
               "shop_right_column": "djangoplicity.shop_right_column",
               "free_order_form": "djangoplicity.free_order_form",
-              "frontpage_rightcol": "spacetelescope.frontpage_rightcol",
-              "image_archive_top": "spacetelescope.image_archive_top",
+              "frontpage_rightcol": "huble.frontpage_rightcol",
+              "image_archive_top": "huble.image_archive_top",
             }
 
-register_page_key( 'spacetelescope', PAGE_KEYS["login"], _('Login page'), _('Displayed above the login form.') )
-register_page_key( 'spacetelescope', PAGE_KEYS["logout"], _('Logout page'), _('Displayed on the logout page.') )
-register_page_key( 'spacetelescope', PAGE_KEYS["hubblecast_sidebar"], _('Hubblecast Sidebar'), _('Right-column displayed on the hubblecast feature page') )
-register_page_key( 'spacetelescope', PAGE_KEYS["access_denied"], _('Access Denied'), _('Displayed when users are denied access to embargoed/staging resources.') )
-register_page_key( 'spacetelescope', PAGE_KEYS["frontpage_rightcol"], _('Frontpage right column'), _('Displayed above archive picture of the day.') )
-register_page_key( 'spacetelescope', PAGE_KEYS["image_archive_top"], _('Image archive top'), _('Displayed just below the title in image archive list views.') )
+register_page_key( 'huble', PAGE_KEYS["login"], _('Login page'), _('Displayed above the login form.') )
+register_page_key( 'huble', PAGE_KEYS["logout"], _('Logout page'), _('Displayed on the logout page.') )
+register_page_key( 'huble', PAGE_KEYS["hubblecast_sidebar"], _('Hubblecast Sidebar'), _('Right-column displayed on the hubblecast feature page') )
+register_page_key( 'huble', PAGE_KEYS["access_denied"], _('Access Denied'), _('Displayed when users are denied access to embargoed/staging resources.') )
+register_page_key( 'huble', PAGE_KEYS["frontpage_rightcol"], _('Frontpage right column'), _('Displayed above archive picture of the day.') )
+register_page_key( 'huble', PAGE_KEYS["image_archive_top"], _('Image archive top'), _('Displayed just below the title in image archive list views.') )
 register_page_key( 'djangoplicity', PAGE_KEYS["shop_right_column"], _('Shop Right Column'), _('Displayed on shop frontpage in right column.') )
 register_page_key( 'djangoplicity', PAGE_KEYS["free_order_form"], _('Free Order Form'), _('Displayed message on the Free Order form.') )

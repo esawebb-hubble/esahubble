@@ -3,10 +3,10 @@ as original images to convert to sprites, SCSS files that will be converted
 to CSS, etc.
 
 # To generate main CSS file:
-sass --watch  components/scss/hubble.scss:spacetelescope/static/css/hubble.css
+sass --watch  components/scss/hubble.scss:hubble/static/css/hubble.css
 
 # To generate events_embed CSS file:
-sass --watch  components/scss/events_embed.scss:spacetelescope/static/css/events_embed.css
+sass --watch  components/scss/events_embed.scss:hubble/static/css/events_embed.css
 
 # To generate CSS sprites:
-bin/glue components/sprites spacetelescope/static/sprites --url=../sprites/ --recursive --padding=1 --namespace=
+bin/glue components/sprites hubble/static/sprites --url=../sprites/ --recursive --padding=1 --namespace=

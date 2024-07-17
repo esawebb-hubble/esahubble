@@ -58,7 +58,7 @@ services:
     command:
       [
         "celery",
-        "--app=spacetelescope",
+        "--app=hubble",
         "--concurrency=8",
         "--db=/home/hubbleadm/tmp/flowerdb",
         "--persistent",

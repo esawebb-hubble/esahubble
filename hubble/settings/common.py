@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010 ESO & ESA/Hubble
 #
 # Authors:
@@ -30,8 +30,8 @@ from djangoplicity.contentserver import CDN77ContentServer
 SHORT_NAME = 'hubble'
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ARCHIVE_IMPORT_ROOT = '%s/import' % ROOT
-PRJBASE = "%s/spacetelescope" % ROOT
-PRJNAME = 'spacetelescope.org'
+PRJBASE = "%s/hubble" % ROOT
+PRJNAME = 'esahubble.org'
 DJANGOPLICITY_ROOT = "%s/.local/lib/python3.8/site-packages/djangoplicity" % ROOT
 LOG_DIR = "%s/logs" % ROOT
 TMP_DIR = "%s/tmp" % ROOT
@@ -93,8 +93,8 @@ SERVE_STATIC_MEDIA = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'spacetelescope',
-        'USER': 'spacetelescope',
+        'NAME': 'hubble',
+        'USER': 'hubble',
         'PASSWORD': '',
         'HOST': 'localhost',
         'CONN_MAX_AGE': 600,
@@ -120,7 +120,7 @@ LANGUAGES = (
 
 LANGUAGE_CODE = 'en'
 
-FORMAT_MODULE_PATH = 'spacetelescope.formats'
+FORMAT_MODULE_PATH = 'hubble.formats'
 
 SITE_ID = 1
 
@@ -212,7 +212,7 @@ TEMPLATES = [
     },
 ]
 
-ROOT_URLCONF = 'spacetelescope.urls'
+ROOT_URLCONF = 'hubble.urls'
 
 ###############################
 # MIDDLEWARE AND APPLICATIONS #
@@ -333,12 +333,12 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
 ]
 
-SPACETELESCOPE_APPS = [
-    'spacetelescope',
-    'spacetelescope.frontpage',
+HUBBLE_APPS = [
+    'hubble',
+    'hubble.frontpage',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + DJANGOPLICITY_APPS + SPACETELESCOPE_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = DJANGO_APPS + DJANGOPLICITY_APPS + HUBBLE_APPS + THIRD_PARTY_APPS
 
 if USE_I18N:
     INSTALLED_APPS += [
@@ -371,7 +371,7 @@ SERVER_EMAIL = 'nobody@esahubble.org'
 DEFAULT_FROM_EMAIL = 'nobody@esahubble.org'
 DEFAULT_MAIL_USER = [HUBBLE_DEFAULT_EMAIL]
 DEFAULT_MAIL_TAGGING = ['zidmani@gmail.com']
-EMAIL_SUBJECT_PREFIX = '[SPACETELESCOPE-LOCAL]'
+EMAIL_SUBJECT_PREFIX = '[HUBBLE-LOCAL]'
 
 ##################
 # AUTHENTICATION #
@@ -491,12 +491,12 @@ MP4BOX_PATH = '/usr/bin/MP4Box'
 MP4FRAGMENT_PATH = '/opt/bin/mp4fragment'
 
 ARCHIVE_WORKFLOWS = {
-    'media.video.rename': ('spacetelescope.workflows.media', 'video_rename'),
+    'media.video.rename': ('hubble.workflows.media', 'video_rename'),
 }
 
 VIDEO_RENAME_NOTIFY = [HUBBLE_DEFAULT_EMAIL, 'hubbleesa@gmail.com']
 
-ARCHIVE_CROSSLINKS = djangoplicity.crosslinks.crosslinks_for_domain('spacetelescope.org')
+ARCHIVE_CROSSLINKS = djangoplicity.crosslinks.crosslinks_for_domain('esahubble.org')
 
 
 # CONTACTS APP
@@ -524,7 +524,7 @@ SOCIAL_FACEBOOK_WALL = 'https://www.facebook.com/hubbleESA?sk=wall'
 #########
 # FEEDS #
 #########
-FEED_SETTINGS_MODULE = 'spacetelescope.feed_settings'
+FEED_SETTINGS_MODULE = 'hubble.feed_settings'
 
 ############
 # REPORTS  #
@@ -696,7 +696,7 @@ SATCHMO_SETTINGS = {
 }
 
 SITE_NAME = "Hubbleshop"
-SITE_DOMAIN = "www.spacetelescope.org"
+SITE_DOMAIN = "www.esahubble.org"
 LOGDIR = LOG_DIR
 LOGFILE = 'satchmo.log'
 CHECKOUT_SSL = True
@@ -749,7 +749,7 @@ LIVESETTINGS_OPTIONS = {
                 u'REQUIRED_BILLING_DATA': u'["email", "first_name", "last_name", "phone", "street1", "city", "postal_code", "country"]',
                 u'ENFORCE_STATE': u'False',
                 u'SHOW_SITE': u'False',
-                u'LOGO_URI': u'https://www.spacetelescope.org/static/archives/logos/screen/eso_colour.jpg',
+                u'LOGO_URI': u'https://www.esahubble.org/static/archives/logos/screen/eso_colour.jpg',
             },
             u'PAYMENT_CONCARDIS': {
                 u'PSPID': u'',

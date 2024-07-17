@@ -13,7 +13,7 @@ x-common: &common
     - ./volumes/import:/home/hubbleadm/import
     - ./volumes/media:/home/hubbleadm/media
     - ./volumes/shared:/home/hubbleadm/shared
-    - ./spacetelescope:/home/hubbleadm/spacetelescope
+    - ./hubble:/home/hubbleadm/hubble
     - ./local:/home/hubbleadm/local
     - ./htmlcov:/home/hubbleadm/htmlcov
     - ./docs/static:/home/hubbleadm/docs/static

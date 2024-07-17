@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spacetelescope.org
+# esahubble.org
 # Copyright 2010 ESO & ESA/Hubble
 #
 # Authors:
@@ -11,7 +11,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'spacetelescope',
+    name = 'hubble',
     packages = find_packages('src'),
     package_dir = { '': 'src' },
     include_package_data = True,

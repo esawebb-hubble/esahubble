@@ -1,6 +1,6 @@
 # ESA Hubble
 
-Djangoplicity CMS for the ESA Hubble Project (https://www.spacetelescope.org/)
+Djangoplicity CMS for the ESA Hubble Project (https://www.esahubble.org/)
 
 ## Requirements
 
