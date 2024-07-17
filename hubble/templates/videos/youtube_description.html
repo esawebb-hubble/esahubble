@@ -1,0 +1,14 @@
+{% load djangoplicity_text_utils %}{% if video.headline %}{{ video.headline }}{% endif %}
+{% if video.description %}
+{{ video.description|html2textnolinks|truncatechars:4000 }}
+{% endif %}
+More information and download options: http://{{ domain }}{{ video.get_absolute_url }}
+{% for category in video.web_category.all %}{% if category.name == 'Hubblecast' %}
+Subscribe to Hubblecast in iTunes! https://itunes.apple.com/gb/podcast/hubblecast-hd/id258935617
+
+Receive future episodes on YouTube by pressing the Subscribe button above or follow us on Vimeo: https://vimeo.com/hubbleesa
+
+Watch more Hubblecavideo.web_category.allst episodes: https://www.esahubble.org/videos/archive/category/hubblecast/
+{% endif %}{% endfor %}
+{% if video.credit %}Credit:
+{{ video.credit|html2textnolinks }}{% endif %}

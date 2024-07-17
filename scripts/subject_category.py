@@ -10,7 +10,7 @@ from __future__ import print_function
 #   Dirk Neumayer <dirk.neumayer@gmail.com>
 #
 #
-# Mantis ESO 3065, now for spacetelescope
+# Mantis ESO 3065, now for esahubble
 #
 # Tag all images with subject category and remove temporary taxonomy items.
 # 2011 Apr 18

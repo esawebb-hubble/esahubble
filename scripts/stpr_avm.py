@@ -12,7 +12,7 @@
 #*************************************************************************************************************
 from __future__ import print_function
 from builtins import chr
-from spacetelescope.hubblesite import avm
+from hubble.hubblesite import avm
 import os, sys
 
 def prepare4unicode():

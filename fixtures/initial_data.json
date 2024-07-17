@@ -3,8 +3,8 @@
         "pk": 1, 
         "model": "sites.site", 
         "fields": {
-            "domain": "www.spacetelescope.org", 
-            "name": "www.spacetelescope.org"
+            "domain": "www.esahubble.org",
+            "name": "www.esahubble.org"
         }
     }
 ]

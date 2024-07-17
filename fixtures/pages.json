@@ -5,7 +5,7 @@
         "fields": {
             "name": "Default", 
             "template": "pages/page_onecolumn.html", 
-            "append_title": "spacetelescope.org"
+            "append_title": "esahubble.org"
         }
     }, 
     {
@@ -53,10 +53,10 @@
         }
     }, 
     {
-        "pk": "spacetelescope.login", 
+        "pk": "hubble.login",
         "model": "pages.embeddedpagekey", 
         "fields": {
-            "application": "spacetelescope", 
+            "application": "hubble",
             "page": null, 
             "description": "Displayed above the login form.", 
             "last_modified": "2010-04-16 20:23:47", 
@@ -64,10 +64,10 @@
         }
     },
     {
-        "pk": "spacetelescope.logout", 
+        "pk": "hubble.logout",
         "model": "pages.embeddedpagekey", 
         "fields": {
-            "application": "spacetelescope", 
+            "application": "hubble",
             "page": null, 
             "description": "Displayed on the logout page.", 
             "last_modified": "2010-04-16 20:23:47", 
@@ -75,10 +75,10 @@
         }
     }, 
     {
-        "pk": "spacetelescope.access_denied", 
+        "pk": "hubble.access_denied",
         "model": "pages.embeddedpagekey", 
         "fields": {
-            "application": "spacetelescope", 
+            "application": "hubble",
             "page": null, 
             "description": "Displayed when users are denied access to embargoed/staging resources.", 
             "last_modified": "2010-04-16 20:23:47", 
@@ -86,10 +86,10 @@
         }
     }, 
     {
-        "pk": "spacetelescope.shop_right_column", 
+        "pk": "hubble.shop_right_column",
         "model": "pages.embeddedpagekey", 
         "fields": {
-            "application": "spacetelescope", 
+            "application": "hubble",
             "page": 1, 
             "description": "Displayed on shop frontpage in right column.", 
             "last_modified": "2010-04-16 20:23:59", 

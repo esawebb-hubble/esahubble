@@ -1,0 +1,59 @@
+{% load i18n %}
+{% comment %} <div style="font-family: Arial, Helvetica, sans-serif; text-align:center;font-size:15px;color:white; padding-bottom:10px;"><a style="font-size:15px;color:black;" href="https://www.esahubble.org/forscientists/announcements/sci16008/"><strong>How to advertise your Hubble results</strong></a></div> {% endcomment %}
+<!-- // Begin Template Footer \\ -->
+<table id="templateFooter" style="background-color: #FFFFFF;border-top: 0; border-collapse: collapse; width: {% include "newsletters/includes/width.html" %}px" aria-describedby="Newsletter Footer">
+    <tr>
+        <th style="display: none;" scope="col">Newsletter header</th>
+        <td style="vertical-align: top;" class="footerContent">
+            <!-- // Begin Module: Standard Footer \\ -->
+            <table style="width: 100%; border-collapse: collapse;" aria-describedby="Newsletter Footer">
+                <tr>
+                    <th style="display: none;" scope="col">Newsletter header</th>
+                    <td colspan="3" style="background-color:#292929; height: 5px;"></td>
+                </tr>
+                <tr>
+                    <td style="background-color:#292929; width: 20px;">&nbsp;</td>
+                    <td style="background-color:#292929; vertical-align: top; width: {{width}}px">
+                        <div style="color: #707070;font-family: Arial, Helvetica, sans-serif; font-size: 10px;line-height: 125%;text-align: center;background-color:#292929; padding: 5px 0px 0px;">
+                            {% if footer_potws %}
+                            {% for obj in footer_potws %}{% if obj.image %}
+                            <a href="{{base_url}}{{obj.image.get_absolute_url}}"><img style="border:0;margin:2px;" src="{{base_url}}{{obj.image.resource_wallpaperthumbs.url}}" alt="{{obj.image.title}}"></img></a>&nbsp;
+                            {% endif %}{% if obj.comparison %}
+                            <a href="{{base_url}}{{obj.comparison.get_absolute_url}}"><img style="border:0;margin:2px;" src="{{base_url}}{{obj.comparison.resource_wallpaperthumbs.url}}" alt="{{obj.comparison.title}}"></img></a>&nbsp;{% endif %}
+                            {% endfor %}
+                            <div style="font-size:15px;color:white; padding-top: 5px;">
+                                <a href="{{potw_feed_url}}" style="color:white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16"><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></a>&nbsp;
+                                <a style="font-size:15px;color:white;text-decoration:none;" href="https://esawebb.org/images/potm/">{{ "ESA/Hubble" }} {% trans "Pictures of the Week" %}</a>
+                            <hr style="color: #bbbbbb; background-color: #bbbbbb; border: 0; height: 1px;" />
+                            </div>
+                            <div style="text-align: center">
+                                <a href="https://esawebb.org/images/potm2404a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2404a.jpg" style="width: 122px; height: 92px;" alt="potm2404a"></a>&nbsp;
+                                <a href="https://esawebb.org/images/potm2403a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2403a.jpg" style="width: 122px; height: 92px;" alt="potm2403a"></a>&nbsp;
+                                <a href="https://esawebb.org/images/potm2402a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2402a.jpg" style="width: 122px; height: 92px;" alt="potm2402a"></a>&nbsp;
+                                <a href="https://esawebb.org/images/potm2401a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2401a.jpg" style="width: 122px; height: 92px;" alt="potm2401a"></a>&nbsp;
+                                <a href="https://esawebb.org/images/potm2312a/"><img src="https://cdn.esawebb.org/archives/images/thumb350x/potm2312a.jpg" style="width: 122px; height: 92px;" alt="potm2312a"></a>&nbsp;
+                            </div>
+
+                            <div style="font-size:15px;color:white; padding-top: 5px;">
+                                <a href="{{potw_feed_url}}" style="color:white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16"><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></a>&nbsp;
+                                <a style="font-size:15px;color:white;text-decoration:none;" href="https://esawebb.org/images/potm/">{{ "ESA/Webb" }} {% trans "Pictures of the Month" %}</a>
+                            <hr style="color: #bbbbbb; background-color: #bbbbbb; border: 0; height: 1px;" />
+                            </div>
+                            {% endif %}
+                            <div style="text-align:left;padding-top:5px;color:white; background-color:#292929;">
+                            {% if footer_note %}<p style="font-size: 11px;">{% trans footer_note %}</p>{% endif%}
+                            {% include "newsletters/includes/preferences_bottom.html" %}
+                            {% include "newsletters/includes/footer_followus.html" %}
+                            <p style="font-size: 11px; text-align:center; margin-bottom: 0;">{% if address %}{{ address }}{% else %}ESA/Hubble, ESA Office, Space Telescope Science Institute, 3700 San Martin Dr, D-21218 Baltimore, United States"{% endif %}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="background-color:#292929; width: 20px;">&nbsp;</td>
+                </tr>
+                <tr><td colspan="3" style="background-color:#292929; height: 10px;">&nbsp;</td></tr>
+            </table>
+            <!-- // End Module: Standard Footer \\ -->
+        </td>
+    </tr>
+</table>
+<!-- // End Template Footer \\ -->
