@@ -7,7 +7,7 @@ x-hubble-image: &hubble-image hubble:0.9
 
 services:
   nginx:
-    image: nginx:1.17
+    image: nginx:latest
     container_name: hubble-nginx
     environment:
       INTERNAL_IPS: ${INTERNAL_IPS}
