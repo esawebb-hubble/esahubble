@@ -47,7 +47,7 @@ services:
 
   certbot:
     image: certbot/certbot:latest
-    container_name: webb-certbot
+    container_name: hubble-certbot
     volumes:
       - ./config/certbot/conf:/etc/letsencrypt:rw
       - ./config/certbot/www:/var/www/certbot:rw
