@@ -39,19 +39,20 @@ services:
       - ./config/nginx-prod/conf.d:/etc/nginx/conf.d:ro
       - ./config/nginx-common/snippets:/etc/nginx/snippets:ro
       - /mnt/volume_fra1_01/web/media:/home/hubbleadm/media:ro
-      - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
+      - ./config/certbot/www:/var/www/certbot/:ro
+      - ./config/certbot/conf/:/etc/nginx/ssl/:ro
     ports:
       - "80:80"
       - "443:443"
 
   certbot:
     image: certbot/certbot:latest
-    container_name: hubble-certbot
+    container_name: webb-certbot
     volumes:
-      - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $!; certbot renew; done'"
+      - ./config/certbot/conf:/etc/letsencrypt:rw
+      - ./config/certbot/www:/var/www/certbot:rw
+    command:
+      certonly --webroot -w /var/www/certbot --force-renewal --email web@esahubble.org -d esahubble.org -d www.esahubble.org -d spacetelescope.org -d www.spacetelescope.org --agree-tos
 
   web:
     <<: *common
