@@ -52,7 +52,7 @@ services:
       - ./config/certbot/conf:/etc/letsencrypt:rw
       - ./config/certbot/www:/var/www/certbot:rw
     command:
-      certonly --webroot -w /var/www/certbot --force-renewal --email web@esahubble.org -d esahubble.org -d www.esahubble.org -d spacetelescope.org -d www.spacetelescope.org --agree-tos
+      certonly --webroot -w /var/www/certbot --force-renewal --email web@esahubble.org -d esahubble.org --agree-tos
 
   web:
     <<: *common
