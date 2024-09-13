@@ -562,7 +562,7 @@ CELERY_BROKER_USE_SSL = False
 CELERY_BROKER_URL = ''
 
 # Task result backend
-CELERY_RESULT_BACKEND = "amqp"
+CELERY_RESULT_BACKEND = 'rpc://'
 
 # AMQP backend settings
 CELERY_RESULT_SERIALIZER = "json"
