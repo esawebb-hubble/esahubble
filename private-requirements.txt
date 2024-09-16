@@ -4,3 +4,4 @@ git+https://github.com/djangoplicity/djangoplicity-customsearch.git@release/pyth
 git+https://github.com/djangoplicity/djangoplicity-newsletters.git@newsletters-esahubble
 git+https://github.com/djangoplicity/djangoplicity-products2@Feature/video-conference-background-product
 git+https://github.com/djangoplicity/djangoplicity@djangoplicity-esahubble
+git+https://github.com/djangoplicity/djangoplicity-contacts@contacts-esahubble
