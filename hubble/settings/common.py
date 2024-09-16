@@ -317,7 +317,7 @@ DJANGOPLICITY_APPS = [
     'djangoplicity.simplearchives',
     'djangoplicity.actions',
     'djangoplicity.cutter',
-
+    'djangoplicity.contacts',
 ]
 
 THIRD_PARTY_APPS = [

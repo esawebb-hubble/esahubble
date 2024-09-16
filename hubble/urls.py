@@ -37,6 +37,7 @@ from djangoplicity.releases.models import Release
 from djangoplicity.releases.options import ReleaseOptions
 from djangoplicity.science.models import ScienceAnnouncement
 from djangoplicity.science.options import ScienceAnnouncementOptions
+from djangoplicity.contacts.views import GroupSubscribe
 
 from hubble.admin import admin_site, adminlogs_site, adminshop_site
 from hubble.frontpage.api.views.image_views import ESASkyListView
@@ -113,6 +114,9 @@ urlpatterns += [
 
     url( r'^projects/fits_liberator/fitsimages/', include('djangoplicity.products2.urls.fitsimages'), { 'model': FITSImage, 'options': FITSImageOptions } ),
 
+    # Public contacts edit
+    # TODO: Check if these contacts URLs are required
+    url( r'^contacts/', include('djangoplicity.contacts.urls') ),
 
     url( r'^rss/feed.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubble_news/') ),
     url( r'^rss/vodcast.xml$', RedirectView.as_view(url='https://feeds.feedburner.com/hubblecast_sd/') ),
