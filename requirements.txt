@@ -15,7 +15,7 @@ django-auth-ldap==1.7.0
 django-extensions==3.0.0
 
 # Asset packaging library for Django
-django-pipeline==1.6.14
+django-pipeline==2.1.0
 
 django-debug-toolbar==1.11
 
