@@ -20,10 +20,6 @@ from celery.schedules import crontab
 # load the settings resulting in a ImproperlyConfigured error
 ugettext = lambda s: s
 
-
-import djangoplicity.crosslinks
-from djangoplicity.contentserver import CDN77ContentServer
-
 #############################
 # ENVIRONMENT CONFIGURATION #
 #############################
@@ -495,8 +491,6 @@ ARCHIVE_WORKFLOWS = {
 }
 
 VIDEO_RENAME_NOTIFY = [HUBBLE_DEFAULT_EMAIL, 'hubbleesa@gmail.com']
-
-ARCHIVE_CROSSLINKS = djangoplicity.crosslinks.crosslinks_for_domain('esahubble.org')
 
 
 # CONTACTS APP
