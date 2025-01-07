@@ -2,6 +2,7 @@ from .common import *
 from .partials.util import get_secret
 import copy
 import dj_database_url
+from djangoplicity.contentserver import CDN77ContentServer
 
 DEBUG = False
 SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
