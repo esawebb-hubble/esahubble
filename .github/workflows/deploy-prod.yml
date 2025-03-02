@@ -22,7 +22,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no root@138.68.69.82 << 'EOF'
           echo 'SSH connection successful'
-          cd /home/hubbleadm/esawebb/
+          cd /home/hubbleadm/esahubble/
           git pull
           make prod-stop
           make prod-up-build

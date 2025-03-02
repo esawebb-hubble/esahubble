@@ -37,21 +37,36 @@
     {% endif %}
 {% endblock %}
 
-{% block sidebar %}
+{% block fullsidebar %}
     {% if data.potws %}
-    {% if enable_sharing %}<br /><hr style="{{hr_style}}"><br />{% endif %}
-    {% with potws=data.potws feed_url="http://feeds.feedburner.com/hubble_potw/" %}
-        {% include "newsletters/includes/right_potws.html" %}
-    {% endwith %}
+        <!-- // Begin Sidebar \\ -->
+        <td valign="top" width="192" id="templateSidebar" style="background-color: #FFFFFF;">
+            <table border="0" cellpadding="10" cellspacing="0" width="192" >
+                <tr >
+                    <td valign="top" class="sidebarContent" style="background-image: url({{base_url}}{{STATIC_PREFIX}}newsletters/tile.png); background-repeat: repeat-x; color: #505050; font-family: Helvetica, Arial; font-size: 12px; line-height: 130%; text-align: left;">
+                        {% with a_style="color: #285A97;font-size: 12px;font-family: Helvetica, Arial;" hr_style="height:1px;border:0;border-bottom:1px solid #DEDEDE;" h2_style="color: #285A97;display: block;font-family: Helvetica, Arial;font-size: 15px;font-weight: bold;line-height: 130%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: left;" %}
+                            {% if data.potws %}
+                            {% if enable_sharing %}<br /><hr style="{{hr_style}}"><br />{% endif %}
+                            {% with potws=data.potws feed_url="http://feeds.feedburner.com/hubble_potw/" %}
+                                {% include "newsletters/includes/right_potws.html" %}
+                            {% endwith %}
+                            {% endif %}
+                        
+                            {% if data.newonhubble %}
+                            {% if data.potws %}<br /><hr style="{{hr_style}}"><br />{% endif %}
+                            {% with newon=data.newonhubble newon_title="esahubble.org" %}
+                                {% include "newsletters/includes/right_newon.html" %}
+                            {% endwith %}
+                            {% endif %}
+                        {% endwith %}
+                        <!-- // End Module: Top Image with Content \\ -->
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <!-- // End Sidebar \\ -->
     {% endif %}
-
-    {% if data.newonhubble %}
-    {% if data.potws %}<br /><hr style="{{hr_style}}"><br />{% endif %}
-    {% with newon=data.newonhubble newon_title="esahubble.org" %}
-        {% include "newsletters/includes/right_newon.html" %}
-    {% endwith %}
-    {% endif %}
-{% endblock %}
+{% endblock fullsidebar%}
 
 {% block footer %}
     {% with followus="yes" org="ESA/Hubble" potw_feed_url="http://feeds.feedburner.com/hubble_potw/" reason="you subscribed to ESA/Hubble News." footer_potws=data.footer_potws address="ESA/Hubble, ESA Office, Space Telescope Science Institute, 3700 San Martin Dr, D-21218 Baltimore, United States" %}
