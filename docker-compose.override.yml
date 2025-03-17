@@ -66,7 +66,7 @@ services:
     hostname: cache
 
   db:
-    image: postgres:10.5
+    image: postgres:16
     container_name: hubble-db
     restart: "no"
     environment:
