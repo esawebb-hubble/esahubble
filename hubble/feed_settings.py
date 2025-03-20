@@ -30,7 +30,7 @@ class PictureOfTheWeekFeedSettings():
 
 class Top100FeedSettings():
     title = 'ESAHubble Top 100 Images'
-    link = 'https://esahubble.org/images/archive/top100'
+    link = 'https://esahubble.org/images/feed/top100/'
     description = """The ESAHubble Top 100 Images feed showcases the most popular and iconic images captured by the NASA/ESA/CSA James Webb Space Telescope.
     Explore stunning visuals of distant galaxies, star-forming regions, and cosmic phenomena, accompanied by detailed descriptions and insights into the latest astronomical discoveries."""
     external_feed_url = 'https://feeds.feedburner.com/esahubble/images/top100/'
