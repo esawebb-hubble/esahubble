@@ -24,7 +24,7 @@ class PictureOfTheWeekFeedSettings():
 
 class Top100FeedSettings():
     title = 'ESAHubble Top 100 Images'
-    link = 'https://esahubble.org/images/archive/top100'
+    link = 'https://esahubble.org/images/feed/top100/'
     external_feed_url = 'https://feeds.feedburner.com/esahubble/images/top100/'
 
 
