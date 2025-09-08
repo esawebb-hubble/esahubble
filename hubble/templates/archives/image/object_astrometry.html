@@ -66,7 +66,7 @@
         {% endwith %}
 
         <!--Aladin section-->
-        {% if object.type == 'Observation' and object.spatial_quality == 'Full' %}
+        {% if object.type == 'Observation' and object.spatial_quality == 'Full' and object.contains_coordinate_metadata %}
            {% include 'archives/image/aladin_lite.html' %}
             <hr>
         {% endif %}
