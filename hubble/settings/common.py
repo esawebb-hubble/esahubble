@@ -437,7 +437,7 @@ ARCHIVES = (
     ('djangoplicity.newsletters.models.Newsletter', 'djangoplicity.newsletters.options.NewsletterOptions'),
 )
 
-ARCHIVE_EMBARGO_LOGIN = ('hst', 'shtenvix')
+ARCHIVE_EMBARGO_LOGIN = ('stageheic', 'esahubble-stageheic2026confidential')
 ARCHIVE_EMAIL_SENDER = "ESA/Hubble Information Centre <info@esahubble.org>"
 
 ARCHIVE_URL_QUERY_PREFIX = 'archive'
