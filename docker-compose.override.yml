@@ -23,6 +23,7 @@ x-common: &common
     - ./.coveragerc-parallel:/home/hubbleadm/.coveragerc-parallel
     - ./setup.py:/home/hubbleadm/setup.py
     - ./scripts:/home/hubbleadm/scripts
+    - ./local/djangoplicity/djangoplicity/media:/home/webbadm/.local/lib/python3.8/site-packages/djangoplicity/media
 
 services:
   nginx:
