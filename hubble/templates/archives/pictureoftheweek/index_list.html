@@ -21,7 +21,7 @@
                     {% endif %}
                 </div>
                 <div class="news-description">
-                    <div class="news-id">{{ potw.id }} — {% trans "Picture of the Week" %}</div>
+                    <div class="news-id"> {{ obj.id }} — {% if options.urlname_prefix == "potm" %} {% trans "Picture of the Month" %} {% else %} {% trans "Picture of the Week" %} {% endif %} </div>
                     {% if potw.image %}
                         <div class="news-title">{{ potw.image.title }}</div>
                     {% elif potw.video %}
