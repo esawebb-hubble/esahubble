@@ -20,7 +20,7 @@ import djangoplicity.views
 from djangoplicity.announcements.models import Announcement, WebUpdate
 from djangoplicity.announcements.options import AnnouncementOptions, WebUpdateOptions
 from djangoplicity.media.models import Image, Video, PictureOfTheWeek, ImageComparison
-from djangoplicity.media.options import ImageOptions, VideoOptions, PictureOfTheWeekOptions, ImageComparisonOptions
+from djangoplicity.media.options import ImageOptions, VideoOptions, PictureOfTheWeekOptions, PictureOfTheMonthOptions, ImageComparisonOptions
 from djangoplicity.menus.views import sitemap
 from djangoplicity.newsletters.models import Newsletter
 from djangoplicity.newsletters.options import NewsletterOptions
@@ -77,6 +77,7 @@ urlpatterns += [
 
     # Media Archive
     url( r'^images/potw/', include('djangoplicity.media.urls_potw'), { 'model': PictureOfTheWeek, 'options': PictureOfTheWeekOptions } ),
+    url(r'^images/potm/', include('djangoplicity.media.urls_potm'),  {'model': PictureOfTheWeek, 'options': PictureOfTheMonthOptions}),
     url( r'^images/comparisons/', include('djangoplicity.media.urls_imagecomparisons'), { 'model': ImageComparison, 'options': ImageComparisonOptions } ),
     url( r'^images/', include('djangoplicity.media.urls_images'), { 'model': Image, 'options': ImageOptions } ),
     url( r'^news/', include('djangoplicity.releases.urls'), { 'model': Release, 'options': ReleaseOptions } ),
