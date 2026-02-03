@@ -80,23 +80,23 @@
 
 <div class="row frontpage-section middle-section">
     <div class="col-md-8">
-        {% if potws %}
+        {% if potms %}
         <div id="potw-carousel-wrapper">
             <div class="section-header">
                 <div class="section-title">
-                    <a href="{% url 'potw_defaultquery' %}">{% trans "Picture of the Week" %}</a>
+                    <a href="{% url 'potm_defaultquery' %}">{% trans "Picture of the Month" %}</a>
                 </div>
                 <div class="section-navigation">
                 </div>
             </div>
             <div id="potw-carousel">
-                {% for potw in potws %}
+                {% for potm in potms %}
                 <div class="slide">
-                    <a href="{{ potw.get_absolute_url }}">
-                        <img draggable="false" src="{{ potw.visual.resource_screen640.url }}" data-lazy="{{ potw.visual.resource_screen640.url }}" class="img-responsive" alt="{{ potw.visual.title }}">
+                    <a href="{{ potm.get_absolute_url }}">
+                        <img draggable="false" src="{{ potm.visual.resource_screen640.url }}" data-lazy="{{ potm.visual.resource_screen640.url }}" class="img-responsive" alt="{{ potm.visual.title }}">
                         <div class="potw-description">
-                            <div class="date">{{ potw.release_date|datetime:"DATE" }} — {{ potw.id }}</div>
-                            <div class="title">{{ potw.visual.title }}</div>
+                            <div class="date">{{ potm.release_date|datetime:"DATE" }} — {{ potm.id }}</div>
+                            <div class="title">{{ potm.visual.title }}</div>
                         </div>
                     </a>
                 </div> <!-- slide -->
