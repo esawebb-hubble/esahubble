@@ -16,11 +16,11 @@
                     <img class="img-responsive" src="{{ ann.main_visual.resource_thumb350x.url }}" alt="ann.main_visual.title">
                 </div>
                 {% endif %}
-                <div class="news-description">
+                <article class="news-description">
                     <div class="news-id">{{ ann.id }} — {% trans "Announcement" %}</div>
                     <div class="news-title">{{ ann.title }}</div>
                     <div class="news-teaser"><strong>{{ ann.release_date|datetime:"DATE" }}</strong>: {{ ann.description|safe|striptags|truncatewords:150 }}</div>
-                </div>
+                </article>
                 <div class="news-readmore">{% trans "Read more" %}</div>
             </div> <!-- news-wrapper -->
         </a>

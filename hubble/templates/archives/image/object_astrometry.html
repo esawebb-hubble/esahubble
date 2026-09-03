@@ -36,7 +36,7 @@
             compass_src = "{% static 'djangoplicity/images/widgets/compassm.png' %}";
             spatial_rotation = {{ object.spatial_rotation }};
             </script>
-            <canvas id="compass_canvas" width="240" height="140"></canvas>
+            <canvas id="compass_canvas" width="240" height="140" role="img" aria-label="Compass graphic indicating image orientation. North is {{ object.get_spatial_rotation_verbose|safe }}."></canvas>
         {% endif %}
 
         <!--ESASky section-->

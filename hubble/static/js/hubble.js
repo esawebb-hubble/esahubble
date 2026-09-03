@@ -17,6 +17,48 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
+    // ---------------------------------------------------------
+    // KEYBOARD ACCESSIBILITY (JAWS / Tab Navigation)
+    // ---------------------------------------------------------
+
+    $('.mainmenu-aim li, .submenu-aim li').on('focusin', function() {
+        let $row = $(this);
+        $row.addClass('hover');
+        $row.find('> a').attr('aria-expanded', 'true');
+        $row.children('.sublevel, .level1').css('display', 'block');
+
+        if ($row.parent().hasClass('submenu-aim')) {
+            $row.closest('.level1').css('overflow', 'visible');
+        }
+
+    }).on('focusout', function(e) {
+        let $row = $(this);
+
+        setTimeout(function() {
+
+            if (!$row.has(document.activeElement).length) {
+                $row.removeClass('hover');
+                $row.find('> a').attr('aria-expanded', 'false');
+                $row.children('.sublevel, .level1').css('display', '');
+
+                if ($row.parent().hasClass('submenu-aim')) {
+                    $row.closest('.level1').css('overflow', 'hidden');
+                }
+            }
+        }, 10);
+    });
+
+    // ---------------------------------------------------------
+    // ACCESSIBILITY FOR THE MOBILE MENU
+    // ---------------------------------------------------------
+    $('.menu-trigger, .mobile-children').on('keydown', function(e) {
+
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            $(this).click();
+        }
+    });
+
 	let hoverDelay = 300;
 	let hoverInID;
 	let hoverOutID;

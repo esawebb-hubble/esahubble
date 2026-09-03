@@ -25,9 +25,9 @@
         <div class="slide">
             <a href="{{ release.get_absolute_url }}">
             {% if release.main_image.resource_banner1920 %}
-                <img draggable="false" src="{{ release.main_image.resource_banner1920.url }}" data-lazy="{{ release.main_image.resource_banner1920.url }}" alt="{{ release.main_image.title }}">
+                <img draggable="false" src="{{ release.main_image.resource_banner1920.url }}" data-lazy="{{ release.main_image.resource_banner1920.url }}" alt="">
             {% else %}
-                <img draggable="false" src="{{ release.main_image.resource_wallpaper3.url }}" data-lazy="{{ release.main_image.resource_wallpaper3.url }}" alt="{{ release.main_image.title }}">
+                <img draggable="false" src="{{ release.main_image.resource_wallpaper3.url }}" data-lazy="{{ release.main_image.resource_wallpaper3.url }}" alt="">
             {% endif %}
             <div class="pr-content">
                 <div class="pr-description">
@@ -67,7 +67,7 @@
                             <div class="title">{{ announcement.title }}</div>
                             <div class="date">{{ announcement.release_date|date:"j N Y" }} — {{ announcement.id }}</div>
                         </div>
-                        <img draggable="false" src="{{ announcement.main_visual.resource_thumb350x.url }}" data-lazy="{{ announcement.main_visual.resource_thumb350x.url }}" alt="{{ announcement.main_visual.title }}">
+                        <img class="img-responsive" draggable="false" src="{{ announcement.main_visual.resource_thumb350x.url }}" data-lazy="{{ announcement.main_visual.resource_thumb350x.url }}" alt="">
                         <div class="readmore"></div>
                     </a>
                 </div> <!-- slide -->
@@ -93,7 +93,7 @@
                 {% for potm in potms %}
                 <div class="slide">
                     <a href="{{ potm.get_absolute_url }}">
-                        <img draggable="false" src="{{ potm.visual.resource_screen640.url }}" data-lazy="{{ potm.visual.resource_screen640.url }}" class="img-responsive" alt="{{ potm.visual.title }}">
+                        <img draggable="false" src="{{ potm.visual.resource_screen640.url }}" data-lazy="{{ potm.visual.resource_screen640.url }}" class="img-responsive" alt="">
                         <div class="potw-description">
                             <div class="date">{{ potm.release_date|datetime:"DATE" }} — {{ potm.id }}</div>
                             <div class="title">{{ potm.visual.title }}</div>
@@ -141,7 +141,7 @@
             <div id="newsletter-preview">
                 <a href="{{ science_newsletter.get_absolute_url }}">
                     <div class="img-wrapper">
-                        <img draggable="false" src="{{ science_newsletter.resource_screen.url }}" class="img-cropped" alt="Newsletter">
+                        <img draggable="false" src="{{ science_newsletter.resource_screen.url }}" class="img-cropped" alt="">
                     </div>
                     <div class="newsletter-description">
                         <div class="title">{{ science_newsletter.subject }}</div>
@@ -156,17 +156,17 @@
             <div class="facebook-feeds">
                 <div class="section-header">
                     <div class="section-title blue-title">
-                        {% trans "ESA/Hubble Facebook" %}
+                        <a href="https://www.facebook.com/hubbleESA" target="_blank" rel="noopener">{% trans "ESA/Hubble Facebook" %}</a>
                     </div>
                 </div>
-                <div class="fb-page" 
-                data-href="https://www.facebook.com/hubbleESA" 
-                data-tabs="timeline" 
-                data-width="304" 
-                data-height="625" 
-                data-small-header="true" 
-                data-adapt-container-width="true" 
-                data-hide-cover="true" 
+                <div class="fb-page"
+                data-href="https://www.facebook.com/hubbleESA"
+                data-tabs="timeline"
+                data-width="304"
+                data-height="625"
+                data-small-header="false"
+                data-adapt-container-width="true"
+                data-hide-cover="true"
                 data-show-facepile="false"
                 >
                 <blockquote cite="https://www.facebook.com/hubbleESA" class="fb-xfbml-parse-ignore">
@@ -194,7 +194,7 @@
                 <div class="slide">
                     <a href="{{ image.get_absolute_url }}">
                         <div class="img-wrapper">
-                            <img draggable="false" src="{{ image.resource_wallpaper1.url }}" data-lazy="{{ image.resource_wallpaper1.url }}" class="img-responsive" alt="{{ image.title }}">
+                            <img draggable="false" src="{{ image.resource_wallpaper1.url }}" data-lazy="{{ image.resource_wallpaper1.url }}" class="img-responsive" alt="">
                         </div>
                         <div class="top100-description">
                             <div class="title">{{ image.title }}</div>
@@ -215,12 +215,12 @@
                 <div class="border">
                     <div class="section-header">
                         <div class="section-title blue-title">
-                            {% trans "ESA/Hubble Newsletters" %}
+                            <a href="/newsletters">{% trans "ESA/Hubble Newsletters" %}</a>
                         </div>
                     </div>
                     <div id="subscribe-link">
                         <a href="/newsletters">
-                            <img src="{% static 'frontpage/subscribe.jpg' %}" alt="Subscribe to Hubble news">
+                            <img src="{% static 'frontpage/subscribe.jpg' %}" class="img-responsive" alt="{% trans 'Subscribe to Hubble news' %}">
                         </a>
                     </div>
                 </div>
@@ -228,24 +228,24 @@
             <div class="col-md-6">
                 <div class="border">
                     <div class="section-header">
-                        <div class="section-title blue-title">
+                        <div class="section-title blue-title" style="cursor: default; pointer-events: none;">
                             {% trans "Link to Social Media Channels" %}
                         </div>
                     </div>
                     <div class="social-links">
                         <div class="icons">
-                            <a href="https://www.facebook.com/HubbleESA"><div class="sprites-facebook_42px_flat"></div></a>
-                            <a href="https://twitter.com/hubble_space">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" 
+                            <a href="https://www.facebook.com/HubbleESA" aria-label="Facebook"><div class="sprites-facebook_42px_flat"></div></a>
+                            <a href="https://twitter.com/hubble_space" aria-label="Twitter / X">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
                                     class="bi bi-twitter-x" viewBox="0 0 16 16">
                                     <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
                                 </svg>
                             </a>
-                            <a href="http://www.youtube.com/user/HubbleESA"><div class="sprites-youtube_42px_flat"></div></a>
-                            <a href="http://www.flickr.com/photos/hubble_esa "><div class="sprites-flickr_42px_flat"></div></a>
-                            <a href="https://www.instagram.com/hubbleesa/"><div class="sprites-instagram"></div></a>
-                            <a href="https://www.linkedin.com/company/esahubble/"><div class="sprites-linkedin_42px_flat"></div></a>
-                            <a href="https://giphy.com/channel/esahubble"><div class="sprites-giphy_42px"></div></a>
+                            <a href="http://www.youtube.com/user/HubbleESA" aria-label="YouTube"><div class="sprites-youtube_42px_flat"></div></a>
+                            <a href="http://www.flickr.com/photos/hubble_esa" aria-label="Flickr"><div class="sprites-flickr_42px_flat"></div></a>
+                            <a href="https://www.instagram.com/hubbleesa/" aria-label="Instagram"><div class="sprites-instagram"></div></a>
+                            <a href="https://www.linkedin.com/company/esahubble/" aria-label="LinkedIn"><div class="sprites-linkedin_42px_flat"></div></a>
+                            <a href="https://giphy.com/channel/esahubble" aria-label="Giphy"><div class="sprites-giphy_42px"></div></a>
                         </div>
                     </div>
                 </div>
