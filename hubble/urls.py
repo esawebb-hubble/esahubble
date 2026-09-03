@@ -144,6 +144,9 @@ urlpatterns += [
     #ESASky API for JSONFeed
     url(r'^zoomables/$', ESASkyListView.as_view()),
 
+    # RAG Feed API
+    url(r'^api/rag/', include('hubble.rag_feed.api.urls')),
+
     # Sitemap
     url(r'^sitemap/$', sitemap),
 
