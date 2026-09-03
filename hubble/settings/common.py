@@ -332,6 +332,7 @@ THIRD_PARTY_APPS = [
 HUBBLE_APPS = [
     'hubble',
     'hubble.frontpage',
+    'hubble.rag_feed'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + DJANGOPLICITY_APPS + HUBBLE_APPS + THIRD_PARTY_APPS
