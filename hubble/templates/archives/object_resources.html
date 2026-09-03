@@ -25,32 +25,32 @@
                 {% if r.size %}
                 <span class="archive_dl_size">
                     <div>
-                    {% if r.size > 104857600 %}
-                        <span style="color:red">{{ r.size|filesizeformat }}</span>
-                        {% if r.url|endswith:'.zip' %}
-                            <a class="download-info" role="button" tabindex="0" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Warning: Big file!</strong><br>Do not use Windows'<a href='http://ingensystems.com/News/tabid/99/PostID/3/Solved-Missing-Files-When-Unzipping-Downloaded-Zip-Files.aspx'>built-in unzipper</a> as it produces random frames (due to its default security settings).<br>As no network or browser is 100% stable, we <em>strongly</em> recommend using a download manager (like <a href='http://www.freedownloadmanager.org/download.htm'>Free Download Manager</a> or the command line tool <a href='http://aria2.sourceforge.net/'>aria2</a>).<br><strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
-                                <i class="fa fa-question-circle"></i>
+                        {% if r.size > 104857600 %}
+                            <span style="color:red">{{ r.size|filesizeformat }}</span>
+                            {% if r.url|endswith:'.zip' %}
+                                <a class="download-info" role="button" tabindex="0" href="javascript:void(0);" aria-expanded="false" aria-label="{% trans 'Download information' %}" onkeydown="if(event.key === ' ' || event.key === 'Enter') { event.preventDefault(); this.click(); }" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Warning: Big file!</strong><br>Do not use Windows'<a href='http://ingensystems.com/News/tabid/99/PostID/3/Solved-Missing-Files-When-Unzipping-Downloaded-Zip-Files.aspx'>built-in unzipper</a> as it produces random frames (due to its default security settings).<br>As no network or browser is 100% stable, we <em>strongly</em> recommend using a download manager (like <a href='http://www.freedownloadmanager.org/download.htm'>Free Download Manager</a> or the command line tool <a href='http://aria2.sourceforge.net/'>aria2</a>).<br><strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                </a>
+                            {% elif r.icon == 'phot' %}
+                                <a class="download-info" role="button" tabindex="0" href="javascript:void(0);" aria-expanded="false" aria-label="{% trans 'Download information' %}" onkeydown="if(event.key === ' ' || event.key === 'Enter') { event.preventDefault(); this.click(); }" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Warning: Big file!</strong><br>Do not display in browser, but right click the link and use 'Save target as / Save link as'.<br><strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                </a>
+                            {% elif r.size >= 524288000 %}
+                                <a class="download-info" role="button" tabindex="0" href="javascript:void(0);" aria-expanded="false" aria-label="{% trans 'Download information' %}" onkeydown="if(event.key === ' ' || event.key === 'Enter') { event.preventDefault(); this.click(); }" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Warning: Big file!</strong><br>As no network or browser is 100% stable, we <em>strongly</em> recommend using a download manager (like <a href='http://www.freedownloadmanager.org/download.htm'>Free Download Manager</a> or the command line tool <a href='http://aria2.sourceforge.net/'>aria2</a>).<br><strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        {% elif r.name == 'original' %}
+                            {{ r.size|filesizeformat }}
+                            <a class="download-info" role="button" tabindex="0" href="javascript:void(0);" aria-expanded="false" aria-label="{% trans 'Download information' %}" onkeydown="if(event.key === ' ' || event.key === 'Enter') { event.preventDefault(); this.click(); }" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
                             </a>
-                        {% elif r.icon == 'phot' %}
-                            <a class="download-info" role="button" tabindex="0" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Warning: Big file!</strong><br>Do not display in browser, but right click the link and use 'Save target as / Save link as'.<br><strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
-                        {% elif r.size >= 524288000 %}
-                            <a class="download-info" role="button" tabindex="0" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Warning: Big file!</strong><br>As no network or browser is 100% stable, we <em>strongly</em> recommend using a download manager (like <a href='http://www.freedownloadmanager.org/download.htm'>Free Download Manager</a> or the command line tool <a href='http://aria2.sourceforge.net/'>aria2</a>).<br><strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
+                        {% else %}
+                            {{ r.size|filesizeformat }}
                         {% endif %}
-                    {% elif r.name == 'original' %}
-                        {{ r.size|filesizeformat }}
-                        <a class="download-info" role="button" tabindex="0" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="bottom" data-content="<strong>Note:</strong><br>Crediting this {{ archive }} with the full credit line, in a visible way is MANDATORY, if you want to use it without paying a fee. The full credit line to use can be found in each {{ archive }} caption.">
-                            <i class="fa fa-question-circle"></i>
-                        </a>
-                    {% else %}
-                        {{ r.size|filesizeformat }}
-                    {% endif %}
-                    {% if r.checksum and r.filename %}
-                        <a class="download-info" role="button" tabindex="0" data-toggle="popover" data-html="true" data-trigger="click" data-placement="bottom" data-title="sha256 checksum" data-content="{{ r.checksum }}&nbsp;&nbsp;{{ r.filename }}"> checksum</a>
-                    {% endif %}
+                        {% if r.checksum and r.filename %}
+                            <a class="download-info" role="button" tabindex="0" href="javascript:void(0);" aria-expanded="false" aria-label="{% trans 'Checksum information' %}" onkeydown="if(event.key === ' ' || event.key === 'Enter') { event.preventDefault(); this.click(); }" data-toggle="popover" data-html="true" data-trigger="click" data-placement="bottom" data-title="sha256 checksum" data-content="{{ r.checksum }}&nbsp;&nbsp;{{ r.filename }}"> checksum</a>
+                        {% endif %}
                     </div>
                 </span>
                 {% endif %}

@@ -38,6 +38,6 @@
 {% endif %}
 
 {% if object.headline %}<p>{{ object.headline }}</p>{% endif %}
-<p>{{ object.description|safe }}</p>
+<div style="margin-top: 10px">{{ object.description|safe }}</div>
 <strong>{% trans "Credit" %}:</strong><div class="credit">{{ object.credit|safe }}</div>
 {% include 'archives/image/extra_footer.html' %}
