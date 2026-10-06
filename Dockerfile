@@ -1,7 +1,7 @@
 #############################################
 # BUILDER IMAGE: Only for building the code #
 #############################################
-FROM python:3.8-slim-bullseye AS builder
+FROM python:3.8-slim-bookworm AS builder
 # Follow Dockerfile RUN best practices (Keep packages organized alphabetically):
 # See: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
 # - gcc, libsasl2-dev, libsasl2-dev, libssl-dev and python-dev are required by django-auth-ldap
@@ -9,7 +9,7 @@ FROM python:3.8-slim-bullseye AS builder
 RUN apt-get update && apt-get install -y \
     gcc \
     git \
-    libldap2-dev \
+    libldap-dev \
     libsasl2-dev \
     libssl-dev \
     python3-dev
@@ -38,22 +38,22 @@ RUN pip install --user -r test-requirements.txt
 ######################################
 
 # FROM djangoplicity/base:initial
-FROM python:3.8-slim-bullseye
+FROM python:3.8-slim-bookworm
 
 # Install here only runtime required packages
 # - cssmin and node-uglify are the processors used by django pipeline
 # - ffmpeg and mplayer are required for videos processing
 # - imagemagick is used for process images and generate derivatives
-# - libldap-2.4-2 are runtime libraries for the OpenLDAP use by django-auth-ldap
+# - libldap-2.5-0 are runtime libraries for the OpenLDAP use by django-auth-ldap
 # - libexempi-dev is required by python-avm-library(libavm) and python-xmp-toolkit
 # - rsync and openssh-client are required to synchronize files to CDN77
 RUN apt-get update && apt-get install -y \
     cssmin \
     ffmpeg \
     imagemagick-6.q16 \
-    libldap-2.4-2 \
+    libldap-2.5-0 \
     mplayer \
-    node-uglify \
+    uglifyjs \
     libexempi-dev \
     rsync \
     openssh-client \
