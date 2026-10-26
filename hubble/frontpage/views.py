@@ -12,12 +12,12 @@ from collections import OrderedDict
 from django.http import JsonResponse
 from django.views.generic.base import TemplateView
 
-from djangoplicity.announcements.models import Announcement
+from djangoplicity.announcements.models import Announcement, AnnouncementImage
 from djangoplicity.media.models import Image, Video, PictureOfTheWeek
 from djangoplicity.media.options import ImageOptions, VideoOptions, PictureOfTheWeekOptions, PictureOfTheMonthOptions
 from djangoplicity.newsletters.models import Newsletter, NewsletterType
-from djangoplicity.releases.models import Release
-
+from djangoplicity.releases.models import Release, ReleaseImage
+from django.db.models import Prefetch
 from hubble.frontpage.models import Highlight
 
 
@@ -28,14 +28,18 @@ class FrontpageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(FrontpageView, self).get_context_data(**kwargs)
 
-        context['announcements'] = Announcement.get_latest_announcement(20, only_featured=True)
+        context['announcements'] = Announcement.get_latest_announcement(20, only_featured=True).prefetch_related(Prefetch('announcementimage_set', queryset=AnnouncementImage.objects.select_related('archive_item')))
         context['highlights'] = Highlight.objects.filter(published=True)
         # TODO: Check why this is not working
         context['spacesparks'] = VideoOptions.Queries.category.queryset(Video, VideoOptions, self.request, stringparam='spacesparks')[0].order_by('-release_date',)[:10]
         context['hubblecasts'] = VideoOptions.Queries.category.queryset(Video, VideoOptions, self.request, stringparam='hubblecast')[0].order_by('-release_date',)[:10]
         #context['potws'] = PictureOfTheWeekOptions.Queries.default.queryset(PictureOfTheWeek, PictureOfTheWeekOptions, self.request)[0][:10]
         context['potms'] = (PictureOfTheMonthOptions.Queries.default.queryset(PictureOfTheWeek, PictureOfTheMonthOptions, self.request)[0].filter(category='POTM').order_by('-release_date')[:10])
-        context['releases'] = Release.get_latest_release(5)
+        context['releases'] = Release.get_latest_release(5).select_related(
+            'release_type'
+        ).prefetch_related(
+            Prefetch('releaseimage_set', queryset=ReleaseImage.objects.select_related('archive_item'))
+        )
         context['top100'] = ImageOptions.Queries.top100.queryset(Image, ImageOptions, self.request)[0][:20]
         context['science_newsletter'] = Newsletter.latest_for_type(NewsletterType.objects.get(slug='science'))
 

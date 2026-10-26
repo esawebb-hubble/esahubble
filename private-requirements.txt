@@ -1,4 +1,4 @@
-# Last update: feat: add BigTIFF support and high-res derivatives (40k, 25k, 10k)
+# Last update: feat: resolve N+1 query issue in public image feeds
 git+https://github.com/esawebb-hubble/djangoplicity.git@main
 git+https://github.com/esawebb-hubble/djangoplicity-actions.git@main
 git+https://github.com/esawebb-hubble/djangoplicity-customsearch.git@main
