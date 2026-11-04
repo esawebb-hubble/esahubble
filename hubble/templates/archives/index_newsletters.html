@@ -25,6 +25,10 @@
 {% endfor %}
 </div>
 
+{% if '/newsletters/science/' in request.path %}
+    <p>To explore archived ST-ECF newsletters from March 1985 and December 2010, please see <a href="/forscientists/ST-ECF_archive/">here</a>.</p>
+{% endif %}
+
 {% paginator paginator page_obj paginator_url paginator_prefix paginator_params %}
 {% statusbar paginator page_obj browsers searchable search_url search_str  %}
 
