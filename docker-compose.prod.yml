@@ -23,6 +23,9 @@ x-common: &common
     AWS_S3_ENDPOINT_URL:
     AWS_S3_CUSTOM_DOMAIN:
     INTERNAL_IPS:
+    NEW_RELIC_LICENSE_KEY: "3538ae074a280d7828d0f9b42c71c18bba74NRAL"
+    NEW_RELIC_APP_NAME: "esahubble"
+    NEW_RELIC_CONFIG_FILE: "/home/hubbleadm/newrelic.ini"
   volumes:
     - /mnt/volume_fra1_01/web/media:/home/hubbleadm/media
     - /mnt/volume_fra1_01/web/import:/home/hubbleadm/import
