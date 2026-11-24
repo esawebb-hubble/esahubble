@@ -23,9 +23,11 @@ x-common: &common
     AWS_S3_ENDPOINT_URL:
     AWS_S3_CUSTOM_DOMAIN:
     INTERNAL_IPS:
+    NEW_RELIC_ENVIRONMENT: "production"
     NEW_RELIC_MONITOR_MODE: "true"
     NEW_RELIC_LICENSE_KEY: "3538ae074a280d7828d0f9b42c71c18bba74NRAL"
     NEW_RELIC_APP_NAME: "esahubble-prod"
+    NEW_RELIC_CONFIG_FILE: "/home/hubbleadm/newrelic.ini"
   volumes:
     - /mnt/volume_fra1_01/web/media:/home/hubbleadm/media
     - /mnt/volume_fra1_01/web/import:/home/hubbleadm/import
@@ -33,6 +35,7 @@ x-common: &common
     # The SSH key and known_hosts is required to push files to CDN77 Storage, See README
     - ./config/.ssh:/home/hubbleadm/.ssh
     - ./config/youtube:/home/hubbleadm/config/youtube
+    - ./newrelic.ini:/home/hubbleadm/newrelic.ini:ro
 
 services:
   nginx:
